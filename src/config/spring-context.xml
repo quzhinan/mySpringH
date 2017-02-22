@@ -29,9 +29,9 @@
 	<task:scheduler id="scheduler" pool-size="1" />
 	<task:annotation-driven executor="taskExecutor" scheduler="scheduler" />
 	<!-- 需要扫描的包 start-->
-	<context:component-scan base-package="com.lx.controllers" />
-	<context:component-scan base-package="com.lx.daos.hibernate" />
-	<context:component-scan base-package="com.lx.services.hibernate" />
+	<context:component-scan base-package="com.qzn.controllers" />
+	<context:component-scan base-package="com.qzn.daos.hibernate" />
+	<context:component-scan base-package="com.qzn.services.hibernate" />
 	<!-- 需要扫描的包 end -->
  	
  	<!-- viewResolver start -->
@@ -104,10 +104,10 @@
 		<property name="dataSource" ref="dataSource" />
 		
 		<!-- hibernate5 -->
-        <property name="packagesToScan" value="com.lx.models" />
+        <property name="packagesToScan" value="com.qzn.models" />
 		<property name="annotatedPackages">
 			<list>
-				<value>com.lx.models</value>
+				<value>com.qzn.models</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -169,7 +169,7 @@
 	<!-- 数据验证 end -->
 	
 	<!-- 异常处理 start -->
-	<!-- <bean class="com.lx.exceptions.ExceptionHandler" /> -->
+	<!-- <bean class="com.qzn.exceptions.ExceptionHandler" /> -->
 	<bean id="exceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
@@ -234,30 +234,30 @@
 	<!-- sendEmail end -->
 	
 	<!-- IOC demo start -->
-	<!-- springFrome initiate check start -->
-	<bean class="com.lx.utils.CheckConfigs">
+	<!-- springframework initiate check start -->
+	<bean class="com.qzn.utils.CheckConfigs">
 		<property name="dbUrl" value="${db.url}" />
 		<property name="userDao">
-			<bean class="com.lx.daos.hibernate.UserDaoImpl" /> 
+			<bean class="com.qzn.daos.hibernate.UserDaoImpl" /> 
 		</property>
 	</bean>
 	<!-- initiate check end -->
 	
 	<!-- 在过滤器中注入service start-->
-	<bean id="userService" class="com.lx.services.hibernate.UserServiceImpl"></bean>
+	<bean id="userService" class="com.qzn.services.hibernate.UserServiceImpl"></bean>
 	<!-- 在过滤器中注入service end-->
 	
 	<!-- IOC demo end-->
 	
 	<!-- AOP demo start  -->
 	<!-- 切面类 -->
-	<bean id="appendLogsByAOP" class="com.lx.utils.AppendLogsByAOP"/>
+	<bean id="appendLogsByAOP" class="com.qzn.utils.AppendLogsByAOP"/>
 	<!-- 切入点 -->
 	<aop:config>
-		<aop:pointcut id="afterMethodPoint" expression="execution(* com.lx.controllers.publics.*Controller.*(..))"/>
+		<aop:pointcut id="afterMethodPoint" expression="execution(* com.qzn.controllers.publics.*Controller.*(..))"/>
 		<aop:aspect id = "appendLogs" ref="appendLogsByAOP">
-			<aop:before method="logOutputBeforeMethod" pointcut="execution(* com.lx.controllers.publics.*Controller.*(..))"/>
-			<aop:after-throwing method="logOutputAfterThrows" pointcut="execution(* com.lx.controllers.publics.*Controller.*(..))"/>
+			<aop:before method="logOutputBeforeMethod" pointcut="execution(* com.qzn.controllers.publics.*Controller.*(..))"/>
+			<aop:after-throwing method="logOutputAfterThrows" pointcut="execution(* com.qzn.controllers.publics.*Controller.*(..))"/>
 			<!-- 可以用 pointcut-ref来指代相同的pointcut-->
 			<aop:after-returning method="logOutputAfterReturn" pointcut-ref="afterMethodPoint"/>
 			<aop:after method="logOutputAfterMethod" pointcut-ref="afterMethodPoint"/>
