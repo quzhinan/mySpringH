@@ -10,22 +10,22 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 public final class SpringEmailUtil {
 	public static LinkedBlockingQueue<JavaMailSender> mailSenderQueue;
-	
-	private static void initMailSenderQueue(int numberOfMailSender){
+
+	private static void initMailSenderQueue(int numberOfMailSender) {
 		mailSenderQueue = new LinkedBlockingQueue<JavaMailSender>(numberOfMailSender);
 		for (int i = 0; i < numberOfMailSender; i++) {
 			JavaMailSender mailSender = getJavaMailSender();
 			mailSenderQueue.add(mailSender);
 		}
 	}
-	
+
 	public static JavaMailSender getJavaMailSender() {
 		JavaMailSender mailSender = SpringBeanUtil.getBean(JavaMailSender.class, "mailSender");
 		return mailSender;
 	}
 
 	public static void sendEmail(Email email) throws Exception {
-		if(mailSenderQueue==null||mailSenderQueue.size()==0){
+		if (mailSenderQueue == null || mailSenderQueue.size() == 0) {
 			initMailSenderQueue(1);
 		}
 		JavaMailSender mailSender = mailSenderQueue.take();
