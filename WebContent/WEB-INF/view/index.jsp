@@ -5,12 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.titleDiv{
+	width: 50%;
+	/* height: 100px; */
+	min-height: 100px;
+	margin: 0 auto;
+	text-align :center;
+	font-size: 80px;
+	color: red;
+}
+</style>
+
 </head>
 <body>
-helllo !<br>
-welcome everyone!<br>
-my Spring
-
-你好啊
+<div class="titleDiv">SpringMVC</div>
+<a href="fileOperation.htm">文件操作</a>
 </body>
 </html>
