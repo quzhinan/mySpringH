@@ -16,6 +16,11 @@ public class TopController {
 	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping(value = { "frontPage.htm" })
+	public String frontPage() {
+		return "tiles.admin.frontpage";
+	}
 
 	@RequestMapping(value = { "fileOperation.htm" })
 	public String fileOperation() {

@@ -23,7 +23,7 @@ public class adminUser implements Serializable {
 	@Column(name = "id", insertable = false, updatable = false)
 	private Long id;
 	
-	@Size(max = 1,message = "{typeMismatch.admin_user.id}")
+	@Size(max = 1,message = "{typeMismatch.adminuser.id}")
 	@Column(name = "username")
 	private String name;
 

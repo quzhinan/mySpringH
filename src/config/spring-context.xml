@@ -38,7 +38,7 @@
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="2" />
 		<property name="prefix">
-			<value>/WEB-INF/view/</value>
+			<value>/WEB-INF/views/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
@@ -60,7 +60,7 @@
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
-				<value>/WEB-INF/classes/tilesPublic.xml</value>
+				<value>/WEB-INF/classes/tiles_admin.xml</value>
 			</list>
 		</property>
 	</bean>

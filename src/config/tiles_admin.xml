@@ -5,9 +5,16 @@
 
 <tiles-definitions>
 
-	<definition name="tiles.template.public" template="/WEB-INF/tiles/layout.jsp">
+	<definition name="tiles.template" template="/WEB-INF/tiles/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="tiles.admin.frontpage" extends="tiles.template">
+		<put-attribute name="title" value="title.frontpage" />
+		<put-attribute name="css" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/frontPage.jsp" />
 	</definition>
 	
 </tiles-definitions>
