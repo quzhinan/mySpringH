@@ -87,6 +87,8 @@ public interface Service<T, ID extends Serializable> {
 	
 	List<T> getListByProperty(String property, Object value);
 	
+	List<T> getListByPropertys(String property1, Object value1, String property2, Object value2);
+	
 	int getCount();
 	
 	// TODO HQL START

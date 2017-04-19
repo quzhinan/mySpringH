@@ -151,6 +151,11 @@ public abstract class AbstractService<T, ID extends Serializable> implements Ser
 	}
 	
 	@Transactional(readOnly=true, rollbackFor=ServiceException.class)
+	public List<T> getListByPropertys(String property1, Object value1, String property2, Object value2) throws ServiceException{
+		return getDao().getListByPropertys(property1, value1, property2, value2);
+	}
+	
+	@Transactional(readOnly=true, rollbackFor=ServiceException.class)
 	public Object max(String property) throws ServiceException{
 		return getDao().max(property);
 	}

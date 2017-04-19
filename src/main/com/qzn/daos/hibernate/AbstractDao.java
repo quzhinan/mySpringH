@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
@@ -118,6 +119,27 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		String hql = String.format("from %s where %s=:val ", getModelClass().getSimpleName(), property);
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
 		query.setParameter("val", value);
+		return query.list();
+	}
+	@Override
+	public List<T> getListByPropertys(String property1, Object value1, String property2, Object value2) throws DataAccessException {
+		StringBuilder sb = new StringBuilder();
+		if (StringUtils.isNotEmpty(property1) && StringUtils.isNotEmpty(property2)) {
+			sb.append(property1 + "= :"+property1+",");
+			sb.append(property2 + "= :"+property2);
+		} else if (StringUtils.isNotEmpty(property1)) {
+			sb.append(property1 + "= :"+property1);
+		} else if (StringUtils.isNotEmpty(property2)) {
+			sb.append(property2 + "= :"+property2);
+		}
+		String hql = String.format("from %s where 1=1 %s ", getModelClass().getSimpleName(), sb.toString());
+		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
+		if (StringUtils.isNotEmpty(property1)) {
+			query.setParameter(property1, value1);
+		}
+		if (StringUtils.isNotEmpty(property2)) {
+			query.setParameter(property2, value2);
+		}
 		return query.list();
 	}
 	@Override

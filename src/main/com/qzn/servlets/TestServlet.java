@@ -1,18 +1,41 @@
 package com.qzn.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.qzn.models.adminUser;
+import com.qzn.services.UserService;
+
+
 /**
  * Servlet implementation class TestServlet
  */
+
+@WebServlet("/TestServlet")
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private UserService userService;
+	
        
-    /**
+    public UserService getUserService() {
+		return userService;
+	}
+
+    @Autowired
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public TestServlet() {
@@ -25,7 +48,9 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
 	}
 
 	/**

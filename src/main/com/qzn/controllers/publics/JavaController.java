@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qzn.controllers.AbstractController;
-import com.qzn.models.User;
+import com.qzn.models.adminUser;
 import com.qzn.services.UserService;
 
 @Controller

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.qzn.daos.Dao;
 import com.qzn.daos.UserDao;
-import com.qzn.models.User;
+import com.qzn.models.adminUser;
 import com.qzn.services.UserService;
 @Service
-public class UserServiceImpl extends AbstractService<User, Long>implements UserService {
+public class UserServiceImpl extends AbstractService<adminUser, Long>implements UserService {
 
 	private static final Logger log = LogManager.getLogger(UserServiceImpl.class);
 
@@ -18,7 +18,7 @@ public class UserServiceImpl extends AbstractService<User, Long>implements UserS
 	private UserDao userDao;
 	
 	@Override
-	public Dao<User, Long> getDao() {
+	public Dao<adminUser, Long> getDao() {
 		return userDao;
 	}
 

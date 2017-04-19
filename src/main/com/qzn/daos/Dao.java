@@ -52,6 +52,8 @@ public interface Dao<T, ID extends Serializable> {
 	
 	public List<T> getListByProperty(String property, Object value) throws DataAccessException;
 	
+	public List<T> getListByPropertys(String property1, Object value1, String property2, Object value2) throws DataAccessException;
+	
 	public List<T> getOrderListByProperty(String property, Object value,String orderProperty,String order) throws DataAccessException;
 	
 	public List<T> getOffsetLimitOrderList(String orderProperty,String order, int limit, int offset) throws DataAccessException;
