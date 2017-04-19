@@ -1,49 +1,53 @@
 package com.qzn.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+
 @Entity
 @Table(name = "admin_user")
-public class adminUser implements Serializable {
+public class AdminUser implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6137279744955162255L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 //	@Size(max = 1,message = "{typeMismatch.admin_user.id}")
 	@Column(name = "id", insertable = false, updatable = false)
 	private Long id;
 	
 	@Size(max = 1,message = "{typeMismatch.adminuser.id}")
 	@Column(name = "username")
-	private String name;
+	private String username;
 
 	@Column(name = "password")
 	private String password;
 	
 	@Column(name = "age")
-	private int age;
+	private Integer age;
 	
 	@Column(name = "sex")
-	private int sex;
+	private Integer sex;
 	
 	@Column(name = "address")
 	private String address;
 	
-	@Column(name="createdate")
-	private Date createDate;
+	@Column(name="createdate", insertable = false, updatable = false)
+	private Timestamp createDate;
 	
-	@Column(name="updatedate")
-	private Date updateDate;
+	@Column(name="updatedate", insertable = false, updatable = false)
+	private Timestamp updateDate;
 
 	public Long getId() {
 		return id;
@@ -53,12 +57,12 @@ public class adminUser implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -69,19 +73,19 @@ public class adminUser implements Serializable {
 		this.password = password;
 	}
 	
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
-	public int getSex() {
+	public Integer getSex() {
 		return sex;
 	}
 
-	public void setSex(int sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
 
@@ -93,19 +97,19 @@ public class adminUser implements Serializable {
 		this.address = address;
 	}
 
-	public Date getCreateDate() {
+	public Timestamp getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(Timestamp createDate) {
 		this.createDate = createDate;
 	}
 
-	public Date getUpdateDate() {
+	public Timestamp getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
 

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.qzn.models.adminUser;
+import com.qzn.models.AdminUser;
 import com.qzn.services.UserService;
 
 

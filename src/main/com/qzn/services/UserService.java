@@ -1,7 +1,7 @@
 package com.qzn.services;
 
-import com.qzn.models.adminUser;
+import com.qzn.models.AdminUser;
 
-public interface UserService extends Service<adminUser, Long>{
+public interface UserService extends Service<AdminUser, Long>{
 	
 }

@@ -1,7 +1,7 @@
 package com.qzn.daos;
 
-import com.qzn.models.adminUser;
+import com.qzn.models.AdminUser;
 
-public interface UserDao extends Dao<adminUser, Long>{
+public interface UserDao extends Dao<AdminUser, Long>{
 
 }

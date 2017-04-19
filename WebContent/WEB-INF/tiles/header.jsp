@@ -15,7 +15,77 @@
 	font-size: 80px;
 	color: red;
 }
+
+div#page-main table.main-menu-box {
+	border-color: #FFFFFF;
+}
+
+div#page-main table.main-menu-box td {
+	background-color: #AA0000;
+	border-color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	height: 40px;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 0px 10px 0px 10px;
+}
 </style>
+
+</head>
+<body>
+	<div class="titleDiv">SpringMVC</div>
+	<div id="page-main">
+		<table width="100%" class="main-menu-box" border="0" cellSpacing="2"
+			cellPadding="0">
+			<tr>
+				<td id="td1" nowrap="nowrap"
+					style="cursor: pointer; width:13%; background-color: #AA0000"
+					onmouseover="this.style.backgroundColor='#9F9000';"
+					onmouseout="mouseoutevent()"
+					onmousedown="this.style.backgroundColor='#9F5B00';"
+					onmouseup="this.style.backgroundColor='#9F9000';"
+					onclick="window.location='adminUserList.htm'">首页</td>
+				<td id="td6" nowrap="nowrap"
+					style="cursor: pointer; width:13%; background-color: #AA0000"
+					onmouseover="this.style.backgroundColor='#9F9000';"
+					onmouseout="mouseoutevent()"
+					onmousedown="this.style.backgroundColor='#9F5B00';"
+					onmouseup="this.style.backgroundColor='#9F9000';"
+					onclick="window.location='speakList.htm'">目的地</td>
+				<td id="td2" nowrap="nowrap"
+					style="cursor: pointer; width:13%; background-color: #AA0000"
+					onmouseover="this.style.backgroundColor='#9F9000';"
+					onmouseout="mouseoutevent()"
+					onmousedown="this.style.backgroundColor='#9F5B00';"
+					onmouseup="this.style.backgroundColor='#9F9000';"
+					onclick="window.location='supplierList.htm'">景点</td>
+				<td id="td3" nowrap="nowrap"
+					style="cursor: pointer; width:13%; background-color: #AA0000"
+					onmouseover="this.style.backgroundColor='#9F9000';"
+					onmouseout="mouseoutevent()"
+					onmousedown="this.style.backgroundColor='#9F5B00';"
+					onmouseup="this.style.backgroundColor='#9F9000';"
+					onclick="window.location='groupList.htm'">攻略</td>
+				<td id="td4" nowrap="nowrap"
+					style="cursor: pointer; width:13%; background-color: #AA0000"
+					onmouseover="this.style.backgroundColor='#9F9000';"
+					onmouseout="mouseoutevent()"
+					onmousedown="this.style.backgroundColor='#9F5B00';"
+					onmouseup="this.style.backgroundColor='#9F9000';"
+					onclick="window.location='groupList.htm'">线路</td>
+				<td id="td5" nowrap="nowrap"
+					style="cursor: pointer; width:13%; background-color: #AA0000"
+					onmouseover="this.style.backgroundColor='#9F9000';"
+					onmouseout="mouseoutevent()"
+					onmousedown="this.style.backgroundColor='#9F5B00';"
+					onmouseup="this.style.backgroundColor='#9F9000';"
+					onclick="window.location='jppostMenuList.htm'">导游</td>
+				<td width="100%" nowrap="nowrap"></td>
+			</tr>
+		</table>
+	</div>
+</body>
 
 <script language="JavaScript">
 	var mark = "${mark}";
@@ -23,34 +93,28 @@
 	if (mark == "admin") {
 		$("#td1").css("background-color", "#9F9000");
 		menuId = 1;
-		$("#main-title").html("ユーザー管理");
 	}
 	if (mark == "supplier") {
 		$("#td2").css("background-color", "#9F9000");
 		menuId = 2;
-		$("#main-title").html("提携事業者（自治体）管理");
 	}
 	if (mark == "group") {
 		$("#td3").css("background-color", "#9F9000");
 		menuId = 3;
-		$("#main-title").html("公開先グループ");
 	}
 	if (mark == "notice") {
 		$("#td4").css("background-color", "#9F9000");
 		menuId = 4;
-		$("#main-title").html("地域のお知らせ");
 	}
 
 	if (mark == "jppostMenu") {
 		$("#td5").css("background-color", "#9F9000");
 		menuId = 5;
-		$("#main-title").html("郵便局からのお知らせ");
 	}
 
 	if (mark == "speak") {
 		$("#td6").css("background-color", "#9F9000");
 		menuId = 6;
-		$("#main-title").html("今日の一言");
 	}
 
 	function mouseoutevent() {
@@ -93,72 +157,7 @@
 			else
 				$("#td6").css("background-color", "#AA0000");
 
-			if (menuId == 30)
-
-				$("#td30").css("background-color", "#9F9000");
-			else
-				$("#td30").css("background-color", "#AA0000");
-
 		}
 	}
 </script>
-
-</head>
-<body>
-	<div class="titleDiv">SpringMVC</div>
-	<table width="100%" class="main-menu-box" border="0" cellSpacing="2"
-		cellPadding="0">
-		<tr>
-			<td id="td1" nowrap="nowrap"
-				style="cursor: pointer; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='adminUserList.htm'">ユーザー管理</td>
-			<td id="td6" nowrap="nowrap"
-				style="cursor: pointer; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='speakList.htm'">今日の一言</td>
-			<td id="td2" nowrap="nowrap"
-				style="cursor: pointer; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='supplierList.htm'">提携事業者（自治体）管理</td>
-			<td id="td3" nowrap="nowrap"
-				style="cursor: pointer; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='groupList.htm'">公開先グループ</td>
-			<td id="td4" nowrap="nowrap"
-				style="cursor: pointer; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='groupList.htm'">公開先グループ</td>
-			<td id="td5" nowrap="nowrap"
-				style="cursor: pointer; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='jppostMenuList.htm'">郵便局からのお知らせ</td>
-			<td width="100%" nowrap="nowrap"></td>
-			<td nowrap="nowrap"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="this.style.backgroundColor='#AA0000';"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='logout.htm'" style="cursor: pointer;">ログアウト</td>
-		</tr>
-	</table>
-</body>
 </html>

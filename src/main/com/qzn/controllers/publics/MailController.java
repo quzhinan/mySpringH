@@ -23,7 +23,7 @@ import com.qzn.utils.SpringEmailUtil;
 import com.qzn.utils.VelocitiesUtil;
 
 @Controller
-public class TestController {
+public class MailController {
 	
 	private static final Logger log = LoggerFactory.getLogger(AbstractController.class);
 	

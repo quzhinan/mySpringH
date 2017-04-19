@@ -5,10 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.qzn.daos.UserDao;
-import com.qzn.models.adminUser;
+import com.qzn.models.AdminUser;
 
 @Repository
-public class UserDaoImpl extends AbstractDao<adminUser, Long> implements UserDao {
+public class UserDaoImpl extends AbstractDao<AdminUser, Long> implements UserDao {
 	
 	private static final Logger log = LogManager.getLogger(UserDaoImpl.class);
 
