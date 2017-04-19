@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 
 @Entity
@@ -27,7 +26,7 @@ public class AdminUser implements Serializable {
 	@Column(name = "id", insertable = false, updatable = false)
 	private Long id;
 	
-	@Size(max = 1,message = "{typeMismatch.adminuser.id}")
+//	@Size(max = 1,message = "{typeMismatch.adminuser.id}")
 	@Column(name = "username")
 	private String username;
 
