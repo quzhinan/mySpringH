@@ -38,6 +38,6 @@ public class TopController {
 
 	@RequestMapping(value = { "fileOperation.htm" })
 	public String fileOperation() {
-		return "fileTest";
+		return "file";
 	}
 }

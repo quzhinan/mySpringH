@@ -124,7 +124,6 @@ public abstract class AbstractService<T, ID extends Serializable> implements Ser
 		return getDao().getUniqueCount();
 	}
 	
-	// TODO HQL START
 	
 	@Transactional(readOnly=true, rollbackFor=ServiceException.class)
 	public List<T> getOffsetLimitOrderListByProperty(String property, Object value, String orderProperty, String order,
@@ -165,5 +164,4 @@ public abstract class AbstractService<T, ID extends Serializable> implements Ser
 		return getDao().getOffsetLimitOrderList(orderProperty,order, limit, offset);
 	}
 	
-	// TODO HQL END
 }

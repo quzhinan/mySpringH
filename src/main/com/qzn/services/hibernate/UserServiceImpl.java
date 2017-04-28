@@ -22,9 +22,4 @@ public class UserServiceImpl extends AbstractService<AdminUser, Long>implements 
 		return userDao;
 	}
 
-//	@Transactional(readOnly=false, rollbackFor=Exception.class)
-//	public String searchPostAreaCode(String postAreaCode,String postAreaName,int page) throws Exception{
-//		
-//		return dataHelp.getJsonString();
-//	}
 }

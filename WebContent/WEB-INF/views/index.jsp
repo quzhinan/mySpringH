@@ -20,7 +20,8 @@
 </head>
 <body>
 	<div class="titleDiv">SpringMVC</div>
-	<a href="fileOperation.htm">文件操作</a>
+	<a href="fileOperation.htm">文件操作</a><br/>
+	<a href="email.htm">邮件操作</a><br/>
 	<a href="frontPage.htm">首页</a>
 </body>
 </html>

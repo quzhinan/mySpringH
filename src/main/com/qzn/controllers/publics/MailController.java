@@ -31,13 +31,13 @@ public class MailController {
 	public String email(Model model) {
 		Email email = new Email();	
 		email.setFromEmailAddress(PropertyUtil.getPropertyValue("mail.fromAddress"));
-		email.setFromPersonName(PropertyUtil.getPropertyValue("mail.fromAddress"));
-		email.setToEmailAddresses(new String[]{"sendToxxx@qq.com"});
-		email.setSubject("邮件标题");
+		email.setFromPersonName(PropertyUtil.getPropertyValue("mail.username"));
+		email.setToEmailAddresses(new String[]{"sendToAddress"});
+		email.setSubject("标题");
 		Map<String,Object> velocityContext = new HashMap<>();
-		velocityContext.put("name", "VelocityEngine");
-		velocityContext.put("result", "效果还行吧");
-		String content = VelocitiesUtil.getVelocityText("email_test.vm", velocityContext);
+		velocityContext.put("name", "name");
+		velocityContext.put("content", "content");
+		String content = VelocitiesUtil.getVelocityText("email.vm", velocityContext);
 		email.setContent(content);
 		model.addAttribute("email", email);
 		return "email";
@@ -51,7 +51,6 @@ public class MailController {
 			SpringEmailUtil.sendEmail(email);
 			model.addAttribute("result","发送邮件成功");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			model.addAttribute("result", e.getMessage());
 		}

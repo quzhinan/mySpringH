@@ -13,7 +13,7 @@ import org.springframework.dao.DataAccessException;
 
 
 /**
- * @author liuxin
+ * @author quzhinan
  *
  * @param <T>
  * @param <ID>
