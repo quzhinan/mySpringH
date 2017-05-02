@@ -75,7 +75,6 @@ public class FilesIOUtil {
             String fileName = file.getOriginalFilename();   
             File uploadFile = new File(savePath + File.separator + fileName);
             file.transferTo(uploadFile);
-            // FileCopyUtils.copy(mf.getBytes(), uploadFile);   
         } 
 	}
 }

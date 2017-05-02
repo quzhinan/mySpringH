@@ -2,7 +2,7 @@
 <Configuration status="off" monitorInterval="3600">
 
 	<properties>
-		<property name="LOG_HOME">/var/springLog/log</property>
+		<property name="LOG_HOME">/var/springH/log</property>
 		<property name="FILE_NAME">springH</property>
 	</properties>
 	

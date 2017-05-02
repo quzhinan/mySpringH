@@ -21,19 +21,43 @@
 </style>
 </head>
 <body>
-<form:form modelAttribute="email" action="sendEmail.htm" method="post">
-<table class="emailTable" border="0" >
-<tr><td>接收邮箱:</td><td><form:input path="toEmailAddresses"/></td></tr>
-<tr><td>邮件标题:</td><td><form:input path="subject"/></td></tr>
-<tr><td>邮件内容:</td><td><form:textarea path="content" style="height:80px;width:200px;"/></td></tr>
-<tr><td>发出邮箱:</td><td><form:input path="fromEmailAddress"/></td></tr>
-<tr><td>发送者:</td><td><form:input path="fromPersonName"/></td></tr>
-<tr><td colspan="2"><input type="submit" value ="发送"/></td></tr>
-<c:if test="${result ne null}">
-<tr><td>发送结果：</td><td><textarea style="height:80px;width:200px;">${result}</textarea></td></tr>
-</c:if>
-<tr><td colspan="2"><input type="button" value ="返回" onclick="window.location='index.htm'"/></td></tr>
-</table>
-</form:form>
+	<form:form modelAttribute="email" action="sendEmail.htm" method="post">
+		<table class="emailTable" border="0">
+			<tr>
+				<td>接收邮箱:</td>
+				<td><form:input path="toEmailAddresses" /></td>
+			</tr>
+			<tr>
+				<td>邮件标题:</td>
+				<td><form:input path="subject" /></td>
+			</tr>
+			<tr>
+				<td>邮件内容:</td>
+				<td><form:textarea path="content"
+						style="height:80px;width:200px;" /></td>
+			</tr>
+			<tr>
+				<td>发出邮箱:</td>
+				<td><form:input path="fromEmailAddress" /></td>
+			</tr>
+			<tr>
+				<td>发送者:</td>
+				<td><form:input path="fromPersonName" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="发送" /></td>
+			</tr>
+			<c:if test="${result ne null}">
+				<tr>
+					<td>发送结果：</td>
+					<td><textarea style="height: 80px; width: 200px;">${result}</textarea></td>
+				</tr>
+			</c:if>
+			<tr>
+				<td colspan="2"><input type="button" value="返回"
+					onclick="window.location='index.htm'" /></td>
+			</tr>
+		</table>
+	</form:form>
 </body>
 </html>

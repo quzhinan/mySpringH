@@ -11,32 +11,74 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.titleDiv{
+.titleDiv {
 	width: 50%;
 	/* height: 100px; */
 	min-height: 100px;
-	text-align :left;
+	text-align: left;
 	font-size: 30px;
 	color: blue;
 }
 </style>
 </head>
 <body>
-<div class="titleDiv">文件操作</div>
-<form:form modelAttribute="email" action="fileUpload.htm" method="post">
-	<table>
+	<div class="titleDiv">文件操作</div>
+
+	<table border="0" cellpadding="5" cellspacing="10">
 		<tr>
-			<td><input type="file" id="uploadFile" value="选择文件"/>
-			<input type="submit" id="submit" value="提交">
+			<td>
+				<div>单文件上传</div>
 			</td>
 		</tr>
 		<tr>
-			<td><input type="button" value="返回" onclick="window.location='index.htm'"/>
+			<td>
+				<form action="singleFileUpload.htm" method="post"
+					enctype="multipart/form-data">
+					<table border="0">
+						<tr>
+							<td><input type="file" id="singleFileUpload" name="singleFileUpload"
+								value="选择文件" /></td>
+							<td><input type="submit" id="submit" value="提交"></td>
+						</tr>
+						<c:if test="${singleResult ne null}">
+							<tr>
+								<td>上传结果:</td>
+								<td><label>${singleResult}</label></td>
+							<tr>
+						</c:if>
+					</table>
+				</form>
 			</td>
+		</tr>
+		<tr>
+			<td>
+				<div>多文件上传</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="multipleFileUpload.htm" method="post"
+					enctype="multipart/form-data">
+					<table>
+						<tr>
+							<td><input type="file" id="multipleFileUpload" name="multipleFileUpload"
+								value="选择文件" multiple="multiple" /></td>
+							<td><input type="submit" id="submit" value="提交"></td>
+						</tr>
+						<c:if test="${multipleResult ne null}">
+							<tr>
+								<td>上传结果:</td>
+								<td><label>${multipleResult}</label></td>
+							<tr>
+						</c:if>
+					</table>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" value="返回"
+				onclick="window.location='index.htm'" /></td>
 		</tr>
 	</table>
-	
-	
-</form:form>
 </body>
 </html>
