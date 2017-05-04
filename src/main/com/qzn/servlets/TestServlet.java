@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.qzn.models.AdminUser;
@@ -40,9 +44,19 @@ public class TestServlet extends ServletProxy {
 			throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.println(userService);
-		List<AdminUser> adminUser = userService.getListByProperty("username", username);
-		response.getWriter().println(adminUser);
+		AdminUser adminUser = userService.findByProperty("username", username);
+		response.getWriter().print(adminUser);
+
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(AdminUser.class);
+		Criterion multipleCriteria1 = Restrictions.eq("username", username);
+		detachedCriteria.add(multipleCriteria1);
+		Criterion multipleCriteria2 = Restrictions.eq("password", password);
+		detachedCriteria.add(multipleCriteria2);
+		List<AdminUser> adminUsers = userService.findAllByCriteria(detachedCriteria);
+		response.getWriter().print(adminUsers);
+		List<AdminUser> adminUsers1 = userService.findTopByCriteria(detachedCriteria, 10,
+				new Order[] { Order.desc("id") });
+		response.getWriter().print(adminUsers1);
 
 	}
 

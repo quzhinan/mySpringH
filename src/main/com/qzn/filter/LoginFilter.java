@@ -17,21 +17,20 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.qzn.services.UserService;
 
-
 /**
  * Servlet Filter implementation class LoginFilter
  */
 public class LoginFilter implements Filter {
-	
+
 	private String indexPath;
 	private UserService userService;
 
-    /**
-     * Default constructor. 
-     */
-    public LoginFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public LoginFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -43,8 +42,9 @@ public class LoginFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest)request;
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
 		System.out.println(res);
@@ -63,7 +63,7 @@ public class LoginFilter implements Filter {
 		indexPath = config.getInitParameter("indexPath");
 		ServletContext sc = config.getServletContext();
 		ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(sc);
-		userService = (UserService)ctx.getBean("userService");
+		userService = (UserService) ctx.getBean("userService");
 	}
 
 }

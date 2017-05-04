@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "admin_user")
 public class AdminUser implements Serializable {
@@ -21,31 +20,31 @@ public class AdminUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	@Size(max = 1,message = "{typeMismatch.admin_user.id}")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @Size(max = 1,message = "{typeMismatch.admin_user.id}")
 	@Column(name = "id", insertable = false, updatable = false)
 	private Long id;
-	
-//	@Size(max = 1,message = "{typeMismatch.adminuser.id}")
+
+	// @Size(max = 1,message = "{typeMismatch.adminuser.id}")
 	@Column(name = "username")
 	private String username;
 
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "age")
 	private Integer age;
-	
+
 	@Column(name = "sex")
 	private Integer sex;
-	
+
 	@Column(name = "address")
 	private String address;
-	
-	@Column(name="createdate", insertable = false, updatable = false)
+
+	@Column(name = "createdate", insertable = false, updatable = false)
 	private Timestamp createDate;
-	
-	@Column(name="updatedate", insertable = false, updatable = false)
+
+	@Column(name = "updatedate", insertable = false, updatable = false)
 	private Timestamp updateDate;
 
 	public Long getId() {
@@ -71,7 +70,7 @@ public class AdminUser implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Integer getAge() {
 		return age;
 	}
@@ -111,7 +110,5 @@ public class AdminUser implements Serializable {
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
-
-	
 
 }

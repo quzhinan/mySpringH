@@ -17,17 +17,17 @@ import com.qzn.services.UserService;
 @Controller
 public class TopController {
 	private static final Logger log = LoggerFactory.getLogger(AbstractController.class);
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(value = { "index.htm" })
 	public String index() {
 		return "index";
 	}
-	
+
 	@RequestMapping(value = { "frontPage.htm" })
-	public String frontPage(Model model) throws Exception{
+	public String frontPage(Model model) throws Exception {
 		model.addAttribute("mark", "admin");
 		AdminUser adminUser = userService.findById(1L);
 		model.addAttribute("adminUser", adminUser);

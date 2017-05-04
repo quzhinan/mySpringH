@@ -17,45 +17,45 @@ public class CheckConfigs implements ApplicationContextAware {
 	private static final Logger log = LogManager.getLogger(CheckConfigs.class);
 	private static final Logger sysLog = LogManager.getLogger("systemlog");
 	private static String dbUrl;
-	
+
 	public static void setDbUrl(String dbUrl) {
 		CheckConfigs.dbUrl = dbUrl;
 	}
 
 	private UserDao userDao;
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		try{
+		try {
 			checkEnvironmentVariable();
 			checkDataSoucesContects();
-		}catch(Exception e){
-			log.fatal(e.getMessage(),e);
+		} catch (Exception e) {
+			log.fatal(e.getMessage(), e);
 		}
 	}
-	
-	private void checkEnvironmentVariable(){
-		Map<String,String> environmentVariables = System.getenv();
+
+	private void checkEnvironmentVariable() {
+		Map<String, String> environmentVariables = System.getenv();
 	}
-	
-	private boolean validateFilePath(String path){
+
+	private boolean validateFilePath(String path) {
 		File tmpFile = new File(path);
-		if(tmpFile.exists()){
+		if (tmpFile.exists()) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	 
-	private void checkDataSoucesContects(){
-		try(Session session = userDao.openSession())
-		{
+
+	private void checkDataSoucesContects() {
+		try (Session session = userDao.openSession()) {
 			Transaction t = session.beginTransaction();
 			t.commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
 	}

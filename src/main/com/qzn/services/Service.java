@@ -14,6 +14,7 @@ public interface Service<T, ID extends Serializable> {
 	 * @throws ServiceException
 	 */
 	abstract Class<T> getModelClass() throws ServiceException;
+
 	/**
 	 * 
 	 * @param id
@@ -21,42 +22,41 @@ public interface Service<T, ID extends Serializable> {
 	 * @throws ServiceException
 	 */
 	T findById(ID id) throws ServiceException;
-	
+
 	/**
 	 * 
 	 * @param t
 	 * @throws ServiceException
 	 */
 	ID save(T t) throws ServiceException;
-	
+
 	/**
 	 * 
 	 * @param t
 	 * @throws ServiceException
 	 */
 	void update(T t) throws ServiceException;
-	
+
 	/**
 	 * 
 	 * @param id
 	 * @throws ServiceException
 	 */
 	void deleteById(ID id) throws ServiceException;
-	
+
 	/**
 	 * 
 	 * @param ids
 	 */
 	void deleteByIds(ID[] ids) throws ServiceException;
-	
-	
+
 	/**
 	 * delete all data from table
 	 * 
 	 * @throws ServiceException
 	 */
 	void deleteAll() throws ServiceException;
-	
+
 	/**
 	 * load all data from table
 	 * 
@@ -64,7 +64,7 @@ public interface Service<T, ID extends Serializable> {
 	 * @throws ServiceException
 	 */
 	List<T> loadAll() throws ServiceException;
-	
+
 	/**
 	 * load all data from table order by "order"
 	 * 
@@ -82,22 +82,30 @@ public interface Service<T, ID extends Serializable> {
 	 * @throws ServiceException
 	 */
 	List<T> loadAllDescOrderBy(String order) throws ServiceException;
-	
+
 	long getLastInsertId() throws ServiceException;
-	
+
+	T findByProperty(String property, Object value);
+
 	List<T> getListByProperty(String property, Object value);
-	
+
 	List<T> getListByPropertys(String property1, Object value1, String property2, Object value2);
-	
+
 	int getCount();
-	
+
 	// TODO HQL START
 	List<T> getOffsetLimitOrderListByProperty(String property, Object value, String orderProperty, String order,
 			int limit, int offset) throws ServiceException;
+
 	List<T> findTopByCriteria(final DetachedCriteria detachedCriteria, final int top, final Order[] orders)
 			throws ServiceException;
+
+	List<T> findAllByCriteria(final DetachedCriteria detachedCriteria) throws ServiceException;
+
 	int getCountByCriteria(final DetachedCriteria detachedCriteria) throws ServiceException;
+
 	Object max(String property) throws ServiceException;
-	List<T> getOffsetLimitOrderList(String orderProperty,String order, int limit, int offset) throws ServiceException;
+
+	List<T> getOffsetLimitOrderList(String orderProperty, String order, int limit, int offset) throws ServiceException;
 	// TODO HQL END
 }

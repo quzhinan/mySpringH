@@ -17,11 +17,9 @@ public class AppendLogsByAOP {
 	public void logOutputAfterThrows() {
 		log.error("方法出现异常");
 	}
-	
+
 	public void logOutputAfterMethod() {
 		log.info("方法结束");
 	}
-	
-	
 
 }

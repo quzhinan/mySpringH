@@ -11,5 +11,6 @@ create table admin_user(
  createdate timestamp,
  updatedate timestamp
  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE admin_user ADD UNIQUE INDEX usernameIndex(username);
 INSERT INTO admin_user(username, password) VALUES('user1', '123');
 INSERT INTO admin_user(username, password) VALUES('user1', '123');

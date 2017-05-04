@@ -9,14 +9,15 @@ import com.qzn.daos.Dao;
 import com.qzn.daos.UserDao;
 import com.qzn.models.AdminUser;
 import com.qzn.services.UserService;
+
 @Service
-public class UserServiceImpl extends AbstractService<AdminUser, Long>implements UserService {
+public class UserServiceImpl extends AbstractService<AdminUser, Long> implements UserService {
 
 	private static final Logger log = LogManager.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Override
 	public Dao<AdminUser, Long> getDao() {
 		return userDao;

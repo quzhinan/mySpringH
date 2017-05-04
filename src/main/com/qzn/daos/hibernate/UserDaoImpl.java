@@ -9,12 +9,12 @@ import com.qzn.models.AdminUser;
 
 @Repository
 public class UserDaoImpl extends AbstractDao<AdminUser, Long> implements UserDao {
-	
+
 	private static final Logger log = LogManager.getLogger(UserDaoImpl.class);
 
-//	@Override
-//	public Class<User> getModelClass() throws DataAccessException {	
-//		return User.class;
-//	}
+	// @Override
+	// public Class<User> getModelClass() throws DataAccessException {
+	// return User.class;
+	// }
 
 }

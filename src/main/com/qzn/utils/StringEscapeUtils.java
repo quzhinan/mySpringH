@@ -11,9 +11,9 @@ import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.ui.Model;
 
 public class StringEscapeUtils {
-	
+
 	public static Object escapeHtmlForBean(Object object) {
-		if(object == null) {
+		if (object == null) {
 			return null;
 		}
 		Class<?> srcClass = object.getClass();
@@ -24,15 +24,15 @@ public class StringEscapeUtils {
 		for (Field field : fields) {
 			Type fieldType = field.getGenericType();
 			String fieldName = field.getName();
-			if( srcBeanWrapper.isReadableProperty(fieldName) == false ||
-				srcBeanWrapper.isWritableProperty(fieldName) == false ) {
+			if (srcBeanWrapper.isReadableProperty(fieldName) == false
+					|| srcBeanWrapper.isWritableProperty(fieldName) == false) {
 				continue;
 			}
 			Object fieldValue = srcBeanWrapper.getPropertyValue(fieldName);
-			if(fieldValue!=null) {
+			if (fieldValue != null) {
 				if (fieldType.equals(String.class)) {
-					fieldValue = escapeHtml((String)fieldValue);
-				} else if(field.isAnnotationPresent((Class<? extends Annotation>) Model.class)) {
+					fieldValue = escapeHtml((String) fieldValue);
+				} else if (field.isAnnotationPresent((Class<? extends Annotation>) Model.class)) {
 					fieldValue = escapeHtmlForBean(fieldValue);
 				}
 			}
@@ -53,73 +53,73 @@ public class StringEscapeUtils {
 		}
 		return string;
 	}
-	
+
 	public static String escapeHtmlNew(String str) {
-		if ( StringUtils.isNotEmpty( str ) ) {
+		if (StringUtils.isNotEmpty(str)) {
 
-            StringBuilder builder = new StringBuilder();
+			StringBuilder builder = new StringBuilder();
 
-            for ( char c : str.toCharArray() ) {
+			for (char c : str.toCharArray()) {
 
-                switch ( c ) {
+				switch (c) {
 
-                    case '<':
-                        builder.append( "&lt;" );
-                        break;
+				case '<':
+					builder.append("&lt;");
+					break;
 
-                    case '>':
-                        builder.append( "&gt;" );
-                        break;
+				case '>':
+					builder.append("&gt;");
+					break;
 
-                    case '\'':
-                        builder.append( "&#39;" );
-                        break;
+				case '\'':
+					builder.append("&#39;");
+					break;
 
-                    case '"':
-                        builder.append( "&quot;" );
-                        break;
+				case '"':
+					builder.append("&quot;");
+					break;
 
-                    case '&':
-                        builder.append( "&amp;" );
-                        break;
+				case '&':
+					builder.append("&amp;");
+					break;
 
-                    case '%':
-                        builder.append( "&#37;" );
-                        break;
+				case '%':
+					builder.append("&#37;");
+					break;
 
-                    case ';':
-                        builder.append( "&#59;" );
-                        break;
+				case ';':
+					builder.append("&#59;");
+					break;
 
-                    case '(':
-                        builder.append( "&#40;" );
-                        break;
+				case '(':
+					builder.append("&#40;");
+					break;
 
-                    case ')':
-                        builder.append( "&#41;" );
-                        break;
+				case ')':
+					builder.append("&#41;");
+					break;
 
-                    case '/':
+				case '/':
 
-                    	builder.append( "&#47;" );
-                        break;
+					builder.append("&#47;");
+					break;
 
-                    case ':':
+				case ':':
 
-                    	builder.append( "&#58;" );
-                        break;
+					builder.append("&#58;");
+					break;
 
-                    default:
-                        builder.append( c );
-                }
-            }
+				default:
+					builder.append(c);
+				}
+			}
 
-            return builder.toString();
-        }
+			return builder.toString();
+		}
 
-        return str;
+		return str;
 	}
-	
+
 	public static String composeHtml(String string) {
 		if (string != null) {
 			string = string.replaceAll("&amp;", "&");
@@ -132,9 +132,9 @@ public class StringEscapeUtils {
 		}
 		return string;
 	}
-	
+
 	public static Object composeHtmlForBean(Object object) {
-		if(object == null) {
+		if (object == null) {
 			return null;
 		}
 		Class<?> srcClass = object.getClass();
@@ -145,15 +145,15 @@ public class StringEscapeUtils {
 		for (Field field : fields) {
 			Type fieldType = field.getGenericType();
 			String fieldName = field.getName();
-			if( srcBeanWrapper.isReadableProperty(fieldName) == false ||
-				srcBeanWrapper.isWritableProperty(fieldName) == false ) {
+			if (srcBeanWrapper.isReadableProperty(fieldName) == false
+					|| srcBeanWrapper.isWritableProperty(fieldName) == false) {
 				continue;
 			}
 			Object fieldValue = srcBeanWrapper.getPropertyValue(fieldName);
-			if(fieldValue!=null) {
+			if (fieldValue != null) {
 				if (fieldType.equals(String.class)) {
-					fieldValue = composeHtml((String)fieldValue);
-				} else if(field.isAnnotationPresent((Class<? extends Annotation>) Model.class)) {
+					fieldValue = composeHtml((String) fieldValue);
+				} else if (field.isAnnotationPresent((Class<? extends Annotation>) Model.class)) {
 					fieldValue = composeHtmlForBean(fieldValue);
 				}
 			}
@@ -161,5 +161,5 @@ public class StringEscapeUtils {
 		}
 		return objNew;
 	}
-	
+
 }

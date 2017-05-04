@@ -9,8 +9,6 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Abstract implements Serializable {
 
-	
-	
 	/**
 	 * 
 	 */
@@ -21,13 +19,13 @@ public abstract class Abstract implements Serializable {
 	 */
 	@Column(name = "create_user_id")
 	protected long createUserId;
-	
+
 	/**
 	 * 
 	 */
 	@Column(name = "create_date", updatable = false)
 	protected Timestamp createDate;
-	
+
 	/**
 	 * 
 	 */
@@ -43,15 +41,15 @@ public abstract class Abstract implements Serializable {
 	public long getCreateUserId() {
 		return createUserId;
 	}
-	
-	public void setCreateAndUpdate(Long userId){
+
+	public void setCreateAndUpdate(Long userId) {
 		setCreateUserId(userId);
 		setCreateDate(new Timestamp(System.currentTimeMillis()));
 		setUpdateUserId(userId);
 		setUpdateDate(new Timestamp(System.currentTimeMillis()));
 	}
-	
-	public void setUpdate(Long userId){
+
+	public void setUpdate(Long userId) {
 		setUpdateUserId(userId);
 		setUpdateDate(new Timestamp(System.currentTimeMillis()));
 	}
@@ -83,5 +81,5 @@ public abstract class Abstract implements Serializable {
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+
 }

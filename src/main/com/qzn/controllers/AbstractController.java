@@ -57,20 +57,20 @@ public class AbstractController {
 	}
 
 	// 获取response,这个方法有问题,暂时保留
-//	protected HttpServletResponse getResponse() {
-//		RequestAttributes ra = RequestContextHolder.getRequestAttributes();
-//		return ((ServletRequestAttributes) ra).getResponse();
-//	}
+	// protected HttpServletResponse getResponse() {
+	// RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+	// return ((ServletRequestAttributes) ra).getResponse();
+	// }
 
 	// 获取session
 	protected HttpSession getSession() {
 		HttpServletRequest request = getRequest();
 		return request.getSession();
 	}
-	
+
 	@ModelAttribute
-	public void preMethod(Model model,HttpServletRequest request,HttpServletResponse response){
-		
+	public void preMethod(Model model, HttpServletRequest request, HttpServletResponse response) {
+
 	}
-	
+
 }

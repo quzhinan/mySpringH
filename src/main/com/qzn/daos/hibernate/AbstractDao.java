@@ -27,21 +27,21 @@ import com.qzn.daos.Dao;
 
 @SuppressWarnings("unchecked")
 public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport implements Dao<T, ID> {
-	private static final Logger log = LogManager.getLogger(AbstractDao.class); 
-	
-//	public abstract Class<T> getModelClass() throws DataAccessException;
-	
+	private static final Logger log = LogManager.getLogger(AbstractDao.class);
+
+	// public abstract Class<T> getModelClass() throws DataAccessException;
+
 	@Override
-	public Session openSession(){
+	public Session openSession() {
 		return this.getSessionFactory().openSession();
 	}
-	
+
 	@Override
-	public Session getSession(){
+	public Session getSession() {
 		return this.getSessionFactory().getCurrentSession();
 	}
-	
-	//利用反射来获取调用此方法的类
+
+	// 利用反射来获取调用此方法的类
 	@Override
 	public Class<T> getModelClass() throws DataAccessException {
 		Class<?> clz = this.getClass();
@@ -52,56 +52,66 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		Class<T> entityClass = (Class<T>) types[0];
 		return entityClass;
 	}
+
 	@Override
 	public void flush() throws DataAccessException {
 		getHibernateTemplate().flush();
 	}
+
 	@Override
 	public void refresh(T t) throws DataAccessException {
-		getHibernateTemplate().refresh(t);;
+		getHibernateTemplate().refresh(t);
+		;
 	}
+
 	@Override
 	public void clear() throws DataAccessException {
 		getHibernateTemplate().clear();
 	}
-	
-	//获取数据的方法
+
+	// 获取数据的方法
 	@Override
 	public T get(ID id) throws DataAccessException {
 		return (T) getHibernateTemplate().get(getModelClass(), id);
 		// return (T)getHibernateTemplate().load(getModelClass(), id);
 	}
+
 	@Override
 	public List<T> find(String sql) throws DataAccessException {
 		return (List<T>) getHibernateTemplate().find(sql);
 	}
+
 	@Override
 	public List<T> findByIds(ID[] ids) throws DataAccessException {
 		return (List<T>) getHibernateTemplate()
 				.find("FROM " + getModelClass().getSimpleName() + " obj WHERE obj.id in " + this.getString(ids));
 	}
+
 	@Override
-	public List<T> findByInValues(String propertyName,Object[] values) throws DataAccessException {
-		return (List<T>) getHibernateTemplate()
-				.find("FROM " + getModelClass().getSimpleName() + " obj WHERE obj."+propertyName+" in " + this.getString(values));
+	public List<T> findByInValues(String propertyName, Object[] values) throws DataAccessException {
+		return (List<T>) getHibernateTemplate().find("FROM " + getModelClass().getSimpleName() + " obj WHERE obj."
+				+ propertyName + " in " + this.getString(values));
 	}
+
 	@Override
 	public List<T> findAll() throws DataAccessException {
 		return (List<T>) getHibernateTemplate().find("FROM " + getModelClass().getSimpleName() + " ORDER BY id");
 	}
+
 	@Override
 	public List<T> findAllOrderBy(String order) throws DataAccessException {
 		Criteria cri = getSessionFactory().getCurrentSession().createCriteria(getModelClass());
 		cri.addOrder(Order.asc(order));
 		return (List<T>) cri.list();
 	}
+
 	@Override
 	public List<T> findAllDescOrderBy(String order) throws DataAccessException {
 		Criteria cri = getSessionFactory().getCurrentSession().createCriteria(getModelClass());
 		cri.addOrder(Order.desc(order));
 		return (List<T>) cri.list();
 	}
-	
+
 	private String getString(Object[] ids) {
 		StringBuffer sIds = new StringBuffer();
 		sIds.append("(");
@@ -114,6 +124,15 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		sIds.append(")");
 		return sIds.toString();
 	}
+
+	@Override
+	public T findByProperty(String property, Object value) throws DataAccessException {
+		String hql = String.format("from %s where %s=:val ", getModelClass().getSimpleName(), property);
+		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
+		query.setParameter("val", value);
+		return (T) query.uniqueResult();
+	}
+
 	@Override
 	public List<T> getListByProperty(String property, Object value) throws DataAccessException {
 		String hql = String.format("from %s where %s=:val ", getModelClass().getSimpleName(), property);
@@ -121,62 +140,61 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		query.setParameter("val", value);
 		return query.list();
 	}
+
 	@Override
-	public List<T> getListByPropertys(String property1, Object value1, String property2, Object value2) throws DataAccessException {
-		StringBuilder sb = new StringBuilder();
-		if (StringUtils.isNotEmpty(property1) && StringUtils.isNotEmpty(property2)) {
-			sb.append(property1 + "= :"+property1+",");
-			sb.append(property2 + "= :"+property2);
-		} else if (StringUtils.isNotEmpty(property1)) {
-			sb.append(property1 + "= :"+property1);
-		} else if (StringUtils.isNotEmpty(property2)) {
-			sb.append(property2 + "= :"+property2);
-		}
-		String hql = String.format("from %s where 1=1 %s ", getModelClass().getSimpleName(), sb.toString());
+	public List<T> getListByPropertys(String property1, Object value1, String property2, Object value2)
+			throws DataAccessException {
+		String hql = String.format("from %s where %s = :val1 and %s = :val2 ", getModelClass().getSimpleName(),
+				property1, property2);
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
-		if (StringUtils.isNotEmpty(property1)) {
-			query.setParameter(property1, value1);
-		}
-		if (StringUtils.isNotEmpty(property2)) {
-			query.setParameter(property2, value2);
-		}
+		query.setParameter("val1", value1);
+		query.setParameter("val2", value2);
 		return query.list();
 	}
+
 	@Override
-	public List<T> getOrderListByProperty(String property, Object value,String orderProperty,String order) throws DataAccessException {
-		String hql = String.format("from %s where %s=:val order by %s %s", getModelClass().getSimpleName(), property,orderProperty,order);
+	public List<T> getOrderListByProperty(String property, Object value, String orderProperty, String order)
+			throws DataAccessException {
+		String hql = String.format("from %s where %s=:val order by %s %s", getModelClass().getSimpleName(), property,
+				orderProperty, order);
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
 		query.setParameter("val", value);
 		return query.list();
 	}
+
 	@Override
-	public List<T> getOffsetLimitOrderList(String orderProperty,String order, int limit, int offset) throws DataAccessException {
-		String hql = String.format("from %s order by %s %s", getModelClass().getSimpleName(),orderProperty,order);
+	public List<T> getOffsetLimitOrderList(String orderProperty, String order, int limit, int offset)
+			throws DataAccessException {
+		String hql = String.format("from %s order by %s %s", getModelClass().getSimpleName(), orderProperty, order);
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
 		query.setFirstResult(offset);
 		query.setMaxResults(limit);
 		return query.list();
 	}
+
 	@Override
-	public List<T> getOffsetLimitOrderListByProperty(String property, Object value,String orderProperty,String order, int limit, int offset) throws DataAccessException {
-		String hql = String.format("from %s where %s = :val order by %s %s", getModelClass().getSimpleName(), property,orderProperty,order);
+	public List<T> getOffsetLimitOrderListByProperty(String property, Object value, String orderProperty, String order,
+			int limit, int offset) throws DataAccessException {
+		String hql = String.format("from %s where %s = :val order by %s %s", getModelClass().getSimpleName(), property,
+				orderProperty, order);
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
 		query.setParameter("val", value);
 		query.setFirstResult(offset);
 		query.setMaxResults(limit);
 		return query.list();
 	}
+
 	@Override
-	public List<T> getAllByHql(String hql,Object[] paramArray) throws DataAccessException {
-		Query query = getQueryBySqlAndObjects(hql,paramArray);
-		
+	public List<T> getAllByHql(String hql, Object[] paramArray) throws DataAccessException {
+		Query query = getQueryBySqlAndObjects(hql, paramArray);
+
 		return query.list();
 	}
-	
+
 	@Override
 	public List<T> findTopByCriteria(final DetachedCriteria detachedCriteria, final int top, final Order[] orders)
 			throws DataAccessException {
-		return (List<T>) getHibernateTemplate().execute(new HibernateCallback() {
+		return (List<T>) getHibernateTemplate().executeWithNativeSession(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException {
 				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
 				criteria.setProjection(null);
@@ -190,10 +208,11 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 			}
 		});
 	}
+
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List<T> findAllByCriteria(final DetachedCriteria detachedCriteria) throws DataAccessException {
-		return (List) getHibernateTemplate().execute(new HibernateCallback() {
+		return (List) getHibernateTemplate().executeWithNativeSession(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException {
 				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
 				return (List<T>) criteria.list();
@@ -201,38 +220,45 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		});
 	}
 
-	//获取数量
+	// 获取数量
 	@Override
 	public long getCount() throws DataAccessException {
 
 		String hql = String.format("select count(*) from %s", getModelClass().getSimpleName());
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
-		return (long)query.list().get(0);
+		return (long) query.list().get(0);
 	}
+
 	@Override
 	public long getCount(String property, Object value) throws DataAccessException {
 
-		String hql = String.format("select count(*) from %s where %s = :val1", getModelClass().getSimpleName(), property);
+		String hql = String.format("select count(*) from %s where %s = :val1", getModelClass().getSimpleName(),
+				property);
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
 		query.setParameter("val1", value);
-		return (long)query.list().get(0);
+		return (long) query.list().get(0);
 	}
+
 	@Override
-	public long getCountByPropertys(String propertyName,Object[] propertys) throws DataAccessException {
-		String hql = "select count(*) FROM " + getModelClass().getSimpleName() + " WHERE "+propertyName+" in " + this.getString(propertys);
+	public long getCountByPropertys(String propertyName, Object[] propertys) throws DataAccessException {
+		String hql = "select count(*) FROM " + getModelClass().getSimpleName() + " WHERE " + propertyName + " in "
+				+ this.getString(propertys);
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
-		return (long)query.list().get(0);
+		return (long) query.list().get(0);
 	}
+
 	@Override
 	public long getCountByHql(String hql) throws DataAccessException {
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
-		return (long)query.list().get(0);
+		return (long) query.list().get(0);
 	}
+
 	@Override
 	public long getCountBySql(String sql) throws DataAccessException {
 		Query query = this.getSessionFactory().getCurrentSession().createSQLQuery(sql);
-		return (long)query.list().get(0);
+		return (long) query.list().get(0);
 	}
+
 	@Override
 	public int getCountByCriteria(final DetachedCriteria detachedCriteria) throws DataAccessException {
 		Integer count = (Integer) getHibernateTemplate().execute(new HibernateCallback() {
@@ -243,6 +269,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		});
 		return count.intValue();
 	}
+
 	@Override
 	public int getUniqueCount() {
 		Object count = getSessionFactory().getCurrentSession().createCriteria(getModelClass())
@@ -252,8 +279,8 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		}
 		return Integer.valueOf(count.toString());
 	}
-	
-	//删除数据的方法
+
+	// 删除数据的方法
 	@Override
 	public void delete(T t) throws DataAccessException {
 		if (t != null) {
@@ -263,12 +290,14 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 			getSessionFactory().getCurrentSession().clear();
 			// getHibernateTemplate().getSessionFactory().evictQueries();
 		}
-	} 
+	}
+
 	@Override
 	public Integer deleteByIds(ID[] ids) throws DataAccessException {
 		return getHibernateTemplate().bulkUpdate(
 				"delete FROM " + getModelClass().getSimpleName() + " obj WHERE obj.id in " + this.getString(ids));
 	}
+
 	@Override
 	public long deleteByProperty(String property, Object value) throws DataAccessException {
 		String hql = String.format("delete %s as u where u.%s = :val ", getModelClass().getSimpleName(), property);
@@ -277,15 +306,18 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		long count = query.executeUpdate();
 		return count;
 	}
+
 	@Override
-	public void deleteByInValues(String propertyName,Object[] values) throws DataAccessException {
-		getHibernateTemplate().bulkUpdate(
-				"delete FROM " + getModelClass().getSimpleName() + " obj WHERE obj."+propertyName+" in " + this.getString(values));
+	public void deleteByInValues(String propertyName, Object[] values) throws DataAccessException {
+		getHibernateTemplate().bulkUpdate("delete FROM " + getModelClass().getSimpleName() + " obj WHERE obj."
+				+ propertyName + " in " + this.getString(values));
 	}
+
 	@Override
 	public void deleteAll() throws DataAccessException {
 		getHibernateTemplate().bulkUpdate("delete " + getModelClass().getSimpleName());
 	}
+
 	@Override
 	public void deleteAll(Collection<T> entities) throws DataAccessException {
 		if (entities != null) {
@@ -293,7 +325,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		}
 	}
 
-	//执行数据保存的方法
+	// 执行数据保存的方法
 	@Override
 	public ID save(T t) throws DataAccessException {
 		if (t != null) {
@@ -301,7 +333,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		}
 		return null;
 	}
-	
+
 	// 执行数据更新的方法
 	@Override
 	public void update(T t) throws DataAccessException {
@@ -310,142 +342,153 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		}
 
 	}
+
 	@Override
-	public Integer bulkUpdate(String sql){
+	public Integer bulkUpdate(String sql) {
 		return getHibernateTemplate().bulkUpdate(sql);
 	}
+
 	@Override
 	public void merge(T t) throws DataAccessException {
 		if (t != null) {
 			getHibernateTemplate().merge(t);
 		}
 	}
+
 	@Override
 	public void evict(T t) throws DataAccessException {
 		if (t != null)
 			getHibernateTemplate().evict(t);
 	}
+
 	@Override
 	public Object max(String property) throws DataAccessException {
 		Criteria cri = getSessionFactory().getCurrentSession().createCriteria(getModelClass());
 		cri.setProjection(Projections.max(property));
 		return cri.uniqueResult();
 	}
+
 	@Override
 	public long getLastInsertId() throws DataAccessException {
 		String hql = String.format("select max(a.id) from %s a", getModelClass().getSimpleName());
 		long maxid = new Long((getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult()).toString());
 		return maxid;
 	}
-	
-	//getSomething by map
+
+	// getSomething by map
 	@Override
-	public Long getCountByFields(Map<String,Object> FieldsMap,Boolean like) throws DataAccessException {
-		String tmpSqlFromMap = getStringFromMap(FieldsMap,like);
+	public Long getCountByFields(Map<String, Object> FieldsMap, Boolean like) throws DataAccessException {
+		String tmpSqlFromMap = getStringFromMap(FieldsMap, like);
 		String modelName = getModelClass().getSimpleName();
 		String hql = String.format("select count(*) from %s where 1=1 %s", modelName, tmpSqlFromMap);
-		Query query = getQueryFromMapAndHql(FieldsMap,hql);
-		return (Long)query.list().get(0);
+		Query query = getQueryFromMapAndHql(FieldsMap, hql);
+		return (Long) query.list().get(0);
 	}
+
 	@Override
-	public List<T> getOffsetLimitOrderListByFields(Map<String,Object> FieldsMap,String orderProperty,String order, int limit, int offset,Boolean like) throws DataAccessException {
-		Query query = getQueryFromMap(FieldsMap,like,true);
+	public List<T> getOffsetLimitOrderListByFields(Map<String, Object> FieldsMap, String orderProperty, String order,
+			int limit, int offset, Boolean like) throws DataAccessException {
+		Query query = getQueryFromMap(FieldsMap, like, true);
 		query.setParameter("orderProperty", orderProperty);
 		query.setParameter("order", order);
 		query.setFirstResult(offset);
 		query.setMaxResults(limit);
 		return query.list();
 	}
+
 	@Override
-	public List<T> getOrderListByFields(Map<String,Object> FieldsMap,String orderProperty,String order,Boolean like) throws DataAccessException {
-		Query query = getQueryFromMap(FieldsMap,like,true);
+	public List<T> getOrderListByFields(Map<String, Object> FieldsMap, String orderProperty, String order, Boolean like)
+			throws DataAccessException {
+		Query query = getQueryFromMap(FieldsMap, like, true);
 		query.setParameter("orderProperty", orderProperty);
 		query.setParameter("order", order);
 		return query.list();
 	}
+
 	@Override
-	public List<T> getOrderListByFields(Map<String,Object> FieldsMap,Boolean like) throws DataAccessException {
-		Query query = getQueryFromMap(FieldsMap,like,false);
+	public List<T> getOrderListByFields(Map<String, Object> FieldsMap, Boolean like) throws DataAccessException {
+		Query query = getQueryFromMap(FieldsMap, like, false);
 		return query.list();
 	}
+
 	@Override
-	public Query getQueryFromMap(Map<String,Object> FieldsMap,Boolean like,Boolean order){
-		String tmpSqlFromMap = getStringFromMap(FieldsMap,like);
+	public Query getQueryFromMap(Map<String, Object> FieldsMap, Boolean like, Boolean order) {
+		String tmpSqlFromMap = getStringFromMap(FieldsMap, like);
 		String modelName = getModelClass().getSimpleName();
 		String hql;
-		if(order){
+		if (order) {
 			hql = String.format("from %s where 1=1 %s order by :orderProperty :order", modelName, tmpSqlFromMap);
-		}else{
+		} else {
 			hql = String.format("from %s where 1=1 %s", modelName, tmpSqlFromMap);
 		}
-		Query query = getQueryFromMapAndHql(FieldsMap,hql);
+		Query query = getQueryFromMapAndHql(FieldsMap, hql);
 		return query;
 	}
-	
-	public String getStringFromMap(Map<String,Object> FieldsMap,Boolean like){
+
+	public String getStringFromMap(Map<String, Object> FieldsMap, Boolean like) {
 		StringBuilder sb = new StringBuilder();
-		if(like){
-			for(Map.Entry<String, Object> entry : FieldsMap.entrySet()){
+		if (like) {
+			for (Map.Entry<String, Object> entry : FieldsMap.entrySet()) {
 				String fieldName = entry.getKey();
-				sb.append(fieldName + "like :"+fieldName+",");
+				sb.append(fieldName + "like :" + fieldName + ",");
 			}
-		}else{
-			for(Map.Entry<String, Object> entry : FieldsMap.entrySet()){
+		} else {
+			for (Map.Entry<String, Object> entry : FieldsMap.entrySet()) {
 				String fieldName = entry.getKey();
-				sb.append(fieldName + "= :"+fieldName+",");
+				sb.append(fieldName + "= :" + fieldName + ",");
 			}
 		}
-		sb.setLength(sb.length()-1);
+		sb.setLength(sb.length() - 1);
 		String hql = sb.toString();
 		return hql;
 	}
+
 	@Override
-	public Query getQueryFromMapAndHql(Map<String,Object> FieldsMap,String hql){
+	public Query getQueryFromMapAndHql(Map<String, Object> FieldsMap, String hql) {
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
-		for(Map.Entry<String, Object> entry : FieldsMap.entrySet()){
+		for (Map.Entry<String, Object> entry : FieldsMap.entrySet()) {
 			query.setParameter(entry.getKey(), entry.getValue());
 		}
 		return query;
 	}
+
 	@Override
-	public Query getQueryFromMapAndHql(Map<String,String> FieldsMap,Query query){
-		for(Map.Entry<String, String> entry : FieldsMap.entrySet()){
-			query.setParameter(entry.getKey(), entry.getValue()+"");
+	public Query getQueryFromMapAndHql(Map<String, String> FieldsMap, Query query) {
+		for (Map.Entry<String, String> entry : FieldsMap.entrySet()) {
+			query.setParameter(entry.getKey(), entry.getValue() + "");
 		}
 		return query;
 	}
-	
+
 	@Override
 	public int executeUpdateBySql(String updateSql, Object[] paramArray) {
-		Query query = getQueryBySqlAndObjects(updateSql,paramArray);
+		Query query = getQueryBySqlAndObjects(updateSql, paramArray);
 		return query.executeUpdate();
 	}
-	
-	public Query getQueryByHqlAndObjects(String hql,Object[] paramArray){
+
+	public Query getQueryByHqlAndObjects(String hql, Object[] paramArray) {
 		Query query = this.getSessionFactory().getCurrentSession().createQuery(hql);
-		setQueryByParamArray(query,paramArray);
+		setQueryByParamArray(query, paramArray);
 		return query;
 	}
-	
-	public Query getQueryBySqlAndObjects(String sql,Object[] paramArray){
+
+	public Query getQueryBySqlAndObjects(String sql, Object[] paramArray) {
 		Query query = this.getSessionFactory().getCurrentSession().createSQLQuery(sql);
-		setQueryByParamArray(query,paramArray);
+		setQueryByParamArray(query, paramArray);
 		return query;
 	}
-	
-	public void setQueryByParamArray(Query query,Object[] paramArray){
-		if (paramArray!=null) {
-			for (int i=0; i< paramArray.length; i++) {
+
+	public void setQueryByParamArray(Query query, Object[] paramArray) {
+		if (paramArray != null) {
+			for (int i = 0; i < paramArray.length; i++) {
 				query.setParameter(i, paramArray[i]);
 			}
 		}
 	}
-	
-	@Autowired  
-    public void setSessionFactoryOverride(SessionFactory sessionFactory)   
-    {   
-        super.setSessionFactory(sessionFactory);   
-    }
-	
-	
+
+	@Autowired
+	public void setSessionFactoryOverride(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
+
 }

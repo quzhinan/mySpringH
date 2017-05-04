@@ -10,7 +10,7 @@ public class Email {
 	private String subject;
 	private String content;
 	private File attachment;
-	
+
 	public String getEncoding() {
 		return encoding;
 	}
