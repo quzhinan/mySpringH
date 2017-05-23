@@ -14,8 +14,13 @@ import com.qzn.utils.FilesIOUtil;
 import com.qzn.utils.PropertyUtil;
 
 @Controller
-public class fileController {
-	private static final Logger log = LoggerFactory.getLogger(fileController.class);
+public class FileController {
+	private static final Logger log = LoggerFactory.getLogger(FileController.class);
+
+	@RequestMapping(value = { "fileOperation.htm" })
+	public String fileOperation() {
+		return "file";
+	}
 
 	@RequestMapping(value = { "singleFileUpload.htm" })
 	public String singleFileUpload(MultipartFile singleFileUpload, Model model) throws Exception {

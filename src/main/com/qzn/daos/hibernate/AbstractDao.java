@@ -261,7 +261,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 
 	@Override
 	public int getCountByCriteria(final DetachedCriteria detachedCriteria) throws DataAccessException {
-		Integer count = (Integer) getHibernateTemplate().execute(new HibernateCallback() {
+		Integer count = (Integer) getHibernateTemplate().executeWithNativeSession(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException {
 				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
 				return criteria.setProjection(Projections.rowCount()).uniqueResult();

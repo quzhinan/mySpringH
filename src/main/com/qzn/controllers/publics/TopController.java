@@ -36,8 +36,4 @@ public class TopController {
 		return "tiles.admin.frontpage";
 	}
 
-	@RequestMapping(value = { "fileOperation.htm" })
-	public String fileOperation() {
-		return "file";
-	}
 }
