@@ -13,6 +13,6 @@ public class AddressController {
 
 	@RequestMapping(value = { "address.htm" })
 	public String address() {
-		return "address";
+		return "tiles.admin.address";
 	}
 }

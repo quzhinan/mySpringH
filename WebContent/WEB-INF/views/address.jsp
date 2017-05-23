@@ -2,7 +2,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
-	var msg = $("message");
+	var msg = $("#message");
 	function getLocation() {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -12,8 +12,8 @@
 	}
 	
 	function showPosition(position) {
-		$("latitude").html(position.coords.latitude);
-		$("longitude").html(position.coords.longitude);
+		$("#latitude").html(position.coords.latitude);
+		$("#longitude").html(position.coords.longitude);
 	}
 	
 	function showError(error) {
@@ -45,6 +45,9 @@
 	</tr>
 	<tr>
 		<td>纬度:</td><td><span id="latitude"></span></td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="button" name="address" id="address" value="获取" onclick="getLocation()"/></td>
 	</tr>
 </table>
 
