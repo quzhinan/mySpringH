@@ -23,7 +23,7 @@ public class TopController {
 
 	@RequestMapping(value = { "index.htm" })
 	public String index() {
-		return "index";
+		return "tiles.admin.index";
 	}
 
 	@RequestMapping(value = { "frontPage.htm" })

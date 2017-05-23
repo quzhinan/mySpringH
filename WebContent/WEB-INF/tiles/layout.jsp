@@ -10,13 +10,13 @@
 <html>
 <head>
 <title><spring:message code="${title}"/></title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self';script-src 'self' 'unsafe-inline' 'unsafe-eval';style-src 'self' 'unsafe-inline' 'unsafe-eval'">
+<meta http-equiv="Content-Security-Policy" content="default-src *;script-src * 'unsafe-inline' 'unsafe-eval';style-src 'self' 'unsafe-inline' 'unsafe-eval'">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="Keywords" content="" />
+<link href="style/css/bootstrap.min.css" rel="stylesheet">
 <link href="style/main.css" type="text/css" rel="stylesheet" />
-<script src="scripts/jquery/jQuery-3.1.0.js"></script>
 <script src="scripts/jquery/jquery.min.js"></script>
 <c:if test="${!empty css}">
 <link href="<tiles:getAsString name="css"/>" type="text/css" rel="stylesheet" />
