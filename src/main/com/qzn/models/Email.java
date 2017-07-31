@@ -1,4 +1,4 @@
-package com.qzn.utils;
+package com.qzn.models;
 
 import java.io.File;
 

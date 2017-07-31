@@ -1,1 +1,0 @@
-<span style="color:red; font-size:14px; margin-left:10px;">*</span>

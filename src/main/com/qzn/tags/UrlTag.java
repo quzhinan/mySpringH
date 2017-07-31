@@ -95,7 +95,7 @@ public class UrlTag extends TagSupport implements ParamAware {
 			if (isWebservice) {
 				sb.append(".ws");
 			} else {
-				sb.append(".ies");
+				sb.append(".htm");
 			}
 		}
 		String prefix = "?";

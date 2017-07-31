@@ -1,33 +1,29 @@
 package com.qzn.controllers.publics;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.qzn.controllers.AbstractController;
-import com.qzn.utils.Email;
+import com.qzn.models.Email;
 import com.qzn.utils.PropertyUtil;
 import com.qzn.utils.SpringEmailUtil;
 import com.qzn.utils.VelocitiesUtil;
 
 @Controller
+@RequestMapping("/manager/emailFunc")
 public class MailController {
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractController.class);
 
-	@RequestMapping(value = { "email.htm" })
+	@RequestMapping(value = { "/email" })
 	public String email(Model model) {
 		Email email = new Email();
 		email.setFromEmailAddress(PropertyUtil.getPropertyValue("mail.fromAddress"));
@@ -43,7 +39,7 @@ public class MailController {
 		return "tiles.admin.email";
 	}
 
-	@RequestMapping(value = { "sendEmail.htm" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "sendEmail" }, method = RequestMethod.POST)
 	public String sendEmail(@ModelAttribute Email email, Model model) {
 		// model.addAttribute("email", email);
 		email.setToEmailAddresses(email.getToEmailAddresses()[0].split(","));

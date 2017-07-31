@@ -5,6 +5,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="q" uri="http://www.quzhinan.com/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,7 +22,8 @@
 </style>
 </head>
 <body>
-	<form:form modelAttribute="email" action="sendEmail.htm" method="post">
+<q:url var="urlPost" action="manager/emailFunc" method="email"/>
+	<form:form modelAttribute="email" action="${urlPost}" method="post">
 		<table class="emailTable" border="0">
 			<tr>
 				<td>接收邮箱:</td>

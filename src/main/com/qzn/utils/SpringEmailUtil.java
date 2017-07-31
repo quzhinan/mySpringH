@@ -8,6 +8,8 @@ import javax.mail.internet.MimeUtility;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
+import com.qzn.models.Email;
+
 public final class SpringEmailUtil {
 	public static LinkedBlockingQueue<JavaMailSender> mailSenderQueue;
 

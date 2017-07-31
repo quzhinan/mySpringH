@@ -1,6 +1,6 @@
 package com.qzn.test;
 
-import com.qzn.utils.Email;
+import com.qzn.models.Email;
 import com.qzn.utils.SpringEmailUtil;
 
 public class TestEmail {
