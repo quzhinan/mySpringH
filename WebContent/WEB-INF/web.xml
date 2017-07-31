@@ -32,6 +32,13 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
+  <jsp-config>
+	<taglib>  
+		<taglib-uri>http://www.quzhinan.com/tags</taglib-uri>  
+		<taglib-location>/WEB-INF/tags/qzn.tld</taglib-location>  
+	</taglib> 
+  </jsp-config>
+  
   <!-- 解决由于session关闭导致的延迟加载失败的问题 -->
   <filter>
     <filter-name>openSessionInViewFilter</filter-name>

@@ -38,4 +38,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/address.jsp" />
 	</definition>
 	
+	<definition name="tiles.admin.email" extends="tiles.templatePart">
+		<put-attribute name="title" value="title.frontpage" />
+		<put-attribute name="css" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/email.jsp" />
+	</definition>
+	
 </tiles-definitions>

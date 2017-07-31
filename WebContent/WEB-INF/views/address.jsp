@@ -8,9 +8,6 @@
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(showPosition, showError);
 		} else {
-			$("#addressTable")
-					.prepend(
-							"<tr><td colspan='2'><label id='message'></label></td></tr>");
 			$("#message").html("该浏览器不支持定位。");
 		}
 	}
@@ -42,7 +39,6 @@
 			break;
 		}
 	}
-	
 
 	function getLocationOnMap() {
 		var myOptions = {
@@ -93,13 +89,14 @@
 						<td><input type="button" name="address"
 							id="address" class="btn btn-primary" value="获取"
 							onclick="getLocation()" /></td>
-						<td><input type="button" value="返回"
-							class="btn btn-primary" onclick="window.location='index.htm'" /></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="button" name="addressOnMap"
 							id="addressOnMap" class="btn btn-primary" value="在地图上显示"
-							onclick="getLocationOnMap()" disabled="disabled" /></td>
+							onclick="getLocationOnMap()" disabled="disabled" />
+							<input type="button" class="btn btn-primary" value="返回" 
+							onclick="window.location='index.htm'" /></td>
 					</tr>
 				</table>
 			</div>
