@@ -1,5 +1,6 @@
 package com.qzn.controllers;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,6 +8,9 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.servlet.ModelAndView;
 
 public class Page extends ModelAndView {
@@ -17,7 +21,7 @@ public class Page extends ModelAndView {
 	private static final String JSP_PATH_MAP_REGX_SHORT = "^(([^-]+-)+)([^-]+)$";
 	private static Pattern JSP_PATH_MAP_PATTERN = Pattern.compile(JSP_PATH_MAP_REGX);
 	private static Pattern JSP_PATH_MAP_PATTERN_SHORT = Pattern.compile(JSP_PATH_MAP_REGX_SHORT);
-	
+
 	public Page() {
 	}
 
@@ -32,39 +36,39 @@ public class Page extends ModelAndView {
 		}
 		return logicName;
 	}
-	
+
 	public Page(String page) {
 		setViewName(mapLogicJspToPath(page) + TILES_NAME_SUFFIX);
 	}
 
-	public Page(String page, Object...objects) {
+	public Page(String page, Object... objects) {
 		setViewName(mapLogicJspToPath(page) + TILES_NAME_SUFFIX);
 		setKeysAndObjects(objects);
 	}
 
 	@SuppressWarnings("unchecked")
-	protected void setKeysAndObjects(Object...objects) {
-		for (int i=0; i<objects.length; i++) {
+	protected void setKeysAndObjects(Object... objects) {
+		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof Map) {
-				super.addAllObjects((Map<String, ?>)objects[i]);
+				super.addAllObjects((Map<String, ?>) objects[i]);
 			} else {
-				super.addObject(""+objects[i], objects[i+1]);
+				super.addObject("" + objects[i], objects[i + 1]);
 				i++;
 			}
 		}
 	}
-	
-	protected String makePageNameFromRequest(String actionName, Object...objects) {
+
+	protected String makePageNameFromRequest(String actionName, Object... objects) {
 		String result = "redirect:/" + actionName.replaceAll("-", "/") + WEB_URL_SUFFIX;
 		String prefix = "?";
-		for (int i=0; i<objects.length; i++) {
-			result += prefix + objects[i] + "=" + objects[i+1];
+		for (int i = 0; i < objects.length; i++) {
+			result += prefix + objects[i] + "=" + objects[i + 1];
 			prefix = "&";
 			i++;
 		}
 		return result;
 	}
-	
+
 	protected String makePageNameFromRequest(HttpServletRequest request) {
 		String contextPath = request.getContextPath();
 		String uri = request.getRequestURI();
@@ -85,5 +89,11 @@ public class Page extends ModelAndView {
 		}
 		return pageName + TILES_NAME_SUFFIX;
 	}
-	
+
+	public static String toJsonString(Object data) throws JsonGenerationException, JsonMappingException, IOException {
+		ObjectMapper objm = new ObjectMapper();
+		String supplierJson = objm.writeValueAsString(data);
+		return supplierJson;
+	}
+
 }

@@ -1,6 +1,7 @@
 package com.qzn.helper;
 
 import com.qzn.thread.defaultThread;
+import com.qzn.utils.PropertyUtil;
 
 public class SystemOptionsHelper {
 
@@ -15,9 +16,10 @@ public class SystemOptionsHelper {
 		instance = helper;
 	}
 
-	public void init(){
+	public void init() throws Exception {
+		startThread();
 	}
-	
+
 	/** Helper Instance End */
 
 	public void destroy() {
@@ -29,7 +31,7 @@ public class SystemOptionsHelper {
 	 * @throws Exception
 	 */
 	public synchronized void startThread() throws Exception {
-		Integer threadNum = 0;
+		Integer threadNum = Integer.valueOf(PropertyUtil.getPropertyValue("thread.num"));
 		defaultThread defaultThread = new defaultThread();
 		for (int i = 1; i <= threadNum; i++) {
 			Thread t = new Thread(defaultThread);

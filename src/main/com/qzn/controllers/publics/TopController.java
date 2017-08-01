@@ -1,6 +1,6 @@
 package com.qzn.controllers.publics;
 
-import java.util.List;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.qzn.controllers.AbstractController;
 import com.qzn.controllers.Page;
-import com.qzn.models.AdminUser;
+import com.qzn.controllers.Pagination;
+import com.qzn.models.User;
 import com.qzn.services.UserService;
 
 @Controller
@@ -22,8 +23,8 @@ public class TopController extends AbstractController {
 
 	@RequestMapping("/index")
 	public Page frontPage() throws Exception {
-		AdminUser adminUser = userService.findById(1L);
-		List<AdminUser> adminUserList = userService.loadAll();
-		return Page("tile-index-index", "adminUser", adminUser, "adminUserList", adminUserList);
+		User user = userService.findById(1L);
+		Pagination<User> pagination = userService.findAllUsersByPage(10, 0, new HashMap<>());
+		return Page("tile-index", "user", user, "pagination", pagination);
 	}
 }

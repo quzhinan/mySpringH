@@ -7,12 +7,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -23,13 +21,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import com.qzn.controllers.Pagination;
 import com.qzn.daos.Dao;
 
 @SuppressWarnings("unchecked")
 public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport implements Dao<T, ID> {
-	private static final Logger log = LogManager.getLogger(AbstractDao.class);
-
-	// public abstract Class<T> getModelClass() throws DataAccessException;
 
 	@Override
 	public Session openSession() {
@@ -45,9 +41,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 	@Override
 	public Class<T> getModelClass() throws DataAccessException {
 		Class<?> clz = this.getClass();
-		// 得到子类对象的泛型父类类型（也就是BaseDaoImpl<T>）
 		ParameterizedType type = (ParameterizedType) clz.getGenericSuperclass();
-		System.out.println(type);
 		Type[] types = type.getActualTypeArguments();
 		Class<T> entityClass = (Class<T>) types[0];
 		return entityClass;
@@ -191,6 +185,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		return query.list();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<T> findTopByCriteria(final DetachedCriteria detachedCriteria, final int top, final Order[] orders)
 			throws DataAccessException {
@@ -259,6 +254,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		return (long) query.list().get(0);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public int getCountByCriteria(final DetachedCriteria detachedCriteria) throws DataAccessException {
 		Integer count = (Integer) getHibernateTemplate().executeWithNativeSession(new HibernateCallback() {
@@ -484,6 +480,37 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 				query.setParameter(i, paramArray[i]);
 			}
 		}
+	}
+
+	public Pagination<T> loadPage(final Query query, final int pageSize, int startIndex) throws DataAccessException {
+		int totalCount = 0;
+		ScrollableResults scrollableResults = query.scroll();
+		scrollableResults.last();
+		if (scrollableResults.getRowNumber() >= 0) {
+			totalCount = scrollableResults.getRowNumber() + 1;
+		}
+		if (startIndex >= totalCount)
+			startIndex = ((totalCount - 1) / pageSize) * pageSize;
+
+		List<T> items = query.setFirstResult(startIndex).setMaxResults(pageSize).list();
+		Pagination<T> ps = new Pagination<T>(items, totalCount, pageSize, startIndex);
+		return ps;
+	}
+
+	public Pagination<T> loadPage(final Criteria criteria, final int pageSize, int startIndex)
+			throws DataAccessException {
+		int totalCount = 0;
+		ScrollableResults scrollableResults = criteria.scroll();
+		scrollableResults.last();
+		if (scrollableResults.getRowNumber() >= 0) {
+			totalCount = scrollableResults.getRowNumber() + 1;
+		}
+		if (startIndex >= totalCount)
+			startIndex = ((totalCount - 1) / pageSize) * pageSize;
+
+		List<T> items = criteria.setFirstResult(startIndex).setMaxResults(pageSize).list();
+		Pagination<T> ps = new Pagination<T>(items, totalCount, pageSize, startIndex);
+		return ps;
 	}
 
 	@Autowired

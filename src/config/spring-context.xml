@@ -256,12 +256,7 @@
 	
 	<!-- IOC demo start -->
 	<!-- springframework initiate check start -->
-	<bean class="com.qzn.utils.CheckConfigs">
-		<property name="dbUrl" value="${db.url}" />
-		<property name="userDao">
-			<bean class="com.qzn.daos.hibernate.UserDaoImpl" /> 
-		</property>
-	</bean>
+	<bean class="com.qzn.utils.CheckConfigs"></bean>
 	<!-- initiate check end -->
 	<!-- IOC demo end-->
 	
@@ -283,7 +278,7 @@
 	<!-- MVC拦截器 開始 -->
 	<mvc:interceptors>		
      <mvc:interceptor>  		
-       <mvc:mapping path="/web/**" />		
+       <mvc:mapping path="/SpringH/**" />		
         <bean class="com.qzn.interceptors.HandlerInterceptor"></bean>		
      </mvc:interceptor>		
 	</mvc:interceptors> 

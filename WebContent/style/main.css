@@ -48,3 +48,27 @@ td{
 .shouldHiddenInput{
 	display:none;
 }
+.titleDiv {
+	width: 50%;
+	/* height: 100px; */
+	min-height: 100px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 80px;
+	color: red;
+}
+
+div#page-main table.main-menu-box {
+	border-color: #FFFFFF;
+}
+
+div#page-main table.main-menu-box td {
+	background-color: #AA0000;
+	border-color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	height: 40px;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 0px 10px 0px 10px;
+}

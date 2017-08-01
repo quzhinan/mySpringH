@@ -15,7 +15,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.qzn.models.AdminUser;
+import com.qzn.models.User;
 import com.qzn.services.UserService;
 
 /**
@@ -44,17 +44,17 @@ public class TestServlet extends ServletProxy {
 			throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		AdminUser adminUser = userService.findByProperty("username", username);
+		User adminUser = userService.findByProperty("username", username);
 		response.getWriter().print(adminUser);
 
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(AdminUser.class);
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 		Criterion multipleCriteria1 = Restrictions.eq("username", username);
 		detachedCriteria.add(multipleCriteria1);
 		Criterion multipleCriteria2 = Restrictions.eq("password", password);
 		detachedCriteria.add(multipleCriteria2);
-		List<AdminUser> adminUsers = userService.findAllByCriteria(detachedCriteria);
+		List<User> adminUsers = userService.findAllByCriteria(detachedCriteria);
 		response.getWriter().print(adminUsers);
-		List<AdminUser> adminUsers1 = userService.findTopByCriteria(detachedCriteria, 10,
+		List<User> adminUsers1 = userService.findTopByCriteria(detachedCriteria, 10,
 				new Order[] { Order.desc("id") });
 		response.getWriter().print(adminUsers1);
 

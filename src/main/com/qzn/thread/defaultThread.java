@@ -6,10 +6,8 @@ public class defaultThread extends BaseThread {
 	public void run() {
 		while (true) {
 			try {
-
 			} catch (Exception ex) {
 			}
-
 		}
 	}
 }

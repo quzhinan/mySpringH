@@ -11,8 +11,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FilesIOUtil {
-	private static Logger log = LoggerFactory.getLogger(FilesIOUtil.class);
 
 	// 用javaIo方法 文件下载
 	public static void downloadFilesByJavaIo(HttpServletResponse response, String filePath) {
