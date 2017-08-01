@@ -1,10 +1,10 @@
-package com.qzn.utils;
+package com.qzn.interceptors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AppendLogsByAOP {
-	private static Logger log = LoggerFactory.getLogger(AppendLogsByAOP.class);
+public class AopInterceptor {
+	private static Logger log = LoggerFactory.getLogger(AopInterceptor.class);
 
 	public void logOutputBeforeMethod() {
 		log.info("方法开始执行");

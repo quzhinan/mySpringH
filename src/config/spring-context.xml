@@ -33,18 +33,24 @@
 	<context:component-scan base-package="com.qzn.daos.hibernate" />
 	<context:component-scan base-package="com.qzn.services.hibernate" />
 	<!-- 需要扫描的包 end -->
- 	
- 	<!-- viewResolver start -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="2" />
-		<property name="prefix">
-			<value>/WEB-INF/views/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
 	
+	<!-- jsonconverter -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    	<property name="messageConverters">
+		    <list>
+		        <ref bean="json-converter" />
+		    </list>
+		</property>
+    </bean>
+    <bean id="json-converter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    	<property name="supportedMediaTypes">
+	    	<list>
+	            <value>application/json; charset=UTF-8</value>
+	            <value>text/html; charset=UTF-8</value>
+	        </list>
+        </property>
+    </bean>
+ 	
 	<!-- tiles 配置开始 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -55,17 +61,26 @@
 			</value>
 		</property>
 	</bean>
-	
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
-				<value>/WEB-INF/classes/tiles_admin.xml</value>
+				<value>/WEB-INF/classes/tiles.xml</value>
 			</list>
 		</property>
 	</bean>
-	<!-- tiles 配置结束 -->
+	<!-- viewResolver start -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
 	<!-- viewResolver end -->
+	<!-- tiles 配置结束 -->
 	
 	<!--  hibernate start-->
 	<!-- jndi start -->
@@ -125,6 +140,12 @@
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<!-- DAO -->
+	<bean id="userDao" class="com.qzn.daos.hibernate.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- service -->
+	<bean id="userService" class="com.qzn.services.hibernate.UserServiceImpl"></bean>
 
 	<!-- transaction config proxy start-->
 	<bean id="transactionProxy"
@@ -242,29 +263,37 @@
 		</property>
 	</bean>
 	<!-- initiate check end -->
-	
-	<!-- 在过滤器中注入service start-->
-	<bean id="userService" class="com.qzn.services.hibernate.UserServiceImpl"></bean>
-	<!-- 在过滤器中注入service end-->
-	
 	<!-- IOC demo end-->
 	
 	<!-- AOP demo start  -->
 	<!-- 切面类 -->
-	<bean id="appendLogsByAOP" class="com.qzn.utils.AppendLogsByAOP"/>
+	<bean id="appendLogsByAOP" class="com.qzn.interceptors.AopInterceptor"/>
 	<!-- 切入点 -->
 	<aop:config>
 		<aop:pointcut id="afterMethodPoint" expression="execution(* com.qzn.controllers.publics.*Controller.*(..))"/>
 		<aop:aspect id = "appendLogs" ref="appendLogsByAOP">
 			<aop:before method="logOutputBeforeMethod" pointcut="execution(* com.qzn.controllers.publics.*Controller.*(..))"/>
 			<aop:after-throwing method="logOutputAfterThrows" pointcut="execution(* com.qzn.controllers.publics.*Controller.*(..))"/>
-			<!-- 可以用 pointcut-ref来指代相同的pointcut-->
 			<aop:after-returning method="logOutputAfterReturn" pointcut-ref="afterMethodPoint"/>
 			<aop:after method="logOutputAfterMethod" pointcut-ref="afterMethodPoint"/>
 		</aop:aspect>
 	</aop:config>
 	<!-- AOP demo end  -->
 	
+	<!-- MVC拦截器 開始 -->
+	<mvc:interceptors>		
+     <mvc:interceptor>  		
+       <mvc:mapping path="/web/**" />		
+        <bean class="com.qzn.interceptors.HandlerInterceptor"></bean>		
+     </mvc:interceptor>		
+	</mvc:interceptors> 
+	<!-- MVC拦截器 完了 -->		
 	
+	<!-- Helper -->
+	<bean id="systemOptionsHelper" class="com.qzn.helper.SystemOptionsHelper" init-method="init" destroy-method="destroy">
+       	<property name="instance">
+           	<ref bean="systemOptionsHelper" />
+       	</property>
+	</bean>
 	
 </beans>

@@ -15,17 +15,20 @@ public class SystemOptionsHelper {
 		instance = helper;
 	}
 
+	public void init(){
+	}
+	
 	/** Helper Instance End */
 
 	public void destroy() {
 	}
 
 	/**
-	 * メール送信Threadを起動する
+	 * Threadを起動する
 	 * 
 	 * @throws Exception
 	 */
-	public synchronized void startMailSendThread() throws Exception {
+	public synchronized void startThread() throws Exception {
 		Integer threadNum = 0;
 		defaultThread defaultThread = new defaultThread();
 		for (int i = 1; i <= threadNum; i++) {

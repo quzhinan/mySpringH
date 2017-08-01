@@ -70,7 +70,6 @@ public class TestListenser implements ServletContextListener, ServletContextAttr
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("servletContext开始初始化了");
 	}
 
 	/**
