@@ -1,128 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<div class="titleDiv">SpringMVC</div>
-<div id="page-main">
-	<table width="100%" class="main-menu-box" border="0" cellSpacing="2"
-		cellPadding="0">
-		<tr>
-			<td id="td1" nowrap="nowrap"
-				style="cursor: pointer; width: 13%; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='adminUserList.htm'">首页</td>
-			<td id="td6" nowrap="nowrap"
-				style="cursor: pointer; width: 13%; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='speakList.htm'">111</td>
-			<td id="td2" nowrap="nowrap"
-				style="cursor: pointer; width: 13%; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='supplierList.htm'">222</td>
-			<td id="td3" nowrap="nowrap"
-				style="cursor: pointer; width: 13%; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='groupList.htm'">333</td>
-			<td id="td4" nowrap="nowrap"
-				style="cursor: pointer; width: 13%; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='groupList.htm'">444</td>
-			<td id="td5" nowrap="nowrap"
-				style="cursor: pointer; width: 13%; background-color: #AA0000"
-				onmouseover="this.style.backgroundColor='#9F9000';"
-				onmouseout="mouseoutevent()"
-				onmousedown="this.style.backgroundColor='#9F5B00';"
-				onmouseup="this.style.backgroundColor='#9F9000';"
-				onclick="window.location='jppostMenuList.htm'">555</td>
-			<td width="100%" nowrap="nowrap"></td>
-		</tr>
-	</table>
-</div>
-
-<script language="JavaScript">
-	var mark = "${mark}";
-	menuId = 0;
-	if (mark == "admin") {
-		$("#td1").css("background-color", "#9F9000");
-		menuId = 1;
-	}
-	if (mark == "supplier") {
-		$("#td2").css("background-color", "#9F9000");
-		menuId = 2;
-	}
-	if (mark == "group") {
-		$("#td3").css("background-color", "#9F9000");
-		menuId = 3;
-	}
-	if (mark == "notice") {
-		$("#td4").css("background-color", "#9F9000");
-		menuId = 4;
-	}
-	if (mark == "jppostMenu") {
-		$("#td5").css("background-color", "#9F9000");
-		menuId = 5;
-	}
-	if (mark == "speak") {
-		$("#td6").css("background-color", "#9F9000");
-		menuId = 6;
-	}
-
-	function mouseoutevent() {
-
-		if (menuId != "") {
-
-			if (menuId == 1)
-
-				$("#td1").css("background-color", "#9F9000");
-			else
-				$("#td1").css("background-color", "#AA0000");
-
-			if (menuId == 2)
-
-				$("#td2").css("background-color", "#9F9000");
-			else
-				$("#td2").css("background-color", "#AA0000");
-
-			if (menuId == 3)
-
-				$("#td3").css("background-color", "#9F9000");
-			else
-				$("#td3").css("background-color", "#AA0000");
-
-			if (menuId == 4)
-
-				$("#td4").css("background-color", "#9F9000");
-			else
-				$("#td4").css("background-color", "#AA0000");
-
-			if (menuId == 5)
-
-				$("#td5").css("background-color", "#9F9000");
-			else
-				$("#td5").css("background-color", "#AA0000");
-
-			if (menuId == 6)
-
-				$("#td6").css("background-color", "#9F9000");
-			else
-				$("#td6").css("background-color", "#AA0000");
-
-		}
-	}
-</script>
-</html>
+	<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="brand">
+				<a href="index.htm"><img src="images/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<form class="navbar-form navbar-left">
+					<div class="input-group">
+						<input type="text" value="" class="form-control" placeholder="Search dashboard...">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
+					</div>
+				</form>
+				<div class="navbar-btn navbar-btn-right">
+					<a class="btn btn-success update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+								<i class="lnr lnr-alarm"></i>
+								<span class="badge bg-danger">5</span>
+							</a>
+							<ul class="dropdown-menu notifications">
+								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
+								<li><a href="#" class="more">See all notifications</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Basic Use</a></li>
+								<li><a href="#">Working With Data</a></li>
+								<li><a href="#">Security</a></li>
+								<li><a href="#">Troubleshooting</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+						<!-- <li>
+							<a class="update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>

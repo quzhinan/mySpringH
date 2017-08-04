@@ -27,4 +27,9 @@ public class TopController extends AbstractController {
 		Pagination<User> pagination = userService.findAllUsersByPage(10, 0, new HashMap<>());
 		return Page("tile-index", "user", user, "pagination", pagination);
 	}
+	
+	@RequestMapping("/elements")
+	public Page elements() throws Exception {
+		return Page("tile-elements");
+	}
 }

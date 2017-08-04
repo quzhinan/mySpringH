@@ -34,19 +34,21 @@
 <script src="scripts/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 <script src="scripts/chartist/chartist.min.js"></script>
 <script src="scripts/klorofil-common.js"></script>
+<script src="scripts/main.js"></script>
 <c:if test="${!empty css}">
 	<link href="<tiles:getAsString name="css"/>" type="text/css" rel="stylesheet" />
 </c:if>
 <c:if test="${!empty js}">
 	<script src="<tiles:getAsString name="js"/>"></script>
 </c:if>
-<script src="scripts/bootstrap.min.js"></script>
-<script src="scripts/main.js"></script>
 </head>
 <body>
-	<div id="position" style="position: relative">
+	<div id="wrapper" style="position: relative">
 		<div>
 			<tiles:insertAttribute name="header" />
+		</div>
+		<div>
+			<tiles:insertAttribute name="left" />
 		</div>
 		<div>
 			<tiles:insertAttribute name="body" />
