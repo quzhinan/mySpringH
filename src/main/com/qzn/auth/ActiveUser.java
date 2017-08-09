@@ -2,7 +2,7 @@ package com.qzn.auth;
 
 import java.io.Serializable;
 
-public class ActiveUser<T extends Manageable> implements Serializable {
+public class ActiveUser<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
