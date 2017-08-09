@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import com.qzn.models.Email;
 
-public final class SpringEmailUtil {
+public final class EmailUtil {
 	public static LinkedBlockingQueue<JavaMailSender> mailSenderQueue;
 
 	private static void initMailSenderQueue(int numberOfMailSender) {

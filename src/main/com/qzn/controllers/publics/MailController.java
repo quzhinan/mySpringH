@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.qzn.controllers.AbstractController;
 import com.qzn.models.Email;
 import com.qzn.utils.PropertyUtil;
-import com.qzn.utils.SpringEmailUtil;
+import com.qzn.utils.EmailUtil;
 import com.qzn.utils.VelocitiesUtil;
 
 @Controller
@@ -44,7 +44,7 @@ public class MailController {
 		// model.addAttribute("email", email);
 		email.setToEmailAddresses(email.getToEmailAddresses()[0].split(","));
 		try {
-			SpringEmailUtil.sendEmail(email);
+			EmailUtil.sendEmail(email);
 			model.addAttribute("result", "发送邮件成功");
 		} catch (Exception e) {
 			e.printStackTrace();

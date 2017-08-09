@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContextAware;
 
 import com.qzn.daos.UserDao;
 
-public class CheckConfigs implements ApplicationContextAware {
+public class CheckConfigsUtil implements ApplicationContextAware {
 
 	@Autowired
 	private UserDao userDao;

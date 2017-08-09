@@ -1,7 +1,7 @@
 package com.qzn.test;
 
 import com.qzn.models.Email;
-import com.qzn.utils.SpringEmailUtil;
+import com.qzn.utils.EmailUtil;
 
 public class TestEmail {
 	public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class TestEmail {
 		email.setSubject("测试");
 		email.setContent("ceshidddda");
 		try {
-			SpringEmailUtil.sendEmail(email);
+			EmailUtil.sendEmail(email);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

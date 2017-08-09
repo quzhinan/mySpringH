@@ -8,4 +8,5 @@ import com.qzn.models.User;
 public interface UserService extends Service<User, Long> {
 
 	Pagination<User> findAllUsersByPage(int pageSize, int startIndex, Map<String, String> search) throws Exception;
+	
 }

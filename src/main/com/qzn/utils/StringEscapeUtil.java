@@ -10,7 +10,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.ui.Model;
 
-public class StringEscapeUtils {
+public class StringEscapeUtil {
 
 	public static Object escapeHtmlForBean(Object object) {
 		if (object == null) {

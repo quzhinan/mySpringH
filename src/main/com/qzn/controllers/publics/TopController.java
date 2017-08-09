@@ -1,31 +1,27 @@
 package com.qzn.controllers.publics;
 
-import java.util.HashMap;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.qzn.controllers.AbstractController;
 import com.qzn.controllers.Page;
-import com.qzn.controllers.Pagination;
-import com.qzn.models.User;
-import com.qzn.services.UserService;
 
 @Controller
 public class TopController extends AbstractController {
-	private static final Logger log = LoggerFactory.getLogger(AbstractController.class);
-
-	@Autowired
-	private UserService userService;
 
 	@RequestMapping("/index")
 	public Page frontPage() throws Exception {
-		User user = userService.findById(1L);
-		Pagination<User> pagination = userService.findAllUsersByPage(10, 0, new HashMap<>());
-		return Page("functions-index", "user", user, "pagination", pagination);
+		return Page("filters-index");
+	}
+
+	@RequestMapping("/lockscreen")
+	public Page lockscreen() throws Exception {
+		return Page("filters-lockscreen");
+	}
+
+	@RequestMapping("/dashboard")
+	public Page dashboard() throws Exception {
+		return Page("functions-dashboard");
 	}
 
 	@RequestMapping("/elements")
@@ -66,16 +62,6 @@ public class TopController extends AbstractController {
 	@RequestMapping("/icons")
 	public Page icons() throws Exception {
 		return Page("functions-icons");
-	}
-
-	@RequestMapping("/login")
-	public Page login() throws Exception {
-		return Page("filters-login");
-	}
-
-	@RequestMapping("/lockscreen")
-	public Page lockscreen() throws Exception {
-		return Page("filters-lockscreen");
 	}
 
 }
