@@ -102,7 +102,7 @@ StyleSwitcher.prototype.build = function () {
     }
 
     $('body').css({
-        'background-image': 'url(' + imgPath + 'assets/img/pattern/' + $this.storageManager.getBgImage() + '.png)',
+        'background-image': 'url(' + imgPath + 'images/pattern/' + $this.storageManager.getBgImage() + '.png)',
         'background-repeat': ' repeat'
     });
     var modalHTML = '<div id="getCSSModal" class="modal fade">' +
@@ -198,18 +198,18 @@ StyleSwitcher.prototype.build = function () {
         var colorSelStyle = $('<link/>')
             .attr({
                 'rel': 'stylesheet',
-                'href': imgPath + 'assets/lib/colorpicker/css/colorpicker.css'
+                'href': imgPath + 'style/css/demo.css'
             }),
             colorSelHackStyle = $('<link/>').attr({
                 'rel': 'stylesheet',
-                'href': imgPath + 'assets/css/colorpicker_hack.css'
+                'href': imgPath + 'style/css/demo.css'
             });
         colorSelector = $('<div/>').addClass('color-picker').attr({
             'id': 'colorSelector',
             'data-color': $this.storageManager.getBgColor(),
             'data-color-format': 'hex'
         });
-        var url = imgPath + 'assets/lib/colorpicker/js/bootstrap-colorpicker.js';
+        var url = imgPath + 'script/klorofil-common.js';
         $.getScript(url, function () {
             $('head').append(colorSelStyle, colorSelHackStyle);
 
@@ -371,7 +371,7 @@ StyleSwitcher.prototype.build = function () {
     ];
     $.each(patternImages, function (i) {
         var listElement = $('<li/>').append($('<a/>').css({
-                'background': 'url(' + imgPath + 'assets/img/pattern/' + patternImages[i].image + '.png) repeat'
+                'background': 'url(' + imgPath + 'images/pattern/' + patternImages[i].image + '.png) repeat'
             }).attr({
                 'href': '#',
                 'title': patternImages[i].title,
@@ -385,7 +385,7 @@ StyleSwitcher.prototype.build = function () {
     patternList.find('a').on(Metis.buttonPressedEvent, function (e) {
         e.preventDefault();
         $('body').css({
-            'background-image': 'url(' + imgPath + 'assets/img/pattern/' + $(this).data('patternImage') + '.png)',
+            'background-image': 'url(' + imgPath + 'images/pattern/' + $(this).data('patternImage') + '.png)',
             'background-repeat': ' repeat'
         });
         $this.patternImage = $(this).data('patternImage');

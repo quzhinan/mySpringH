@@ -19,7 +19,7 @@
 <meta name="Keywords" content="" />
 <meta name="msapplication-TileImage" content="images/bootstrap/metis-tile.png" />
 <link rel="stylesheet" href="style/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="style/font-awesome/font-awesome.css">
+<link rel="stylesheet" href="style/font-awesome/font-awesome.min.css">
 <link rel="stylesheet" href="style/linearicons/style.css">
 <link rel="stylesheet" href="style/chartist/chartist-custom.css">
 <link rel="stylesheet" href="style/main.css">
@@ -27,7 +27,6 @@
 <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-<script src="scripts/jquery/jquery.min.js"></script>
 <script src="scripts/jquery/jquery.min.js"></script>
 <script src="scripts/bootstrap/bootstrap.min.js"></script>
 <script src="scripts/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -43,7 +42,7 @@
 </c:if>
 </head>
 <body>
-	<div id="wrapper" style="position: relative">
+	<div id="wrapper">
 		<div>
 			<tiles:insertAttribute name="header" />
 		</div>

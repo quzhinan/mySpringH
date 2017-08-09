@@ -17,7 +17,14 @@
 		<put-attribute name="footer" value="" />
 	</definition>
 	
-	<definition name="tile.*.page" extends="tile.templateCompile">
+	<definition name="functions.*.page" extends="tile.templateCompile">
+		<put-attribute name="title" value="title.frontpage" />
+		<put-attribute name="css" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	
+	<definition name="filters.*.page" extends="tile.templatePart">
 		<put-attribute name="title" value="title.frontpage" />
 		<put-attribute name="css" value="" />
 		<put-attribute name="js" value="" />

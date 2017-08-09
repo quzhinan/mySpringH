@@ -1,4 +1,4 @@
-<div class="clearfix"></div>
+<div class="clearfix">
 <footer>
 	<div class="container-fluid">
 		<p class="copyright">&copy; 2017 <a href="#" target="_blank">Theme I Need</a>. All Rights Reserved. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="more">see more</a> - Collect from
@@ -6,3 +6,4 @@
 		</p>
 	</div>
 </footer>
+</div>

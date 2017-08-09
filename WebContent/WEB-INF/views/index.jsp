@@ -334,8 +334,8 @@
 									</div>
 								</div>
 								<div class="panel-body">
-									<div id="system-load" class="easy-pie-chart" data-percent="70">
-										<span class="percent">70</span>
+									<div id="system-load" class="easy-pie-chart" data-percent="50">
+										<span class="percent">50</span>
 									</div>
 									<h4>CPU Load</h4>
 									<ul class="list-unstyled list-justify">
@@ -467,7 +467,7 @@
 			sysLoad.data('easyPieChart').update(randomVal);
 			sysLoad.find('.percent').text(randomVal);
 		}, updateInterval);
-
+		
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}

@@ -36,14 +36,28 @@ public class Page extends ModelAndView {
 		}
 		return logicName;
 	}
+	
+	protected String getPageMark(String logicName) {
+		Matcher matcher = JSP_PATH_MAP_PATTERN.matcher(logicName);
+		if (matcher.find()) {
+			return matcher.group(3);
+		}
+		matcher = JSP_PATH_MAP_PATTERN_SHORT.matcher(logicName);
+		if (matcher.find()) {
+			return matcher.group(3);
+		}
+		return logicName;
+	}
 
 	public Page(String page) {
 		setViewName(mapLogicJspToPath(page) + TILES_NAME_SUFFIX);
+		setPageMark(page);
 	}
 
 	public Page(String page, Object... objects) {
 		setViewName(mapLogicJspToPath(page) + TILES_NAME_SUFFIX);
 		setKeysAndObjects(objects);
+		setPageMark(page);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -56,6 +70,11 @@ public class Page extends ModelAndView {
 				i++;
 			}
 		}
+	}
+	
+	protected void setPageMark(String page) {
+		String valueName = getPageMark(page);
+		super.addObject(valueName, "active");
 	}
 
 	protected String makePageNameFromRequest(String actionName, Object... objects) {
