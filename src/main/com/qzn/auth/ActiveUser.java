@@ -4,13 +4,12 @@ import java.io.Serializable;
 
 public class ActiveUser<T extends Manageable> implements Serializable {
 
-	private static final long serialVersionUID = 8880240025025452688L;
+	private static final long serialVersionUID = 1L;
 
 	private boolean is_authorized = false;
 	private T user_info = null;
 
 	public ActiveUser() {
-
 	}
 
 	public ActiveUser(T userInfo) {

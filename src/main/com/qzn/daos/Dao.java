@@ -45,7 +45,7 @@ public interface Dao<T, ID extends Serializable> {
 
 	public List<T> findAll() throws DataAccessException;
 
-	public List<T> findAllOrderBy(String order) throws DataAccessException;
+	public List<T> findAllAscOrderBy(String order) throws DataAccessException;
 
 	public List<T> findAllDescOrderBy(String order) throws DataAccessException;
 

@@ -93,7 +93,7 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	@Override
-	public List<T> findAllOrderBy(String order) throws DataAccessException {
+	public List<T> findAllAscOrderBy(String order) throws DataAccessException {
 		Criteria cri = getSessionFactory().getCurrentSession().createCriteria(getModelClass());
 		cri.addOrder(Order.asc(order));
 		return (List<T>) cri.list();

@@ -102,8 +102,8 @@ public abstract class AbstractService<T, ID extends Serializable> implements Ser
 	}
 
 	@Transactional(readOnly = true, rollbackFor = ServiceException.class)
-	public List<T> loadAllOrderBy(String order) throws ServiceException {
-		return getDao().findAllOrderBy(order);
+	public List<T> loadAllAscOrderBy(String order) throws ServiceException {
+		return getDao().findAllAscOrderBy(order);
 	}
 
 	@Transactional(readOnly = true, rollbackFor = ServiceException.class)

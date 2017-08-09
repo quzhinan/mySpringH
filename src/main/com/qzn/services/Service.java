@@ -72,7 +72,7 @@ public interface Service<T, ID extends Serializable> {
 	 * @return
 	 * @throws ServiceException
 	 */
-	List<T> loadAllOrderBy(String order) throws ServiceException;
+	List<T> loadAllAscOrderBy(String order) throws ServiceException;
 
 	/**
 	 * load all data from table order by "order" desc
