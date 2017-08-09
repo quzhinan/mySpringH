@@ -30,7 +30,7 @@ public class OutTag extends BodyTagSupport {
 	private String formatCurrency;
 	private String separateIndex;
 	private String separateString;
-	
+
 	public String getVar() {
 		return var;
 	}
@@ -96,10 +96,11 @@ public class OutTag extends BodyTagSupport {
 	}
 
 	public int doEndTag() throws JspException {
-		
-		JspWriter writer=pageContext.getOut();
-		//HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-		
+
+		JspWriter writer = pageContext.getOut();
+		// HttpServletRequest request =
+		// (HttpServletRequest)pageContext.getRequest();
+
 		Object out = null;
 		if (value != null) {
 			out = value;
@@ -112,7 +113,7 @@ public class OutTag extends BodyTagSupport {
 		} else {
 			if (formatDate != null) {
 				DateFormat dateFormatter = new SimpleDateFormat(formatDate);
-				out = dateFormatter.format((Date)out);
+				out = dateFormatter.format((Date) out);
 			} else if (formatCurrency != null) {
 				Double number = Double.parseDouble(out.toString());
 				if (formatCurrency.equals("CNY")) {
@@ -138,19 +139,19 @@ public class OutTag extends BodyTagSupport {
 				}
 			}
 		}
-		
-		
-		StringBuffer sb = new StringBuffer(out.toString().replace("\r\n", "<BR/>").replace("\n", "<BR/>").replace("\r", "<BR/>"));
-		
+
+		StringBuffer sb = new StringBuffer(
+				out.toString().replace("\r\n", "<BR/>").replace("\n", "<BR/>").replace("\r", "<BR/>"));
+
 		if (separateIndex != null) {
 			List<Integer> indexs = new ArrayList<Integer>();
 			String[] indexsTemp = separateIndex.split(",");
-			for (int i=0; i<indexsTemp.length; i++) {
+			for (int i = 0; i < indexsTemp.length; i++) {
 				indexs.add(Integer.valueOf(indexsTemp[i]));
 			}
 			if (indexsTemp.length == 1) {
 				int index = Integer.valueOf(indexsTemp[0]);
-				for (int i=1; i<sb.length() / index; i++) {
+				for (int i = 1; i < sb.length() / index; i++) {
 					indexs.add(index);
 				}
 			}
@@ -171,7 +172,7 @@ public class OutTag extends BodyTagSupport {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return EVAL_PAGE;
 	}
 }

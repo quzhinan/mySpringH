@@ -6,11 +6,11 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 public class ParamTag extends BodyTagSupport {
 
 	private static final long serialVersionUID = -6851898425724924446L;
-	
+
 	private String name;
 	private String value;
 	private boolean valueSet;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -32,7 +32,7 @@ public class ParamTag extends BodyTagSupport {
 
 		Param param = new Param();
 		param.setName(this.name);
-		
+
 		if (this.valueSet) {
 			param.setValue(this.value);
 		} else if (getBodyContent() != null) {
@@ -45,10 +45,9 @@ public class ParamTag extends BodyTagSupport {
 		}
 
 		paramAware.addParam(param);
-		
+
 		return EVAL_PAGE;
 	}
-
 
 	public void release() {
 		super.release();

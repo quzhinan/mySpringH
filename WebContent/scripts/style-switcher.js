@@ -102,7 +102,7 @@ StyleSwitcher.prototype.build = function () {
     }
 
     $('body').css({
-        'background-image': 'url(' + imgPath + 'images/pattern/' + $this.storageManager.getBgImage() + '.png)',
+        'background-image': 'url(' + imgPath + 'images/' + $this.storageManager.getBgImage() + '.png)',
         'background-repeat': ' repeat'
     });
     var modalHTML = '<div id="getCSSModal" class="modal fade">' +
@@ -371,7 +371,7 @@ StyleSwitcher.prototype.build = function () {
     ];
     $.each(patternImages, function (i) {
         var listElement = $('<li/>').append($('<a/>').css({
-                'background': 'url(' + imgPath + 'images/pattern/' + patternImages[i].image + '.png) repeat'
+                'background': 'url(' + imgPath + 'images/' + patternImages[i].image + '.png) repeat'
             }).attr({
                 'href': '#',
                 'title': patternImages[i].title,
@@ -385,7 +385,7 @@ StyleSwitcher.prototype.build = function () {
     patternList.find('a').on(Metis.buttonPressedEvent, function (e) {
         e.preventDefault();
         $('body').css({
-            'background-image': 'url(' + imgPath + 'images/pattern/' + $(this).data('patternImage') + '.png)',
+            'background-image': 'url(' + imgPath + 'images/' + $(this).data('patternImage') + '.png)',
             'background-repeat': ' repeat'
         });
         $this.patternImage = $(this).data('patternImage');
@@ -430,7 +430,7 @@ StyleSwitcher.prototype.getCss = function () {
     var isFixed = $('body').hasClass('fixed');
     var cssBeautify = $('#cssbeautify');
     if (isFixed) {
-        raw = 'body { background-image: url("../img/pattern/' + $this.patternImage + '.png"); }';
+        raw = 'body { background-image: url("../images' + $this.patternImage + '.png"); }';
         $('#boxedBodyAlert').removeClass('hide');
     } else {
         $('#boxedBodyAlert').addClass('hide');

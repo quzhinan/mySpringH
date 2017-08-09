@@ -13,15 +13,15 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class UrlTag extends TagSupport implements ParamAware {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String var;
 	private String value;
 	private String action;
 	private String method;
 	private boolean isWebservice;
-	
+
 	private List<Param> params;
-	
+
 	public String getVar() {
 		return var;
 	}
@@ -53,7 +53,7 @@ public class UrlTag extends TagSupport implements ParamAware {
 	public void setMethod(String method) {
 		this.method = method;
 	}
-	
+
 	public boolean getIsWebservice() {
 		return isWebservice;
 	}
@@ -70,12 +70,12 @@ public class UrlTag extends TagSupport implements ParamAware {
 		params = new ArrayList<Param>();
 		return EVAL_BODY_INCLUDE;
 	}
-	
+
 	public int doEndTag() throws JspException {
-		
-		JspWriter writer=pageContext.getOut();
-		HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-		
+
+		JspWriter writer = pageContext.getOut();
+		HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+
 		int suffixType = 0;
 		StringBuffer sb = new StringBuffer();
 		sb.append(request.getContextPath());
@@ -88,9 +88,9 @@ public class UrlTag extends TagSupport implements ParamAware {
 			}
 			suffixType = 1;
 		}
-//		for (Param param : params) {
-//			sb.append("/" + param.getName() + "/" + param.getValue());
-//		}
+		// for (Param param : params) {
+		// sb.append("/" + param.getName() + "/" + param.getValue());
+		// }
 		if (suffixType == 1) {
 			if (isWebservice) {
 				sb.append(".ws");
@@ -104,7 +104,7 @@ public class UrlTag extends TagSupport implements ParamAware {
 			prefix = "&";
 		}
 		String url = sb.toString();
-		
+
 		if (var == null) {
 			try {
 				writer.print(url);
@@ -114,7 +114,7 @@ public class UrlTag extends TagSupport implements ParamAware {
 		} else {
 			pageContext.setAttribute(this.var, url, PageContext.PAGE_SCOPE);
 		}
-		
+
 		return EVAL_PAGE;
 	}
 }

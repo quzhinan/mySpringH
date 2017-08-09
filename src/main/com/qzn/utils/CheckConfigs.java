@@ -17,24 +17,24 @@ public class CheckConfigs implements ApplicationContextAware {
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		try {
-//			checkEnvironmentVariable();
+			// checkEnvironmentVariable();
 			checkDataSoucesContects();
 		} catch (Exception e) {
 		}
 	}
 
-//	private void checkEnvironmentVariable() {
-//		Map<String, String> environmentVariables = System.getenv();
-//	}
-//
-//	private boolean validateFilePath(String path) {
-//		File tmpFile = new File(path);
-//		if (tmpFile.exists()) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+	// private void checkEnvironmentVariable() {
+	// Map<String, String> environmentVariables = System.getenv();
+	// }
+	//
+	// private boolean validateFilePath(String path) {
+	// File tmpFile = new File(path);
+	// if (tmpFile.exists()) {
+	// return true;
+	// } else {
+	// return false;
+	// }
+	// }
 
 	private void checkDataSoucesContects() {
 		try (Session session = userDao.openSession()) {

@@ -14,19 +14,19 @@ import org.apache.taglibs.standard.tag.common.fmt.BundleSupport;
 public class NaviTag extends TagSupport {
 
 	private static final long serialVersionUID = 5358572410388645479L;
-	
+
 	public int doStartTag() {
 		return SKIP_BODY;
 	}
-	
+
 	public int doEndTag() throws JspException {
-		
-		JspWriter writer=pageContext.getOut();
-		HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+
+		JspWriter writer = pageContext.getOut();
+		HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
 
 		String contextPath = request.getContextPath();
-		String uri = (String)request.getAttribute("javax.servlet.forward.request_uri");
-		
+		String uri = (String) request.getAttribute("javax.servlet.forward.request_uri");
+
 		String action = uri.substring(contextPath.length() + 1, uri.length() - 4);
 		String[] actionList = action.split("/");
 
@@ -47,11 +47,12 @@ public class NaviTag extends TagSupport {
 					sb.append("\"><span>" + actionMenu + "</span></a>");
 					sb.append("\n");
 					sb.append("<a href=\"");
-//					sb.append(request.getContextPath() + "/" + actionName + "/" + methodName + ".ies");
+					// sb.append(request.getContextPath() + "/" + actionName +
+					// "/" + methodName + ".ies");
 					sb.append("javascript:void(0);");
 					sb.append("\"><span>" + methodMenu + "</span></a>");
 				}
-				
+
 			}
 			try {
 				writer.print(sb.toString());
@@ -59,7 +60,7 @@ public class NaviTag extends TagSupport {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return EVAL_PAGE;
 	}
 }

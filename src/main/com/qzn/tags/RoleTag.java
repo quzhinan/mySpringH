@@ -14,7 +14,7 @@ public class RoleTag extends TagSupport {
 	private String var;
 	private String type;
 	private String level;
-	
+
 	public String getVar() {
 		return var;
 	}
@@ -42,8 +42,8 @@ public class RoleTag extends TagSupport {
 	public int doStartTag() {
 
 		int result = SKIP_BODY;
-		
-		HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+
+		HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
 		if (Authenticator.loadActiveUser(request).isAuthorized()) {
 			boolean role = Authenticator.loadActiveUser(request).getUserInfo().isHasRole(request, type, level);
 			if (role == true) {
@@ -54,10 +54,10 @@ public class RoleTag extends TagSupport {
 				}
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
 	}

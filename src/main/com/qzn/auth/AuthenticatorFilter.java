@@ -21,25 +21,26 @@ import org.apache.commons.logging.LogFactory;
 public class AuthenticatorFilter implements Filter {
 
 	private static Log log = LogFactory.getLog(AuthenticatorFilter.class);
-	
+
 	private String indexPath;
 	List<String> ignoreList = new ArrayList<String>();
 
 	@Override
 	public void destroy() {
-		
+
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-		
-		HttpServletRequest request = (HttpServletRequest)req;
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
+
+		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 
 		String uri = request.getRequestURI();
-		
+
 		boolean isAuthed = false;
-		
+
 		if (isIgnored(uri)) {
 			isAuthed = true;
 		} else {
@@ -47,10 +48,10 @@ public class AuthenticatorFilter implements Filter {
 			if (user != null) {
 				isAuthed = true;
 			} else {
-				log.warn("Not yet authenticated, The request uri is [" + uri +"].");
+				log.warn("Not yet authenticated, The request uri is [" + uri + "].");
 			}
 		}
-		
+
 		if (isAuthed) {
 			chain.doFilter(request, response);
 		} else {

@@ -1,4 +1,4 @@
-<html lang="en" class="fullscreen-bg">
+<html class="fullscreen-bg">
 <div class="vertical-align-wrap">
 	<div class="vertical-align-middle">
 		<div class="auth-box ">
@@ -37,10 +37,9 @@
 			<div class="right">
 				<div class="overlay"></div>
 				<div class="content text">
-					<h1 class="heading">template</h1>
+					<h1 class="heading"></h1>
 				</div>
 			</div>
-			<div class="clearfix"></div>
 		</div>
 	</div>
 </div>

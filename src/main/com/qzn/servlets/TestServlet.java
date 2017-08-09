@@ -54,8 +54,7 @@ public class TestServlet extends ServletProxy {
 		detachedCriteria.add(multipleCriteria2);
 		List<User> adminUsers = userService.findAllByCriteria(detachedCriteria);
 		response.getWriter().print(adminUsers);
-		List<User> adminUsers1 = userService.findTopByCriteria(detachedCriteria, 10,
-				new Order[] { Order.desc("id") });
+		List<User> adminUsers1 = userService.findTopByCriteria(detachedCriteria, 10, new Order[] { Order.desc("id") });
 		response.getWriter().print(adminUsers1);
 
 	}

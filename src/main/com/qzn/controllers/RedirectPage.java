@@ -6,7 +6,7 @@ public class RedirectPage extends Page {
 		setViewName(makePageNameFromRequest(actionName));
 	}
 
-	public RedirectPage(String actionName, Object...objects) {
+	public RedirectPage(String actionName, Object... objects) {
 		setViewName(makePageNameFromRequest(actionName, objects));
 	}
 }

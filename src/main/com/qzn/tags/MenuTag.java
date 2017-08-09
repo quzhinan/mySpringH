@@ -11,13 +11,13 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class MenuTag extends TagSupport {
 
 	private static final long serialVersionUID = -7653478160697598643L;
-	
+
 	private String action;
 	private String method;
-	
+
 	@SuppressWarnings("unused")
 	private List<Param> params;
-	
+
 	public String getAction() {
 		return action;
 	}
@@ -33,12 +33,12 @@ public class MenuTag extends TagSupport {
 	public void setMethod(String method) {
 		this.method = method;
 	}
-	
+
 	public int doStartTag() {
 
-		JspWriter writer=pageContext.getOut();
-		HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-		
+		JspWriter writer = pageContext.getOut();
+		HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+
 		StringBuffer sb = new StringBuffer();
 		sb.append(request.getContextPath());
 		sb.append("/" + action);
@@ -46,11 +46,11 @@ public class MenuTag extends TagSupport {
 			sb.append("/" + method);
 		}
 		String url = sb.toString();
-		String requestURI = (String)request.getAttribute("javax.servlet.forward.request_uri");
-		
+		String requestURI = (String) request.getAttribute("javax.servlet.forward.request_uri");
+
 		sb = new StringBuffer();
 		sb.append("<li");
-		
+
 		if (requestURI != null && requestURI.startsWith(url)) {
 			sb.append(" active");
 		}
@@ -63,23 +63,23 @@ public class MenuTag extends TagSupport {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return EVAL_BODY_INCLUDE;
 	}
-	
+
 	public int doEndTag() throws JspException {
-		
-		JspWriter writer=pageContext.getOut();
-		
+
+		JspWriter writer = pageContext.getOut();
+
 		StringBuffer sb = new StringBuffer();
 		sb.append("</a></li>");
-		
+
 		try {
 			writer.print(sb.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return EVAL_PAGE;
 	}
 }

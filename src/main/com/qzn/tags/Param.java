@@ -1,7 +1,7 @@
 package com.qzn.tags;
 
 public class Param {
-	
+
 	private String name;
 	private String value;
 
@@ -20,5 +20,5 @@ public class Param {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
 }

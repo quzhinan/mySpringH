@@ -8,7 +8,7 @@ public class CurrentPage extends Page {
 		setViewName(makePageNameFromRequest(request));
 	}
 
-	public CurrentPage(HttpServletRequest request, Object...objects) {
+	public CurrentPage(HttpServletRequest request, Object... objects) {
 		setViewName(makePageNameFromRequest(request));
 		setKeysAndObjects(objects);
 	}

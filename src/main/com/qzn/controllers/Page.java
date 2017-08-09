@@ -36,7 +36,7 @@ public class Page extends ModelAndView {
 		}
 		return logicName;
 	}
-	
+
 	protected String getPageMark(String logicName) {
 		Matcher matcher = JSP_PATH_MAP_PATTERN.matcher(logicName);
 		if (matcher.find()) {
@@ -71,7 +71,7 @@ public class Page extends ModelAndView {
 			}
 		}
 	}
-	
+
 	protected void setPageMark(String page) {
 		String valueName = getPageMark(page);
 		super.addObject(valueName, "active");

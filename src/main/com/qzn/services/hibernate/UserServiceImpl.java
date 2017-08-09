@@ -25,8 +25,9 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 	public Dao<User, Long> getDao() {
 		return userDao;
 	}
-	
-	public Pagination<User> findAllUsersByPage(int pageSize, int startIndex, Map<String, String> search) throws Exception{
+
+	public Pagination<User> findAllUsersByPage(int pageSize, int startIndex, Map<String, String> search)
+			throws Exception {
 		return userDao.loadPage(pageSize, startIndex, search);
 	}
 
