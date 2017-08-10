@@ -1,6 +1,5 @@
 package com.qzn.models;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -16,13 +15,15 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.qzn.auth.UserInfo;
+import com.qzn.auth.UpdateSet;
 import com.qzn.models.validator.constraints.Email;
 
 @Entity
 @Table(name = "users")
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public class User implements Serializable {
+public class User extends Model<Long> implements UserInfo, UpdateSet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +46,7 @@ public class User implements Serializable {
 	@NotBlank(message = "{errors.validation.input.required}")
 	@Length(max = 128, message = "{errors.validation.input.maxlength}")
 	private String username;
-	
+
 	@Column(name = "fullname")
 	@NotBlank(message = "{errors.validation.input.required}")
 	@Length(max = 128, message = "{errors.validation.input.maxlength}")
@@ -54,7 +55,7 @@ public class User implements Serializable {
 	@Column(name = "password")
 	@Length(max = 64, message = "{errors.validation.input.maxlength}")
 	private String password;
-	
+
 	@Column(name = "age")
 	private Integer age;
 
@@ -63,24 +64,24 @@ public class User implements Serializable {
 
 	@Column(name = "address")
 	private String address;
-	
+
 	@Column(name = "email")
 	@Email(message = "{errors.validation.format.email}")
 	@Length(max = 128, message = "{errors.validation.input.maxlength}")
 	private String email;
-	
+
 	@Column(name = "power")
 	private Integer power;
-	
+
 	@Column(name = "login_lock_status")
 	private Integer loginLockStatus;
 
 	@Column(name = "login_error_count")
 	private Integer loginErrorCount;
-	
+
 	@Column(name = "password_status")
 	private Integer passwordStatus;
-	
+
 	@Column(name = "delete_flag")
 	private Integer deleteFlag;
 
@@ -159,7 +160,7 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Integer getPower() {
 		return power;
 	}
@@ -231,7 +232,5 @@ public class User implements Serializable {
 	public void setCreateDatetime(Timestamp createDatetime) {
 		this.createDatetime = createDatetime;
 	}
-
-	
 
 }

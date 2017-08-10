@@ -144,30 +144,6 @@
 	</tag>
 
 	<tag>
-		<description>Role</description>
-		<name>role</name>
-		<tag-class>com.qzn.tags.RoleTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Type of role.</description>
-			<name>type</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Level of option.</description>
-			<name>level</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
 		<description>Info</description>
 		<name>info</name>
 		<tag-class>com.qzn.tags.InfoTag</tag-class>

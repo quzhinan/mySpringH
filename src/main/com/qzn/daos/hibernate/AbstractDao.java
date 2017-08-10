@@ -3,6 +3,7 @@ package com.qzn.daos.hibernate;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import com.qzn.auth.Authenticator;
+import com.qzn.auth.UserInfo;
+import com.qzn.auth.UpdateSet;
 import com.qzn.controllers.Pagination;
 import com.qzn.daos.Dao;
 
@@ -321,22 +325,41 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 		}
 	}
 
-	// 执行数据保存的方法
 	@Override
+	@SuppressWarnings("unchecked")
 	public ID save(T t) throws DataAccessException {
 		if (t != null) {
-			return (ID) getHibernateTemplate().save(t);
+			if (t instanceof UpdateSet) {
+				UserInfo userInfo = Authenticator.loadActiveUser().getUserInfo();
+				if (userInfo != null) {
+					UpdateSet u = (UpdateSet)t;
+					Timestamp systime = new Timestamp(System.currentTimeMillis());
+					u.setUpdateUserId(userInfo.getId());
+					u.setUpdateDatetime(systime);
+					if (u.getCreateDatetime() == null) {
+						u.setCreateUserId(userInfo.getId());
+						u.setCreateDatetime(systime);
+					}
+				}
+			}
+			return (ID)getHibernateTemplate().save(t);
 		}
 		return null;
 	}
-
-	// 执行数据更新的方法
+	
 	@Override
 	public void update(T t) throws DataAccessException {
 		if (t != null) {
+			if (t instanceof UpdateSet) {
+				UserInfo userInfo = Authenticator.loadActiveUser().getUserInfo();
+				if (userInfo != null) {
+					UpdateSet u = (UpdateSet)t;
+					u.setUpdateUserId(userInfo.getId());
+					u.setUpdateDatetime(new Timestamp(System.currentTimeMillis()));
+				}
+			}
 			getHibernateTemplate().update(t);
 		}
-
 	}
 
 	@Override
