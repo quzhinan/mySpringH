@@ -1062,6 +1062,11 @@ ul.activity-list > li {
   .auth-box.lockscreen {
     width: 50%;
     padding: 40px 60px; }
+  .auth-box.register {
+    width: 45%;
+    height: 100%;
+    padding: 3% 10%;
+    margin: 5% auto;}
     .auth-box.lockscreen .logo {
       margin-bottom: 30px; }
     .auth-box.lockscreen .user {

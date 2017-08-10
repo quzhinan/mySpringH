@@ -28,6 +28,7 @@ public class SystemOptionsHelper {
 	}
 
 	public void init() throws Exception {
+		refresh();
 		startThread();
 	}
 
@@ -37,7 +38,7 @@ public class SystemOptionsHelper {
 	}
 
 	/**
-	 * Threadを起動する
+	 * Thread
 	 * 
 	 * @throws Exception
 	 */

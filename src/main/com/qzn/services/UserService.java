@@ -11,6 +11,10 @@ public interface UserService extends Service<User, Long> {
 
 	User auth(String username, String password);
 
+	User loadUser(Long id) throws Exception;
+	
+	void registerUser(User user) throws Exception;
+
 	void saveUser(User user) throws Exception;
 
 }

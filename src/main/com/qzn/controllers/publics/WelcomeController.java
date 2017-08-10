@@ -40,13 +40,13 @@ public class WelcomeController extends AbstractController {
 		User loginUser = userService.auth(login.getUsername(), login.getPassword());
 		getSession().invalidate();
 		if (loginUser == null) {
-			return RedirectPage("welcome");
+			return Page("filters-welcome");
 		}
 		if (loginUser.getLoginLockStatus() == User.LOGIN_LOCK_STATUS_LOCKING) {
-			return RedirectPage("welcome");
+			return Page("filters-welcome");
 		}
 		if (loginUser.getDeleteFlag() == User.DELETE_FLAG_DELETED) {
-			return RedirectPage("welcome");
+			return Page("filters-welcome");
 		}
 		String timeout = PropertyUtil.getPropertyValue("password.date.timeout");
 		Date addTime = DateUtil.addTime(loginUser.getUpdateDatetime(), Calendar.DATE, Integer.parseInt(timeout));
@@ -63,10 +63,10 @@ public class WelcomeController extends AbstractController {
 			userService.saveUser(loginUser);
 		}
 		if (loginUser.getPasswordStatus() == User.PASSWORD_STATUS_SYSINIT) {
-			return RedirectPage("password");
+			return RedirectPage("dashboard");
 		} else {
 			getSession().invalidate();
-			return RedirectPage("welcome");
+			return Page("filters-welcome");
 		}
 	}
 
@@ -74,7 +74,7 @@ public class WelcomeController extends AbstractController {
 	public Page logout() {
 		Authenticator.clearActiveUser();
 		getSession().invalidate();
-		return RedirectPage("welcome");
+		return Page("filters-welcome");
 	}
 
 }

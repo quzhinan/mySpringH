@@ -79,7 +79,7 @@
     </init-param>
     <init-param>
       <param-name>ignoreList</param-name>
-      <param-value>/welcome.htm,/login.htm</param-value>
+      <param-value>/welcome.htm,/welcome/login.htm,/register.htm,/register/save.htm</param-value>
     </init-param>
   </filter>
   <filter-mapping>

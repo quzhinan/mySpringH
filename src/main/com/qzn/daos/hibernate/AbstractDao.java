@@ -326,7 +326,6 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public ID save(T t) throws DataAccessException {
 		if (t != null) {
 			if (t instanceof UpdateSet) {
@@ -334,10 +333,8 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 				if (userInfo != null) {
 					UpdateSet u = (UpdateSet)t;
 					Timestamp systime = new Timestamp(System.currentTimeMillis());
-					u.setUpdateUserId(userInfo.getId());
 					u.setUpdateDatetime(systime);
 					if (u.getCreateDatetime() == null) {
-						u.setCreateUserId(userInfo.getId());
 						u.setCreateDatetime(systime);
 					}
 				}
@@ -354,7 +351,6 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 				UserInfo userInfo = Authenticator.loadActiveUser().getUserInfo();
 				if (userInfo != null) {
 					UpdateSet u = (UpdateSet)t;
-					u.setUpdateUserId(userInfo.getId());
 					u.setUpdateDatetime(new Timestamp(System.currentTimeMillis()));
 				}
 			}

@@ -3,6 +3,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="q" uri="http://www.quzhinan.com/tags"%>
 <tiles:importAttribute name="title" scope="request" />
 <tiles:importAttribute name="css" scope="request" />
 <tiles:importAttribute name="js" scope="request" />
@@ -18,23 +19,25 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="Keywords" content="" />
-<meta name="msapplication-TileImage" content="images/bootstrap/metis-tile.png" />
-<link rel="stylesheet" href="style/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="style/font-awesome/font-awesome.min.css">
-<link rel="stylesheet" href="style/linearicons/style.css">
-<link rel="stylesheet" href="style/chartist/chartist-custom.css">
-<link rel="stylesheet" href="style/main.css">
-<link rel="stylesheet" href="style/demo.css">
-<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon.png">
-<link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png">
+<link rel="stylesheet" href="<q:url value='/style/bootstrap/bootstrap.min.css'/>" media="screen">
+<link rel="stylesheet" href="<q:url value='/style/bootstrap/bootstrap-datetimepicker.min.css'/>" media="screen">
+<link rel="stylesheet" href="<q:url value='/style/font-awesome/font-awesome.min.css'/>">
+<link rel="stylesheet" href="<q:url value='/style/linearicons/style.css'/>">
+<link rel="stylesheet" href="<q:url value='/style/chartist/chartist-custom.css'/>">
+<link rel="stylesheet" href="<q:url value='/style/main.css'/>">
+<link rel="stylesheet" href="<q:url value='/style/demo.css'/>">
+<link rel="apple-touch-icon" sizes="76x76" href="<q:url value='/images/apple-icon.png'/>">
+<link rel="icon" type="image/png" sizes="96x96" href="<q:url value='/images/favicon.png'/>">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-<script src="scripts/jquery/jquery.min.js"></script>
-<script src="scripts/bootstrap/bootstrap.min.js"></script>
-<script src="scripts/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<script src="scripts/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-<script src="scripts/chartist/chartist.min.js"></script>
-<script src="scripts/klorofil-common.js"></script>
-<script src="scripts/main.js"></script>
+<script src="<q:url value='/scripts/jquery/jquery.min.js'/>"></script>
+<script src="<q:url value='/scripts/bootstrap/bootstrap.min.js'/>"></script>
+<script src="<q:url value='/scripts/jquery-slimscroll/jquery.slimscroll.min.js'/>"></script>
+<script src="<q:url value='/scripts/jquery.easy-pie-chart/jquery.easypiechart.min.js'/>"></script>
+<script src="<q:url value='/scripts/chartist/chartist.min.js'/>"></script>
+<script src="<q:url value='/scripts/klorofil-common.js'/>"></script>
+<script src="<q:url value='/scripts/main.js'/>"></script>
+<script src="<q:url value='/scripts/bootstrap/bootstrap-datetimepicker.min.js'/>"></script>
+<script src="<q:url value='/scripts/bootstrap/bootstrap-datetimepicker.zh.js'/>" charset="UTF-8"></script>
 <c:if test="${!empty css}">
 	<link href="<tiles:getAsString name="css"/>" type="text/css" rel="stylesheet" />
 </c:if>

@@ -28,8 +28,6 @@ public class Master extends Model<Long> {
 	@Column(name="remark")
 	private String remark;
 	
-	/* Helper Properties */
-
 	@Transient
 	private String text;
 
@@ -40,8 +38,6 @@ public class Master extends Model<Long> {
 	public void setText(String text) {
 		this.text = text;
 	}
-
-	/* Helper Properties END */
 
 	public Long getId() {
 		return id;
