@@ -52,7 +52,7 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 			if (user != null) {
 				return user;
 			} else {
-				return new User();
+				return null;
 			}
 		}
 	}
@@ -73,7 +73,7 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 		newUser.setUsername(user.getUsername());
 		newUser.setFullname(user.getFullname());
 		newUser.setPassword(password);
-		newUser.setAge(user.getAge());
+		newUser.setBirth(user.getBirth());
 		newUser.setSex(user.getSex());
 		newUser.setEmail(user.getEmail());
 		newUser.setPower(User.ALL_POWER);
@@ -94,7 +94,6 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 		User result = null;
 		if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)) {
 			User user = userDao.findByProperty("username", username);
-
 			if (user != null && !StringUtils.isEmpty(user.getPassword())) {
 				if (user.getLoginLockStatus() == User.LOGIN_LOCK_STATUS_LOCKING) {
 					String time = PropertyUtil.getPropertyValue("login.error.clear.time");
@@ -132,7 +131,7 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 		email.setSubject("初期密码");
 		Map<String, Object> velocityContext = new HashMap<>();
 		velocityContext.put("content", password);
-		String content = VelocitiesUtil.getVelocityText("email.vm", velocityContext);
+		String content = VelocitiesUtil.getVelocityText("initPasswordEmail.vm", velocityContext);
 		email.setContent(content);
 		EmailUtil.sendEmail(email);
 	}

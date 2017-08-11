@@ -20,7 +20,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="Keywords" content="" />
 <link rel="stylesheet" href="<q:url value='/style/bootstrap/bootstrap.min.css'/>" media="screen">
-<link rel="stylesheet" href="<q:url value='/style/bootstrap/bootstrap-datetimepicker.min.css'/>" media="screen">
 <link rel="stylesheet" href="<q:url value='/style/font-awesome/font-awesome.min.css'/>">
 <link rel="stylesheet" href="<q:url value='/style/linearicons/style.css'/>">
 <link rel="stylesheet" href="<q:url value='/style/chartist/chartist-custom.css'/>">
@@ -36,8 +35,7 @@
 <script src="<q:url value='/scripts/chartist/chartist.min.js'/>"></script>
 <script src="<q:url value='/scripts/klorofil-common.js'/>"></script>
 <script src="<q:url value='/scripts/main.js'/>"></script>
-<script src="<q:url value='/scripts/bootstrap/bootstrap-datetimepicker.min.js'/>"></script>
-<script src="<q:url value='/scripts/bootstrap/bootstrap-datetimepicker.zh.js'/>" charset="UTF-8"></script>
+<script src="<q:url value='/scripts/laydate/laydate.js'/>"></script>
 <c:if test="${!empty css}">
 	<link href="<tiles:getAsString name="css"/>" type="text/css" rel="stylesheet" />
 </c:if>

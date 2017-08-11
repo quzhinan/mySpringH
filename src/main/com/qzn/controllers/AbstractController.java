@@ -15,6 +15,10 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.qzn.auth.ActiveUser;
+import com.qzn.auth.Authenticator;
+import com.qzn.models.User;
+
 public class AbstractController {
 
 	@Autowired
@@ -81,6 +85,22 @@ public class AbstractController {
 
 	protected Page RedirectPage(String actionName, Object... objects) {
 		return new RedirectPage(actionName, objects);
+	}
+	
+	protected User getLoginUser() {
+		return (User) Authenticator.loadActiveUser().getUserInfo();
+	}
+	
+	protected void setLoginUser(User user) {
+		Authenticator.saveActiveUser(new ActiveUser<>(user));
+	}
+	
+	protected String getLoginUid() {
+		String userId = "";
+		if (this.getLoginUser()!=null) {
+			userId = getLoginUser().getId().toString();
+		}
+		return userId;
 	}
 
 	@ModelAttribute

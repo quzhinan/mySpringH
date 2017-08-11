@@ -6,14 +6,6 @@ $(document).ready(function(){
 	$("input").attr("onkeydown","if(event.keyCode==13){return false;}");
 	//ajax预处理
 	$.ajaxPretrate();
-	
-	$('.form_date').datetimepicker({
-        language:  'zh-CN',
-		autoclose: 1,
-		todayHighlight: 1,
-		minView: 2,
-		format: 'yyyy-mm-dd'
-    });
 })
 /**
  * ajax预处理

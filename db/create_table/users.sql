@@ -6,7 +6,7 @@ CREATE TABLE `users` (
   `fullname` VARCHAR(128) NOT NULL COMMENT '用户昵称',
   `password` VARCHAR(64) NOT NULL COMMENT '密码（MD5加密）',
   `sex` INT COMMENT '性别：0男、1女',
-  `age` INT COMMENT '年龄',
+  `birth` DATE COMMENT '出生年月',
   `email` VARCHAR(128) NOT NULL COMMENT '邮箱',
   `power` INT NOT NULL COMMENT '权限',
   `login_lock_status` INT NOT NULL DEFAULT 0 COMMENT '登录状态：０未登录、１登录中', 

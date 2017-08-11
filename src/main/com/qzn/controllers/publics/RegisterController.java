@@ -1,5 +1,8 @@
 package com.qzn.controllers.publics;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,26 @@ public class RegisterController extends AbstractController {
 		}
 		userService.registerUser(user);
 		return RedirectPage("welcome");
+	}
+	
+	public Integer getAge(Date birthDate) {
+		if (birthDate == null) {
+			return null;
+		}
+		Calendar startCalendar = Calendar.getInstance();
+		startCalendar.setTime(birthDate);
+		Calendar endCalendar = Calendar.getInstance();
+		endCalendar.setTime(new Date());
+		int pastYear  = endCalendar.get(Calendar.YEAR)  - startCalendar.get(Calendar.YEAR);
+		int pastMonth = endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+		int pastDate  = endCalendar.get(Calendar.DATE)  - startCalendar.get(Calendar.DATE);
+		if (pastMonth > 0) {
+			return pastYear;
+		} else if (pastMonth == 0) {
+			return pastDate >= 0 ? pastYear : pastYear - 1;
+		} else {
+			return pastYear - 1;
+		}
 	}
 
 }

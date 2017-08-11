@@ -22,8 +22,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
-import com.qzn.auth.Authenticator;
-import com.qzn.auth.UserInfo;
 import com.qzn.auth.UpdateSet;
 import com.qzn.controllers.Pagination;
 import com.qzn.daos.Dao;
@@ -329,30 +327,24 @@ public class AbstractDao<T, ID extends Serializable> extends HibernateDaoSupport
 	public ID save(T t) throws DataAccessException {
 		if (t != null) {
 			if (t instanceof UpdateSet) {
-				UserInfo userInfo = Authenticator.loadActiveUser().getUserInfo();
-				if (userInfo != null) {
-					UpdateSet u = (UpdateSet)t;
-					Timestamp systime = new Timestamp(System.currentTimeMillis());
-					u.setUpdateDatetime(systime);
-					if (u.getCreateDatetime() == null) {
-						u.setCreateDatetime(systime);
-					}
+				UpdateSet u = (UpdateSet) t;
+				Timestamp systime = new Timestamp(System.currentTimeMillis());
+				u.setUpdateDatetime(systime);
+				if (u.getCreateDatetime() == null) {
+					u.setCreateDatetime(systime);
 				}
 			}
-			return (ID)getHibernateTemplate().save(t);
+			return (ID) getHibernateTemplate().save(t);
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void update(T t) throws DataAccessException {
 		if (t != null) {
 			if (t instanceof UpdateSet) {
-				UserInfo userInfo = Authenticator.loadActiveUser().getUserInfo();
-				if (userInfo != null) {
-					UpdateSet u = (UpdateSet)t;
-					u.setUpdateDatetime(new Timestamp(System.currentTimeMillis()));
-				}
+				UpdateSet u = (UpdateSet) t;
+				u.setUpdateDatetime(new Timestamp(System.currentTimeMillis()));
 			}
 			getHibernateTemplate().update(t);
 		}

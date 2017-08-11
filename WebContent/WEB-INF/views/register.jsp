@@ -37,10 +37,10 @@
 				<form:errors path="sex" />
 			</div>
 			<div class="form-group">
-				<label class="control-label sr-only">年龄</label>
-				<form:input type="text" class="form-control" path="age"
-					placeholder="年龄" />
-				<form:errors path="age" />
+				<label class="control-label sr-only">出生日期</label>
+				<form:input type="text" class="form-control form_date laydate-icon" path="birth"
+					placeholder="出生日期" readonly="true" style="background-color:#fff;"/>
+				<form:errors path="birth" />
 			</div>
 			<div class="form-group">
 				<label class="control-label sr-only">邮箱</label>
@@ -56,3 +56,9 @@
 		</form:form>
 	</div>
 </div>
+<script type="text/javascript">
+!function(){
+	laydate.skin('molv');//切换皮肤
+	laydate({elem: '#birth'});//绑定元素
+}();
+</script>

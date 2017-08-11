@@ -14,31 +14,34 @@
 				<div class="content">
 					<div class="header">
 						<div class="logo text-center">
-							<img src="<q:url value='/images/logo-dark.png'/>" alt="Klorofil Logo">
+							<img src="<q:url value='/images/logo-dark.png'/>"
+								alt="Klorofil Logo">
 						</div>
 						<p class="lead">登录</p>
 					</div>
-					<q:url var="urlPost" action="welcome" method="login"/>
+					<q:url var="urlPost" action="welcome" method="login" />
 					<form:form modelAttribute="login" action="${urlPost}" method="post">
 						<div class="form-group">
-							<label for="signin-email" class="control-label sr-only">用户名/邮箱</label>
-							<form:input type="text" class="form-control" path="username" placeholder="用户名"/>
+							<label class="control-label sr-only">用户名/邮箱</label>
+							<form:input type="text" class="form-control" path="username"
+								placeholder="用户名" value="${login.username}" />
 						</div>
 						<div class="form-group">
-							<label for="signin-password" class="control-label sr-only">密码</label>
-							<form:input type="password" class="form-control" path="password" placeholder="密码"/>
+							<label class="control-label sr-only">密码</label>
+							<form:input type="password" class="form-control" path="password"
+								placeholder="密码" value="${login.password}" />
 						</div>
-						<div class="form-group clearfix">
-							<label class="fancy-checkbox element-left"> <input
-								type="checkbox"> <span>记住密码</span>
-							</label>
+						<div class="form-group">
+						<c:if test="${not empty msg}">
+							<fmt:message key="${msg}" />
+						</c:if>
 						</div>
 						<button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
 						<div class="bottom">
-							<q:url var="urlRegister" action="register"/>
+							<q:url var="urlRegister" action="register" />
 							<span class="helper-text"><i class="fa fa-plus"></i><a
-								href="${urlRegister}">注册</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-							<span class="helper-text"><i class="fa fa-lock"></i> <a
+								href="${urlRegister}">注册</a></span>&nbsp;&nbsp;&nbsp;&nbsp; <span
+								class="helper-text"><i class="fa fa-lock"></i> <a
 								href="#">忘记密码</a></span>
 						</div>
 					</form:form>

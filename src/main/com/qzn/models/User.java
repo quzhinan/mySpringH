@@ -1,6 +1,7 @@
 package com.qzn.models;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -60,8 +61,8 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 	@Length(max = 64, message = "{errors.validation.input.maxlength}")
 	private String password;
 
-	@Column(name = "age")
-	private Integer age;
+	@Column(name = "birth")
+	private Date birth;
 
 	@Column(name = "sex")
 	@Min(value=0, message="{errors.validation.format.sex}")
@@ -127,12 +128,12 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 		this.password = password;
 	}
 
-	public Integer getAge() {
-		return age;
+	public Date getBirth() {
+		return birth;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 
 	public Integer getSex() {
