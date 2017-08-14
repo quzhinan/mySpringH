@@ -17,6 +17,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.qzn.auth.UpdateSet;
 import com.qzn.auth.UserInfo;
@@ -58,10 +59,12 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 	private String fullname;
 
 	@Column(name = "password")
+	@NotBlank(message = "{errors.validation.input.required}")
 	@Length(max = 64, message = "{errors.validation.input.maxlength}")
 	private String password;
 
 	@Column(name = "birth")
+	@DateTimeFormat(pattern = "yyyy-MM-dd") 
 	private Date birth;
 
 	@Column(name = "sex")

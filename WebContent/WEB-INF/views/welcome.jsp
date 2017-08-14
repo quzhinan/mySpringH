@@ -32,17 +32,18 @@
 								placeholder="密码" value="${login.password}" />
 						</div>
 						<div class="form-group">
-						<c:if test="${not empty msg}">
-							<fmt:message key="${msg}" />
-						</c:if>
+							<c:if test="${not empty msg}">
+								<fmt:message key="${msg}" />
+							</c:if>
 						</div>
 						<button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
 						<div class="bottom">
 							<q:url var="urlRegister" action="register" />
-							<span class="helper-text"><i class="fa fa-plus"></i><a
-								href="${urlRegister}">注册</a></span>&nbsp;&nbsp;&nbsp;&nbsp; <span
-								class="helper-text"><i class="fa fa-lock"></i> <a
-								href="#">忘记密码</a></span>
+							<q:url var="urlResetPassword" action="resetpassword" />
+							<span class="helper-text"><i class="fa fa-plus"></i> <a
+								href="${urlRegister}">注册</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span class="helper-text"><i class="fa fa-lock"></i> <a
+								href="${urlResetPassword}">忘记密码</a></span>
 						</div>
 					</form:form>
 				</div>

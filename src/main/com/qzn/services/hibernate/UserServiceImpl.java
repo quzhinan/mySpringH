@@ -1,6 +1,5 @@
 package com.qzn.services.hibernate;
 
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -65,25 +64,31 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void registerUser(User user) throws Exception {
-		User newUser = new User();
+	public void resetPassword(String username) throws Exception {
+		User user = userDao.findByProperty("username", username);
 		String initPassword = RandomPasswordUtil.createPassword();
 		String password = KeyUtil.md5(initPassword);
-		Timestamp systime = new Timestamp(System.currentTimeMillis());
+		user.setPassword(password);
+		user.setPasswordStatus(User.PASSWORD_STATUS_SYSINIT);
+		sendInitPasswordEmail(user.getEmail(), initPassword);
+		userDao.save(user);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void registerUser(User user) throws Exception {
+		User newUser = new User();
 		newUser.setUsername(user.getUsername());
 		newUser.setFullname(user.getFullname());
-		newUser.setPassword(password);
+		newUser.setPassword(KeyUtil.md5(user.getPassword()));
 		newUser.setBirth(user.getBirth());
 		newUser.setSex(user.getSex());
 		newUser.setEmail(user.getEmail());
 		newUser.setPower(User.ALL_POWER);
 		newUser.setLoginLockStatus(User.LOGIN_LOCK_STATUS_UNLOCK);
 		newUser.setLoginErrorCount(0);
-		newUser.setPasswordStatus(User.PASSWORD_STATUS_SYSINIT);
+		newUser.setPasswordStatus(User.PASSWORD_STATUS_USERRESET);
 		newUser.setDeleteFlag(User.DELETE_FLAG_UNDELETE);
-		newUser.setCreateDatetime(systime);
-		newUser.setUpdateDatetime(systime);
-		sendEmail(user.getEmail(), initPassword);
 		userDao.save(newUser);
 	}
 
@@ -122,8 +127,8 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 		}
 		return result;
 	}
-	
-	public static void sendEmail(String toAddress, String password) throws Exception{
+
+	public static void sendInitPasswordEmail(String toAddress, String password) throws Exception {
 		Email email = new Email();
 		email.setFromEmailAddress(PropertyUtil.getPropertyValue("mail.fromAddress"));
 		email.setFromPersonName(PropertyUtil.getPropertyValue("mail.username"));

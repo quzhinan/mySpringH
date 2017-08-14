@@ -29,6 +29,12 @@
 				<form:errors path="fullname" />
 			</div>
 			<div class="form-group">
+				<label class="control-label sr-only">密码</label>
+				<form:input type="password" class="form-control" path="password"
+					placeholder="密码" />
+				<form:errors path="password" />
+			</div>
+			<div class="form-group">
 				<label class="control-label sr-only">性别</label>
 				<q:master var="sex" code="user.sex.status" />
 				<form:select path="sex" class="form-control">
