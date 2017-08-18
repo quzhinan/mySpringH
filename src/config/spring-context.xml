@@ -35,7 +35,7 @@
 	<!-- 需要扫描的包 end -->
 	<mvc:annotation-driven validator="globalValidator"/>
 	
-	<!-- jsonconverter -->
+	<!-- json格式转换 -->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
     	<property name="messageConverters">
 		    <list>

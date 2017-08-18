@@ -23,6 +23,11 @@
 					placeholder="请输入需要重置的账号" value="${username}" />
 			</div>
 			<div class="form-group">
+				<label class="control-label sr-only">请输入注册时填写的邮箱</label>
+				<input type="text" class="form-control" id="email" name="email"
+					placeholder="请输入注册时填写的邮箱" value="${email}" />
+			</div>
+			<div class="form-group">
 				<c:if test="${not empty msg}">
 					<fmt:message key="${msg}" />
 				</c:if>

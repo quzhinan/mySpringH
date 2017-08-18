@@ -23,16 +23,29 @@ public class ResetPasswordController extends AbstractController {
 	}
 
 	@RequestMapping("/save")
-	public Page save(String username) throws Exception {
+	public Page save(String username, String email) throws Exception {
 		if (!StringUtils.isEmpty(username)) {
 			User user = userService.findByProperty("username", username);
 			if (user == null) {
-				return Page("filters-resetpassword", "username", username, "msg",
+				return Page("filters-resetpassword", "username", username, "email", email, "msg",
 						"errors.validation.resetpassword.usernamenotexist");
 			} else {
-				userService.resetPassword(username);
+				if (!StringUtils.isEmpty(email)) {
+					if (email.equals(user.getEmail())) {
+						userService.resetPassword(username);
+						return Page("filters-resetpassword", "msg", "messages.resetpassword.success");
+					} else {
+						return Page("filters-resetpassword", "username", username, "email", email, "msg",
+								"errors.validation.resetpassword.emailnotexist");
+					}
+				} else {
+					return Page("filters-resetpassword", "username", username, "email", email, "msg",
+							"messages.resetpassword.email.null");
+				}
 			}
+		} else {
+			return Page("filters-resetpassword", "username", username, "email", email, "msg",
+					"messages.resetpassword.username.null");
 		}
-		return Page("filters-resetpassword", "msg", "重置成功，已向您的邮箱发送邮件");
 	}
 }

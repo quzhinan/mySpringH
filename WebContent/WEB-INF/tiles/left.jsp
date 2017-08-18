@@ -11,7 +11,7 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="index.htm" class="${index}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="dashboard.htm" class="${dashboard}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 						<li><a href="elements.htm" class="${elements}"><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
 						<li><a href="charts.htm" class="${charts}"><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
 						<li><a href="panels.htm" class="${panels}"><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>

@@ -1,3 +1,6 @@
+var HTTP_REQUEST_TYPE_KEY = "X-Requested-With";
+var HTTP_REQUEST_TYPE_AJAX = "XMLHttpRequest";
+
 /**
  * 所有页面初始化时都要执行的函数
  */
@@ -23,6 +26,18 @@ jQuery.extend({ajaxPretrate:function(){
 //		$.allowAll();
 	});
 }});
+
+jQuery.extend({
+	ajaxErrorException:function(event, XMLHttpRequest, ajaxOptions){
+		alert("连接失败");
+	}
+});
+
+jQuery.extend({
+	ajaxSuccessException:function(event, XMLHttpRequest, ajaxOptions){
+		return;
+	}
+});
 
 /**
  * 递归循环来对一个js对象进行转义
@@ -61,4 +76,23 @@ jQuery.extend({stringConvert:function(string){
 	}
 	return string;
 }});
+
+function callAjax(url, data, type, cache, dataType, callback) {
+	if (url.indexOf('?') != -1) {
+		url = url + '&random=' + Math.random();
+	} else {
+		url = url + '?random=' + Math.random();
+	}
+	$.ajax({
+		url :  url,
+		type : type,
+		data : data,
+		cache: cache,
+		async : true,
+		dataType: dataType,
+		success : function(data) {
+			callback(data);
+		}
+	});
+}
 

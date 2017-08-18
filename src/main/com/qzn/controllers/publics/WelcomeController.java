@@ -56,11 +56,11 @@ public class WelcomeController extends AbstractController {
 			loginUser.setPasswordStatus(User.PASSWORD_STATUS_SYSINIT);
 			userService.saveUser(loginUser);
 		}
-		setLoginUser(loginUser);
 		if (loginUser.getLoginErrorCount() > 0) {
 			loginUser.setLoginErrorCount(0);
 			userService.saveUser(loginUser);
 		}
+		setLoginUser(loginUser);
 		if (loginUser.getPasswordStatus() == User.PASSWORD_STATUS_SYSINIT) {
 			return RedirectPage("changepassword");
 		} else {

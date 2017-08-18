@@ -408,16 +408,14 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div id="system-load" class="easy-pie-chart" data-percent="50">
-								<span class="percent">50</span>
+							<div id="system-load" class="easy-pie-chart" data-percent="0">
+								<span class="percent">0</span>
 							</div>
 							<h4>CPU Load</h4>
 							<ul class="list-unstyled list-justify">
-								<li>High: <span>95%</span></li>
-								<li>Average: <span>87%</span></li>
-								<li>Low: <span>20%</span></li>
-								<li>Threads: <span>996</span></li>
-								<li>Processes: <span>259</span></li>
+								<li>Average: <span id="average"></span></li>
+								<li>Threads: <span id="threads"></span></li>
+								<li>Memory: <span id="memory"></span></li>
 							</ul>
 						</div>
 					</div>
@@ -533,19 +531,27 @@
 					animate : 800
 				});
 
-		var updateInterval = 3000; // in milliseconds
+		var updateInterval = 5000; // in milliseconds
 
 		setInterval(function() {
-			var randomVal;
-			randomVal = getRandomInt(0, 100);
-
-			sysLoad.data('easyPieChart').update(randomVal);
-			sysLoad.find('.percent').text(randomVal);
+			callAjax("monitorInfo.htm", "", "GET", false, "json", function(data){
+				monitorInfo = data;
+				persent = monitorInfo.cpuRatio*100;
+				persent = persent.toFixed(1);
+				average = monitorInfo.cpuRatioAverage*10;
+				average = average.toFixed(1);
+				sysLoad.data('easyPieChart').update(persent);
+				sysLoad.find('.percent').text(persent);
+				$("#average").html(average + "%");
+				$("#threads").html(monitorInfo.totalThread);
+				$("#memory").html(monitorInfo.freeMemory + "KB");
+			})
 		}, updateInterval);
+		
 
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
-
+		
 	});
 </script>
