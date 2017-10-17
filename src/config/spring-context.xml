@@ -284,7 +284,7 @@
 	<!-- MVC拦截器 開始 -->
 	<mvc:interceptors>		
      <mvc:interceptor>  		
-       <mvc:mapping path="/SpringH/**" />		
+       <mvc:mapping path="/springH/**" />		
         <bean class="com.qzn.interceptors.HandlerInterceptor"></bean>		
      </mvc:interceptor>		
 	</mvc:interceptors> 

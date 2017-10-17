@@ -21,6 +21,9 @@
 				<form:input type="text" class="form-control" path="username"
 					placeholder="用户名" />
 				<form:errors path="username" />
+				<c:if test="${not empty msg}">
+					<fmt:message key="${msg}" />
+				</c:if>
 			</div>
 			<div class="form-group">
 				<label class="control-label sr-only">昵称</label>

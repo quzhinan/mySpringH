@@ -79,7 +79,7 @@
     </init-param>
     <init-param>
       <param-name>ignoreList</param-name>
-      <param-value>/welcome.htm,/welcome/login.htm,/register.htm,/register/save.htm,/resetpassword.htm,/resetpassword/save.htm</param-value>
+      <param-value>/welcome.htm,/welcome/login.htm,/register.htm,/register/save.htm,/resetpassword.htm,/resetpassword/save.htm,/testservlet.htm,/test.htm</param-value>
     </init-param>
   </filter>
   <filter-mapping>
@@ -105,7 +105,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/TestServlet.htm</url-pattern>
+    <url-pattern>/testservlet.htm</url-pattern>
   </servlet-mapping>
   
   <!-- 监听器 -->

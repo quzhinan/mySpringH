@@ -38,6 +38,10 @@ public class RegisterController extends AbstractController {
 		if (errors.hasErrors()) {
 			return Page("filters-register");
 		}
+		User findUser = userService.findByProperty("username", user.getUsername());
+		if (findUser != null) {
+			return Page("filters-register", "msg", "errors.validation.register.usernameexists");
+		}
 		userService.registerUser(user);
 		return RedirectPage("welcome");
 	}
