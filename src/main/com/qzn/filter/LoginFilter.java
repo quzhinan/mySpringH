@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
 		if (isIgnored(uri)) {
 			isAuthed = true;
 		} else {
-			ActiveUser<?> user = Authenticator.loadActiveUser(request);
+			ActiveUser<?> user = Authenticator.loadActiveUser();
 			if (user != null && user.getUserInfo() != null) {
 				isAuthed = true;
 			}

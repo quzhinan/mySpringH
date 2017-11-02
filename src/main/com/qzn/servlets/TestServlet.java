@@ -57,15 +57,12 @@ public class TestServlet extends ServletProxy {
 	            if(statusCode == HttpStatus.SC_OK){    
 	                BufferedInputStream bis = new BufferedInputStream(myPost.getResponseBodyAsStream());    
 	                byte[] bytes = new byte[1024];    
-//	                ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
 	                ServletOutputStream os = response.getOutputStream();
 	                BufferedOutputStream bos = new BufferedOutputStream(os);
 	                int count = 0;    
 	                while((count = bis.read(bytes))!= -1){    
 	                    bos.write(bytes, 0, count);    
 	                }    
-//	                byte[] strByte = bos.toByteArray();    
-//	                responseString = new String(strByte,0,strByte.length,"utf-8");  
 	                bos.flush();
 	                bos.close();    
 	                bis.close();    

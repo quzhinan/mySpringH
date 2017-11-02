@@ -28,9 +28,6 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/classes/spring-context.xml</param-value>
   </context-param>
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
   
   <jsp-config>
 	<taglib>  
@@ -109,6 +106,12 @@
   </servlet-mapping>
   
   <!-- 监听器 -->
+   <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
   <listener>
     <listener-class>com.qzn.listeners.TestListenser</listener-class>
   </listener>
