@@ -18,6 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.qzn.auth.ActiveUser;
 import com.qzn.auth.Authenticator;
 import com.qzn.models.User;
+import com.qzn.utils.StringUtils;
 
 public class AbstractController {
 
@@ -96,7 +97,7 @@ public class AbstractController {
 	}
 	
 	protected String getLoginUid() {
-		String userId = "";
+		String userId = StringUtils.STRING_EMPTY;
 		if (this.getLoginUser()!=null) {
 			userId = getLoginUser().getId().toString();
 		}

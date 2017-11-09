@@ -89,6 +89,9 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 
 	@Column(name = "password_status")
 	private Integer passwordStatus;
+	
+	@Column(name = "password_change_datetime")
+	private Timestamp passwordChangeDatetime;
 
 	@Column(name = "delete_flag")
 	private Integer deleteFlag;
@@ -185,6 +188,14 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 
 	public void setPasswordStatus(Integer passwordStatus) {
 		this.passwordStatus = passwordStatus;
+	}
+
+	public Timestamp getPasswordChangeDatetime() {
+		return passwordChangeDatetime;
+	}
+
+	public void setPasswordChangeDatetime(Timestamp passwordChangeDatetime) {
+		this.passwordChangeDatetime = passwordChangeDatetime;
 	}
 
 	public Integer getDeleteFlag() {

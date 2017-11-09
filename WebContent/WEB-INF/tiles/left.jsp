@@ -29,6 +29,7 @@
 						<li><a href="tables.htm" class="${tables}"><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
 						<li><a href="typography.htm" class="${typography}"><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
 						<li><a href="icons.htm" class="${icons}"><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+						<li><a href="address.htm" class="${address}"><i class="lnr lnr-map-marker"></i> <span>Address</span></a></li>
 					</ul>
 				</nav>
 			</div>

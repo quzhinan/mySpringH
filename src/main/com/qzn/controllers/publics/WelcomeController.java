@@ -1,6 +1,5 @@
 package com.qzn.controllers.publics;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import com.qzn.models.Login;
 import com.qzn.models.User;
 import com.qzn.services.UserService;
 import com.qzn.utils.DateUtil;
+import com.qzn.utils.DateUtil.CalendarType;
 import com.qzn.utils.PropertyUtil;
 
 @Controller
@@ -48,11 +48,8 @@ public class WelcomeController extends AbstractController {
 			return Page("filters-welcome", "login",login, "msg", "errors.validation.login.deleted");
 		}
 		String timeout = PropertyUtil.getPropertyValue("password.date.timeout");
-		Date addTime = DateUtil.addTime(loginUser.getUpdateDatetime(), Calendar.DATE, Integer.parseInt(timeout));
-		String dateFormat = DateUtil.dateFormat(addTime, "yyyy-MM-dd");
-		Date oldTime = DateUtil.fromString(dateFormat, "yyyy-MM-dd");
-		Date newDate = DateUtil.fromString(DateUtil.dateFormat(new Date(), "yyyy-MM-dd"), "yyyy-MM-dd");
-		if (oldTime.getTime() < newDate.getTime() && loginUser.getPasswordStatus() == User.PASSWORD_STATUS_USERRESET) {
+		Date endTime = DateUtil.addTime(loginUser.getPasswordChangeDatetime(), CalendarType.DATE, Integer.parseInt(timeout));
+		if (endTime.getTime() < DateUtil.getSysdate().getTime() && loginUser.getPasswordStatus() == User.PASSWORD_STATUS_USERRESET) {
 			loginUser.setPasswordStatus(User.PASSWORD_STATUS_SYSINIT);
 			userService.saveUser(loginUser);
 		}

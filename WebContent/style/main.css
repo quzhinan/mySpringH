@@ -1759,5 +1759,7 @@ ul.activity-timeline > li {
   .project-table > tbody > tr > td .avatar {
     width: 22px;
     border: 1px solid #CCC; }
-
+.error-message {
+	color : red;
+}
 /*# sourceMappingURL=main.css.map */

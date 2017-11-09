@@ -13,6 +13,7 @@ import com.qzn.controllers.Page;
 import com.qzn.models.Login;
 import com.qzn.models.User;
 import com.qzn.services.UserService;
+import com.qzn.utils.DateUtil;
 import com.qzn.utils.KeyUtil;
 
 @Controller
@@ -48,6 +49,7 @@ public class ChangePasswordController extends AbstractController {
 				return Page("filters-changepassword", "login", login);
 			}
 			loginUser.setPasswordStatus(User.PASSWORD_STATUS_USERRESET);
+			loginUser.setPasswordChangeDatetime(DateUtil.getSysdateTime());
 			loginUser.setPassword(KeyUtil.md5(login.getPassword()));
 			userService.saveUser(loginUser);
 			setLoginUser(loginUser);

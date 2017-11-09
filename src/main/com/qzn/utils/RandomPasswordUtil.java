@@ -1,12 +1,8 @@
 package com.qzn.utils;
 
 import java.util.Random;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class RandomPasswordUtil {
-	
-	private static final Logger log = LogManager.getLogger(RandomPasswordUtil.class);
 	
 	public static String createPassword(){
 		char capital = (char) ('A'+getRandomNumber(26));

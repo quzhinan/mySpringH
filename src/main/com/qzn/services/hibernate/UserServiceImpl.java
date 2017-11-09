@@ -1,6 +1,5 @@
 package com.qzn.services.hibernate;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +16,7 @@ import com.qzn.models.Email;
 import com.qzn.models.User;
 import com.qzn.services.UserService;
 import com.qzn.utils.DateUtil;
+import com.qzn.utils.DateUtil.CalendarType;
 import com.qzn.utils.EmailUtil;
 import com.qzn.utils.KeyUtil;
 import com.qzn.utils.PropertyUtil;
@@ -70,6 +70,7 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 		String password = KeyUtil.md5(initPassword);
 		user.setPassword(password);
 		user.setPasswordStatus(User.PASSWORD_STATUS_SYSINIT);
+		user.setPasswordChangeDatetime(DateUtil.getSysdateTime());;
 		sendInitPasswordEmail(user.getEmail(), initPassword);
 		userDao.save(user);
 	}
@@ -88,6 +89,7 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 		newUser.setLoginLockStatus(User.LOGIN_LOCK_STATUS_UNLOCK);
 		newUser.setLoginErrorCount(0);
 		newUser.setPasswordStatus(User.PASSWORD_STATUS_USERRESET);
+		newUser.setPasswordChangeDatetime(DateUtil.getSysdateTime());
 		newUser.setDeleteFlag(User.DELETE_FLAG_UNDELETE);
 		userDao.save(newUser);
 	}
@@ -102,14 +104,12 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 			if (user != null && !StringUtils.isEmpty(user.getPassword())) {
 				if (user.getLoginLockStatus() == User.LOGIN_LOCK_STATUS_LOCKING) {
 					String time = PropertyUtil.getPropertyValue("login.error.clear.time");
-					Date clearTime = DateUtil.addTime(user.getUpdateDatetime(), Calendar.MINUTE,
+					Date clearTime = DateUtil.addTime(user.getUpdateDatetime(), CalendarType.DATE,
 							Integer.parseInt(time));
 					if (clearTime.getTime() <= new Date().getTime()) {
 						user.setLoginErrorCount(0);
 						user.setLoginLockStatus(User.LOGIN_LOCK_STATUS_UNLOCK);
 						userDao.update(user);
-					} else {
-						result = user;
 					}
 				}
 				if (KeyUtil.md5(password).equals(user.getPassword())) {

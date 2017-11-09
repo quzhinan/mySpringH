@@ -12,6 +12,7 @@ CREATE TABLE `users` (
   `login_lock_status` INT NOT NULL DEFAULT 0 COMMENT '登录状态：０未登录、１登录中', 
   `login_error_count` INT NOT NULL DEFAULT 0 COMMENT '登录错误次数', 
   `password_status` INT NOT NULL DEFAULT 0 COMMENT '密码状态：０初期値、１重新设定', 
+  `password_change_datetime` TIMESTAMP NOT NULL default '1971-01-01 00:00:00' COMMENT '密码变更时间',
   `delete_flag` INT NOT NULL DEFAULT 0 COMMENT '删除状态：０未删除、１已删除',
   `update_datetime` TIMESTAMP NOT NULL default '1971-01-01 00:00:00' COMMENT '更新时间',
   `create_datetime` TIMESTAMP NOT NULL default '1971-01-01 00:00:00' COMMENT '登录时间',

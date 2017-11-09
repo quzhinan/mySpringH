@@ -51,7 +51,7 @@
 			}
 		};
 		mapholder=document.getElementById('imageMap')
-		mapholder.style.height="210px";
+		mapholder.style.height="220px";
 		
 		var map = new google.maps.Map(document.getElementById('imageMap'), myOptions);
 		var marker = new google.maps.Marker({
@@ -60,14 +60,14 @@
 		});
 	}
 </script>
-<div class="container-fluid">
-	<div class="row">
+<!-- MAIN -->
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<h3 class="page-title">我的位置</h3>
+		<div class="row">
 		<div class="col-sm-12 text-center">
-			<h2>我的位置</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
 			<div class="table-wrap">
 				<table class="table table-striped table-bordered" id="addressTable">
 					<tr>
@@ -88,20 +88,22 @@
 					<tr>
 						<td><input type="button" name="address"
 							id="address" class="btn btn-primary" value="获取"
-							onclick="getLocation()" /></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td colspan="2"><input type="button" name="addressOnMap"
+							onclick="getLocation()" />
+						</td>
+						<td><input type="button" name="addressOnMap"
 							id="addressOnMap" class="btn btn-primary" value="在地图上显示"
 							onclick="getLocationOnMap()" disabled="disabled" />
-							<input type="button" class="btn btn-primary" value="返回" 
-							onclick="window.location='index.htm'" /></td>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;</td>
 					</tr>
 				</table>
 			</div>
 		</div>
+		</div>
+		</div>
 	</div>
+	<!-- END MAIN CONTENT -->
 </div>
-
-
+<!-- END MAIN -->

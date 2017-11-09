@@ -64,6 +64,11 @@ public class TopController extends AbstractController {
 		return Page("functions-icons");
 	}
 	
+	@RequestMapping("/address")
+	public Page address() throws Exception {
+		return Page("functions-address");
+	}
+	
 	@RequestMapping("/test")
 	public Page test() throws Exception {
 		return Page("filters-test");
