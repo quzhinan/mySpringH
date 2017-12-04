@@ -28,12 +28,6 @@
 	<task:executor id="taskExecutor" pool-size="1-20" queue-capacity="30" keep-alive="60" />
 	<task:scheduler id="scheduler" pool-size="1" />
 	<task:annotation-driven executor="taskExecutor" scheduler="scheduler" />
-	<!-- 需要扫描的包 start-->
-	<context:component-scan base-package="com.qzn.controllers" />
-	<context:component-scan base-package="com.qzn.daos.hibernate" />
-	<context:component-scan base-package="com.qzn.services.hibernate" />
-	<!-- 需要扫描的包 end -->
-	<mvc:annotation-driven validator="globalValidator"/>
 	
 	<!-- json格式转换 -->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
@@ -51,49 +45,8 @@
 	        </list>
         </property>
     </bean>
- 	
-	<!-- tiles 配置开始 -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="order" value="1" />
-		<property name="viewClass">
-			<value>
-				org.springframework.web.servlet.view.tiles3.TilesView
-			</value>
-		</property>
-	</bean>
-	<bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/classes/tiles.xml</value>
-			</list>
-		</property>
-	</bean>
-	<!-- viewResolver start -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="2" />
-		<property name="prefix">
-			<value>/WEB-INF/views/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
-	<!-- viewResolver end -->
-	<!-- tiles 配置结束 -->
 	
 	<!--  hibernate start-->
-	<!-- jndi start -->
-	<!-- 	 
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">  
-        <property name="jndiName">  
-            <value>${db.jndiname}</value>  
-        </property>  
-    </bean> 
-    -->
-    <!-- jndi end -->
-    
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="url" value="${db.url}"></property>

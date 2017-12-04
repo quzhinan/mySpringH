@@ -74,7 +74,7 @@ public class DateUtil {
 	public static Date parseDateString(String dateString, String dateFormat) {
 
 		Date result = null;
-		if (StringUtils.isNotBlank(dateString)) {
+		if (StringUtil.isNotBlank(dateString)) {
 			DateFormat pattern = new SimpleDateFormat(dateFormat);
 			try {
 				pattern.setLenient(false);
@@ -88,7 +88,7 @@ public class DateUtil {
 
 	public static Timestamp parseDateTimeString(String dateTimeString) {
 		Timestamp result = null;
-		if (StringUtils.isNotBlank(dateTimeString)) {
+		if (StringUtil.isNotBlank(dateTimeString)) {
 			dateTimeString = dateTimeString.replaceAll("/", "-");
 			try {
 				result = Timestamp.valueOf(dateTimeString);

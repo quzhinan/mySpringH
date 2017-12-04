@@ -1,6 +1,6 @@
 package com.qzn.utils;
 
-public class StringUtils {
+public class StringUtil {
 
 	/**
 	 * 空文字列
@@ -10,7 +10,7 @@ public class StringUtils {
 	/**
 	 * 半角空格
 	 */
-	public static final String HALF_SPACE = " ";
+	public static final String STRING_HALF_SPACE = " ";
 
 	/**
 	 * 空值判断
