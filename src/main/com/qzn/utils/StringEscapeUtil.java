@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 public class StringEscapeUtil {
 
+	@SuppressWarnings("unchecked")
 	public static Object escapeHtmlForBean(Object object) {
 		if (object == null) {
 			return null;
