@@ -70,7 +70,8 @@ public class UserServiceImpl extends AbstractService<User, Long> implements User
 		String password = KeyUtil.md5(initPassword);
 		user.setPassword(password);
 		user.setPasswordStatus(User.PASSWORD_STATUS_SYSINIT);
-		user.setPasswordChangeDatetime(DateUtil.getSysdateTime());;
+		user.setPasswordChangeDatetime(DateUtil.getSysdateTime());
+		;
 		sendInitPasswordEmail(user.getEmail(), initPassword);
 		userDao.save(user);
 	}

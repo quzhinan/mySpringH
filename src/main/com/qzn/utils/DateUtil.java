@@ -41,7 +41,7 @@ public class DateUtil {
 
 		return new Date((System.currentTimeMillis() / 1000) * 1000);
 	}
-	
+
 	/**
 	 * 系统当前时间戳生成 毫秒精确时间。
 	 *

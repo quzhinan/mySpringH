@@ -36,43 +36,43 @@ public class TestServlet extends ServletProxy {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "http://www.town.aikawa.kanagawa.jp/feed.xml?type=rss_2.0&new1=1"; 
+		String url = "http://www.town.aikawa.kanagawa.jp/feed.xml?type=rss_2.0&new1=1";
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "get,post");
 		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,content-type");
 		getXmlFile(url, response);
 	}
-	
-	 public String getXmlFile(String url, HttpServletResponse response){    
-	        //创建httpclient工具对象   
-	        HttpClient client = new HttpClient();    
-	        //创建post请求方法   
-	        PostMethod myPost = new PostMethod(url);    
-	        String responseString = null;    
-	        try{    
-	            //设置请求头部类型   
-	            myPost.setRequestHeader("Content-Type", "application/xml");  
-	            myPost.setRequestHeader("charset","UTF-8");  
-	            int statusCode = client.executeMethod(myPost);    
-	            if(statusCode == HttpStatus.SC_OK){    
-	                BufferedInputStream bis = new BufferedInputStream(myPost.getResponseBodyAsStream());    
-	                byte[] bytes = new byte[1024];    
-	                ServletOutputStream os = response.getOutputStream();
-	                BufferedOutputStream bos = new BufferedOutputStream(os);
-	                int count = 0;    
-	                while((count = bis.read(bytes))!= -1){    
-	                    bos.write(bytes, 0, count);    
-	                }    
-	                bos.flush();
-	                bos.close();    
-	                bis.close();    
-	            }    
-	        }catch (Exception e) {    
-	            e.printStackTrace();    
-	        }    
-	        myPost.releaseConnection();    
-	        return responseString;    
-	    }    
+
+	public String getXmlFile(String url, HttpServletResponse response) {
+		// 创建httpclient工具对象
+		HttpClient client = new HttpClient();
+		// 创建post请求方法
+		PostMethod myPost = new PostMethod(url);
+		String responseString = null;
+		try {
+			// 设置请求头部类型
+			myPost.setRequestHeader("Content-Type", "application/xml");
+			myPost.setRequestHeader("charset", "UTF-8");
+			int statusCode = client.executeMethod(myPost);
+			if (statusCode == HttpStatus.SC_OK) {
+				BufferedInputStream bis = new BufferedInputStream(myPost.getResponseBodyAsStream());
+				byte[] bytes = new byte[1024];
+				ServletOutputStream os = response.getOutputStream();
+				BufferedOutputStream bos = new BufferedOutputStream(os);
+				int count = 0;
+				while ((count = bis.read(bytes)) != -1) {
+					bos.write(bytes, 0, count);
+				}
+				bos.flush();
+				bos.close();
+				bis.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		myPost.releaseConnection();
+		return responseString;
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

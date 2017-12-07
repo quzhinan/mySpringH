@@ -1,10 +1,15 @@
 package com.qzn.helper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.qzn.daos.UserDao;
 import com.qzn.models.Master;
 import com.qzn.services.SystemOptionsService;
 import com.qzn.thread.defaultThread;
@@ -19,6 +24,9 @@ public class SystemOptionsHelper {
 	@Autowired
 	private SystemOptionsService systemOptionsService;
 
+	@Autowired
+	private UserDao userDao;
+
 	public static SystemOptionsHelper getInstance() {
 		return instance;
 	}
@@ -29,6 +37,7 @@ public class SystemOptionsHelper {
 
 	public void init() throws Exception {
 		refresh();
+		checkDataSoucesContects();
 		startThread();
 	}
 
@@ -80,6 +89,29 @@ public class SystemOptionsHelper {
 	public String getMasterLabel(String code, String value) {
 		Master master = this.getMaster(code, value);
 		return master == null ? "" : master.getLabel();
+	}
+
+	public void checkEnvironmentVariable() {
+		Map<String, String> environmentVariables = System.getenv();
+		environmentVariables.get("");
+	}
+
+	public boolean checkFilePathExist(String path) {
+		File tmpFile = new File(path);
+		if (tmpFile.exists()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void checkDataSoucesContects() {
+		try {
+			Session session = userDao.openSession();
+			Transaction t = session.beginTransaction();
+			t.commit();
+		} catch (Exception e) {
+		}
 	}
 
 }

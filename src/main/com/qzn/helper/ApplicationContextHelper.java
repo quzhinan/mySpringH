@@ -21,17 +21,17 @@ import org.springframework.core.io.Resource;
 public class ApplicationContextHelper implements ApplicationContextAware, ApplicationContext {
 
 	private ApplicationContext applicationContext;
-	
+
 	private static ApplicationContextHelper applicationContextSupport;
-	
-	public static void setInstance (ApplicationContextHelper applicationContextSupport) {
+
+	public static void setInstance(ApplicationContextHelper applicationContextSupport) {
 		ApplicationContextHelper.applicationContextSupport = applicationContextSupport;
 	}
-	
+
 	public static ApplicationContextHelper getInstance() {
 		return applicationContextSupport;
 	}
-	
+
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
@@ -197,5 +197,5 @@ public class ApplicationContextHelper implements ApplicationContextAware, Applic
 	public String getMessage(MessageSourceResolvable resolvable, Locale locale) throws NoSuchMessageException {
 		return applicationContext.getMessage(resolvable, locale);
 	}
-	
+
 }

@@ -19,13 +19,15 @@ import com.qzn.models.validator.EmailValidator;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = {EmailValidator.class})
+@Constraint(validatedBy = { EmailValidator.class })
 public @interface Email {
 
 	String message() default "メールの形式が正しくありません";
-	Class<?>[] groups() default { };
-	Class<? extends Payload>[] payload() default { };
-	
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
+
 	@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 	@Retention(RUNTIME)
 	@Documented

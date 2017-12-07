@@ -19,21 +19,20 @@ import javax.validation.constraints.Pattern;
 import com.qzn.models.validator.PasswordValidator;
 
 @Documented
-@Constraint(validatedBy = {PasswordValidator.class })
+@Constraint(validatedBy = { PasswordValidator.class })
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 
 public @interface Password {
-	
+
 	String message() default "is not a invalid password.";
 
-	Class<?>[] groups() default { };
+	Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default { };
-	
-	
-	
-	@OverridesAttribute(constraint = Pattern.class, name = "flags") Pattern.Flag[] flags() default { };
+	Class<? extends Payload>[] payload() default {};
+
+	@OverridesAttribute(constraint = Pattern.class, name = "flags")
+	Pattern.Flag[] flags() default {};
 
 	@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 	@Retention(RUNTIME)

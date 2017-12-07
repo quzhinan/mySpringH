@@ -18,7 +18,7 @@ public class TopController extends AbstractController {
 	public Page lockscreen() throws Exception {
 		return Page("filters-lockscreen");
 	}
-	
+
 	@RequestMapping("/dashboard")
 	public Page dashboard() throws Exception {
 		return Page("functions-dashboard");
@@ -63,12 +63,12 @@ public class TopController extends AbstractController {
 	public Page icons() throws Exception {
 		return Page("functions-icons");
 	}
-	
+
 	@RequestMapping("/address")
 	public Page address() throws Exception {
 		return Page("functions-address");
 	}
-	
+
 	@RequestMapping("/test")
 	public Page test() throws Exception {
 		return Page("filters-test");

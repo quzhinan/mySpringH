@@ -17,15 +17,38 @@ jQuery.extend({ajaxPretrate:function(){
 	$(document).ajaxSend(function(event,XMLHttpRequest,options){
 		XMLHttpRequest.setRequestHeader(HTTP_REQUEST_TYPE_KEY, HTTP_REQUEST_TYPE_AJAX);
 	}).ajaxStart(function() {
-//		$.forbidALL();
+		$.forbidALL();
 	}).ajaxSuccess(function(event, XMLHttpRequest, ajaxOptions) {
 		$.ajaxSuccessException(event, XMLHttpRequest, ajaxOptions);
 	}).ajaxError(function(event, XMLHttpRequest, ajaxOptions, thrownError) {
 		$.ajaxErrorException(event, XMLHttpRequest, ajaxOptions);
 	}).ajaxComplete(function() {
-//		$.allowAll();
+		$.allowAll();
 	});
 }});
+
+jQuery.extend({
+	forbidALL:function(){
+		$.addScreen();
+	},
+	allowAll:function(){
+		$.deleteScreen();
+	}
+});
+
+jQuery.extend({
+	addScreen:function(){
+		$("#positionDisable").append("<div id = 'ajaxScreen' style='position:absolute;top:0px;'></div>");
+		$("#ajaxScreen").css({
+			height:document.body.scrollHeight,
+			width:document.body.scrollWidth,
+			"background-color":"rgba(1,1,1,0)",
+		})
+	},
+	deleteScreen:function(){
+		$("#ajaxScreen").remove();
+	}
+});
 
 jQuery.extend({
 	ajaxErrorException:function(event, XMLHttpRequest, ajaxOptions){

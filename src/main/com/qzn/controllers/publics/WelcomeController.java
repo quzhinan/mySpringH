@@ -37,19 +37,21 @@ public class WelcomeController extends AbstractController {
 	@RequestMapping("/login")
 	public Page login(Login login) throws Exception {
 		User loginUser = userService.auth(login.getUsername(), login.getPassword());
-		getSession().invalidate();
+		Authenticator.getSession().invalidate();
 		if (loginUser == null) {
-			return Page("filters-welcome", "login",login, "msg", "errors.validation.login.failed");
+			return Page("filters-welcome", "login", login, "msg", "errors.validation.login.failed");
 		}
 		if (loginUser.getLoginLockStatus() == User.LOGIN_LOCK_STATUS_LOCKING) {
-			return Page("filters-welcome", "login",login, "msg", "errors.validation.login.locked");
+			return Page("filters-welcome", "login", login, "msg", "errors.validation.login.locked");
 		}
 		if (loginUser.getDeleteFlag() == User.DELETE_FLAG_DELETED) {
-			return Page("filters-welcome", "login",login, "msg", "errors.validation.login.deleted");
+			return Page("filters-welcome", "login", login, "msg", "errors.validation.login.deleted");
 		}
 		String timeout = PropertyUtil.getPropertyValue("password.date.timeout");
-		Date endTime = DateUtil.addTime(loginUser.getPasswordChangeDatetime(), CalendarType.DATE, Integer.parseInt(timeout));
-		if (endTime.getTime() < DateUtil.getSysdate().getTime() && loginUser.getPasswordStatus() == User.PASSWORD_STATUS_USERRESET) {
+		Date endTime = DateUtil.addTime(loginUser.getPasswordChangeDatetime(), CalendarType.DATE,
+				Integer.parseInt(timeout));
+		if (endTime.getTime() < DateUtil.getSysdate().getTime()
+				&& loginUser.getPasswordStatus() == User.PASSWORD_STATUS_USERRESET) {
 			loginUser.setPasswordStatus(User.PASSWORD_STATUS_SYSINIT);
 			userService.saveUser(loginUser);
 		}
@@ -68,7 +70,7 @@ public class WelcomeController extends AbstractController {
 	@RequestMapping("/logout")
 	public Page logout() {
 		Authenticator.clearActiveUser();
-		getSession().invalidate();
+		Authenticator.getSession().invalidate();
 		return Page("filters-welcome");
 	}
 

@@ -8,6 +8,7 @@ import javax.mail.internet.MimeUtility;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
+import com.qzn.helper.ApplicationContextHelper;
 import com.qzn.models.Email;
 
 public final class EmailUtil {
@@ -22,7 +23,7 @@ public final class EmailUtil {
 	}
 
 	public static JavaMailSender getJavaMailSender() {
-		JavaMailSender mailSender = SpringBeanUtil.getBean(JavaMailSender.class, "mailSender");
+		JavaMailSender mailSender = ApplicationContextHelper.getInstance().getBean(JavaMailSender.class, "mailSender");
 		return mailSender;
 	}
 

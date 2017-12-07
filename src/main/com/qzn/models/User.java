@@ -39,7 +39,7 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 
 	public static final Integer DELETE_FLAG_UNDELETE = 0; // 未删除
 	public static final Integer DELETE_FLAG_DELETED = 1; // 已删除
-	
+
 	public static final Integer ALL_POWER = 100; // 全部权限
 
 	@Id
@@ -64,12 +64,12 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 	private String password;
 
 	@Column(name = "birth")
-	@DateTimeFormat(pattern = "yyyy-MM-dd") 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 
 	@Column(name = "sex")
-	@Min(value=0, message="{errors.validation.format.sex}")
-	@Max(value=1, message="{errors.validation.format.sex}")
+	@Min(value = 0, message = "{errors.validation.format.sex}")
+	@Max(value = 1, message = "{errors.validation.format.sex}")
 	private Integer sex;
 
 	@Column(name = "email")
@@ -89,7 +89,7 @@ public class User extends Model<Long> implements UserInfo, UpdateSet {
 
 	@Column(name = "password_status")
 	private Integer passwordStatus;
-	
+
 	@Column(name = "password_change_datetime")
 	private Timestamp passwordChangeDatetime;
 

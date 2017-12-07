@@ -7,27 +7,27 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="sys_masters")
+@Table(name = "sys_masters")
 public class Master extends Model<Long> {
 
 	private static final long serialVersionUID = 2011643757194425677L;
 
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	private Long id;
-	
-	@Column(name="code")
+
+	@Column(name = "code")
 	private String code;
 
-	@Column(name="value")
+	@Column(name = "value")
 	private String value;
 
-	@Column(name="label")
+	@Column(name = "label")
 	private String label;
 
-	@Column(name="remark")
+	@Column(name = "remark")
 	private String remark;
-	
+
 	@Transient
 	private String text;
 

@@ -12,6 +12,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,7 @@ public abstract class AbstractService<T, ID extends Serializable> implements Ser
 	 * @throws ServiceException
 	 */
 	@Autowired
+	@Qualifier("messageSource")
 	protected MessageSource messages;
 
 	public abstract Dao<T, ID> getDao() throws ServiceException;

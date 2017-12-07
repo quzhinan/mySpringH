@@ -105,7 +105,7 @@ public class SystemOptionUtil {
 		}
 	}
 
-	private static long[] readCpu(final Process proc){
+	private static long[] readCpu(final Process proc) {
 		long[] retn = new long[2];
 		try {
 			proc.getOutputStream().close();

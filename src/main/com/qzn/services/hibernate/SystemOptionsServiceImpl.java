@@ -15,7 +15,7 @@ public class SystemOptionsServiceImpl extends AbstractService<Master, Long> impl
 
 	@Autowired
 	private MasterDao masterDao;
-	
+
 	@Override
 	public Dao<Master, Long> getDao() {
 		return masterDao;

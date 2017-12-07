@@ -213,12 +213,6 @@
 	</bean>
 	<!-- sendEmail end -->
 	
-	<!-- IOC demo start -->
-	<!-- springframework initiate check start -->
-	<bean class="com.qzn.utils.CheckConfigsUtil"></bean>
-	<!-- initiate check end -->
-	<!-- IOC demo end-->
-	
 	<!-- AOP demo start  -->
 	<!-- 切面类 -->
 	<bean id="appendLogsByAOP" class="com.qzn.interceptors.AOPInterceptor"/>
@@ -249,4 +243,10 @@
            	<ref bean="systemOptionsHelper" />
        	</property>
 	</bean>
+	<bean id="applicationContextHelper" class="com.qzn.helper.ApplicationContextHelper">
+		<property name="instance">
+           	<ref bean="applicationContextHelper" />
+       	</property>
+	</bean>
+	
 </beans>

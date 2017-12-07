@@ -45,7 +45,7 @@ public class RegisterController extends AbstractController {
 		userService.registerUser(user);
 		return RedirectPage("welcome");
 	}
-	
+
 	public Integer getAge(Date birthDate) {
 		if (birthDate == null) {
 			return null;
@@ -54,9 +54,9 @@ public class RegisterController extends AbstractController {
 		startCalendar.setTime(birthDate);
 		Calendar endCalendar = Calendar.getInstance();
 		endCalendar.setTime(new Date());
-		int pastYear  = endCalendar.get(Calendar.YEAR)  - startCalendar.get(Calendar.YEAR);
+		int pastYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
 		int pastMonth = endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
-		int pastDate  = endCalendar.get(Calendar.DATE)  - startCalendar.get(Calendar.DATE);
+		int pastDate = endCalendar.get(Calendar.DATE) - startCalendar.get(Calendar.DATE);
 		if (pastMonth > 0) {
 			return pastYear;
 		} else if (pastMonth == 0) {
