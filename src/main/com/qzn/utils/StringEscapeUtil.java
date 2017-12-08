@@ -134,6 +134,7 @@ public class StringEscapeUtil {
 		return string;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static Object composeHtmlForBean(Object object) {
 		if (object == null) {
 			return null;

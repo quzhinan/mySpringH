@@ -28,8 +28,9 @@ public final class EmailUtil {
 	}
 
 	public static void sendEmail(Email email) throws Exception {
+		Integer mailQueueNum = Integer.valueOf(PropertyUtil.getPropertyValue("mail.queue.num"));
 		if (mailSenderQueue == null || mailSenderQueue.size() == 0) {
-			initMailSenderQueue(1);
+			initMailSenderQueue(mailQueueNum);
 		}
 		JavaMailSender mailSender = mailSenderQueue.take();
 		try {

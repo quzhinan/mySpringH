@@ -36,8 +36,7 @@ public class SystemOptionsHelper {
 	}
 
 	public void init() throws Exception {
-		refresh();
-		checkDataSoucesContects();
+		initSystemData();
 		startThread();
 	}
 
@@ -60,7 +59,7 @@ public class SystemOptionsHelper {
 		}
 	}
 
-	public synchronized void refresh() throws Exception {
+	public synchronized void initSystemData() throws Exception {
 		masterOptions.clear();
 		masterOptions.addAll(systemOptionsService.loadAllMasters());
 	}
