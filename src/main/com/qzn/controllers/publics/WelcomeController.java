@@ -37,7 +37,7 @@ public class WelcomeController extends AbstractController {
 	@RequestMapping("/login")
 	public Page login(Login login) throws Exception {
 		User loginUser = userService.auth(login.getUsername(), login.getPassword());
-		Authenticator.getSession().invalidate();
+		getSession().invalidate();
 		if (loginUser == null) {
 			return Page("filters-welcome", "login", login, "msg", "errors.validation.login.failed");
 		}
@@ -70,7 +70,7 @@ public class WelcomeController extends AbstractController {
 	@RequestMapping("/logout")
 	public Page logout() {
 		Authenticator.clearActiveUser();
-		Authenticator.getSession().invalidate();
+		getSession().invalidate();
 		return Page("filters-welcome");
 	}
 

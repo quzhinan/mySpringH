@@ -29,10 +29,6 @@ public abstract class AbstractService<T, ID extends Serializable> implements Ser
 	 * @return
 	 * @throws ServiceException
 	 */
-	@Autowired
-	@Qualifier("messageSource")
-	protected MessageSource messages;
-
 	public abstract Dao<T, ID> getDao() throws ServiceException;
 
 	protected HttpServletRequest getRequest() {
@@ -43,11 +39,6 @@ public abstract class AbstractService<T, ID extends Serializable> implements Ser
 	protected HttpSession getSession() {
 		HttpServletRequest request = getRequest();
 		return request.getSession();
-	}
-
-	public String getI18nMessage(String code) {
-		Locale locale = LocaleContextHolder.getLocale();
-		return messages.getMessage(code, null, locale);
 	}
 
 	public Class<T> getModelClass() throws ServiceException {

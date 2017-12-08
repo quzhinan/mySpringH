@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +12,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.qzn.auth.ActiveUser;
 import com.qzn.auth.Authenticator;
@@ -88,6 +92,16 @@ public class AbstractController {
 			userId = getLoginUser().getId().toString();
 		}
 		return userId;
+	}
+	
+	protected HttpServletRequest getRequest() {
+		RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+		return ((ServletRequestAttributes) ra).getRequest();
+	}
+
+	protected HttpSession getSession() {
+		HttpServletRequest request = getRequest();
+		return request.getSession();
 	}
 
 	@ModelAttribute

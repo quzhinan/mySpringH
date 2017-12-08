@@ -43,7 +43,7 @@
 	<script src="<tiles:getAsString name="js"/>"></script>
 </c:if>
 </head>
-<body>
+<body id="positionDisable">
 	<div id="wrapper">
 		<div>
 			<tiles:insertAttribute name="header" />
