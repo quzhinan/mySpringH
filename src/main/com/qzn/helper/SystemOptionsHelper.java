@@ -14,6 +14,7 @@ import com.qzn.models.Master;
 import com.qzn.services.SystemOptionsService;
 import com.qzn.thread.defaultThread;
 import com.qzn.utils.PropertyUtil;
+import com.qzn.utils.StringUtil;
 
 public class SystemOptionsHelper {
 
@@ -87,12 +88,12 @@ public class SystemOptionsHelper {
 
 	public String getMasterLabel(String code, String value) {
 		Master master = this.getMaster(code, value);
-		return master == null ? "" : master.getLabel();
+		return master == null ? StringUtil.STRING_EMPTY : master.getLabel();
 	}
 
 	public void checkEnvironmentVariable() {
 		Map<String, String> environmentVariables = System.getenv();
-		environmentVariables.get("");
+		environmentVariables.get(StringUtil.STRING_EMPTY);
 	}
 
 	public boolean checkFilePathExist(String path) {
