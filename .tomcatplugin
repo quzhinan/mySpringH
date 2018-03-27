@@ -8,5 +8,5 @@
     <updateXml>true</updateXml>
     <warLocation></warLocation>
     <extraInfo></extraInfo>
-    <webPath>/springH</webPath>
+    <webPath>/mySpringH</webPath>
 </tomcatProjectProperties>
