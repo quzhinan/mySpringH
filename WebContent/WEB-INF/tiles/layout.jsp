@@ -22,7 +22,8 @@
 <link rel="stylesheet" href="<q:url value='/style/bootstrap/bootstrap.min.css'/>" media="screen">
 <link rel="stylesheet" href="<q:url value='/style/font-awesome/font-awesome.min.css'/>">
 <link rel="stylesheet" href="<q:url value='/style/linearicons/style.css'/>">
-<link rel="stylesheet" href="<q:url value='/style/chartist/chartist-custom.css'/>">
+<link rel="stylesheet" href="<q:url value='/style/toastr.min.css'/>">
+<link rel="stylesheet" href="<q:url value='/style/main.css'/>">
 <link rel="stylesheet" href="<q:url value='/style/main.css'/>">
 <link rel="stylesheet" href="<q:url value='/style/demo.css'/>">
 <link rel="apple-touch-icon" sizes="76x76" href="<q:url value='/images/apple-icon.png'/>">
@@ -33,6 +34,7 @@
 <script src="<q:url value='/scripts/jquery-slimscroll/jquery.slimscroll.min.js'/>"></script>
 <script src="<q:url value='/scripts/jquery.easy-pie-chart/jquery.easypiechart.min.js'/>"></script>
 <script src="<q:url value='/scripts/chartist/chartist.min.js'/>"></script>
+<script src="<q:url value='/scripts/toastr.min.js'/>"></script>
 <script src="<q:url value='/scripts/klorofil-common.js'/>"></script>
 <script src="<q:url value='/scripts/main.js'/>"></script>
 <script src="<q:url value='/scripts/laydate/laydate.js'/>"></script>

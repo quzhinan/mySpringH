@@ -33,7 +33,7 @@
 				</c:if>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">重置</button>
-			<div class="bottom">
+			<div class="btn-bottom">
 				<q:url var="urlLogin" action="welcome" />
 				<span class="helper-text"><a href="${urlLogin}">返回登录</a></span>
 			</div>

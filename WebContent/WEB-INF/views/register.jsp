@@ -58,7 +58,7 @@
 				<form:errors path="email" />
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">注册</button>
-			<div class="bottom">
+			<div class="btn-bottom">
 				<q:url var="urlLogin" action="welcome"/>
 				<span class="helper-text">已有账户？<a href="${urlLogin}">登录</a></span>
 			</div>

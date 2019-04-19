@@ -37,7 +37,7 @@
 							</c:if>
 						</div>
 						<button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
-						<div class="bottom">
+						<div class="btn-bottom">
 							<q:url var="urlRegister" action="register" />
 							<q:url var="urlResetPassword" action="resetpassword" />
 							<span class="helper-text"><i class="fa fa-plus"></i> <a
